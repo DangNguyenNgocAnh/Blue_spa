@@ -1,0 +1,170 @@
+@extends('admin.layouts.master')
+@section('tittle')
+{{ $tittle }}
+@endsection
+
+@section('content')
+<main id="main" class="main">
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @elseif (session('failed'))
+    <div class="alert alert-danger">
+        {{ session('failed') }}
+    </div>
+    @elseif (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('failed') }}
+    </div>
+    @endif
+    <div class="pagetitle">
+        <h1>{{$tittle}}</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="\dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('users.index')}}">Customer</a></li>
+                <li class="breadcrumb-item active">{{$tittle}}</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                        <div class="mb-2">
+                            <span class="badge rounded-pill bg-warning text-dark">{{ $user->levels }}</span>
+                            <span class="badge rounded-pill bg-primary">{{ $user->roles }}</span>
+                        </div>
+                        <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile"
+                            class="rounded-circle">
+                        <h2>{{ $user->fullname }}</h2>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="detail_update-btn">
+                        <a type="button" href="{{route('users.formAddPackage',$user->id)}}"
+                            class="btn btn-primary">+</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <h5 class="user_detail-tittle">Customer's Package</h5>
+                                @forelse($packages as $key=>$package)
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 label ">{{++$key}}</div>
+                                    <div class="col-lg-9 col-md-8"><a
+                                            href="{{route('packages.show',$package->id)}}">{{ $package->name}}</a></div>
+                                </div>
+                                @empty
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-8">No package registration
+                                    </div>
+                                </div>
+                                @endforelse
+                            </div>
+                        </div><!-- End Bordered Tabs -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="detail_update-btn">
+                        <a type="button" href="{{route('users.edit',$user->id)}}" class="btn btn-primary"><i
+                                class="bi bi-pencil-square"></i></a>
+                        <button type="button" class="btn btn-danger user_list_btn" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ $user->id }}">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <a type="button" href="{{route('users.index')}}" class="btn btn-secondary">Back</a>
+
+                        <form action="{{route('users.destroy',$user->id)}}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                Confirm Delete
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete the person with the code number
+                                            of
+                                            <b>{{ $user->code }}</b>
+                                            and full name is
+                                            <b>{{ $user->fullname }}</b>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger w-100px">Remove</button>
+                                            <button type="button" class="btn btn-secondary w-100px"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <h5 class="user_detail-tittle">Customer's Information</h5>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Code</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->code }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label ">Fullname</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->fullname }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Email</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Department</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        {{ empty($user->department_id)? 'NULL': $user->department->name }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Birthday</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        {{ date_format(date_create($user->day_of_birth), 'd-m-Y') }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Phone number</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->phone_number }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Address</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->address }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Note</div>
+                                    <div class="col-lg-9 col-md-8 text_justify">{{ $user->note }}</div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+@endsection
