@@ -30,7 +30,7 @@ class PackageController extends Controller
         if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
             return view('admin.view.packages.create', [
                 'tittle' => 'Packages Create',
-
+                'code' => Package::max('code') + 1
             ]);
         }
         return redirect()->route('packages.index')->with('warning', 'No permission');
@@ -126,16 +126,21 @@ class PackageController extends Controller
     }
     public function getFormAddUser(Package $package)
     {
-        return view('admin.view.packages.addUser', [
-            'tittle' => 'Add member',
-            'package' => $package,
-            'users' => User::where('roles', 'Customer')
-                ->whereDoesntHave('packages', function ($query) use ($package) {
-                    $query->where('id', $package->id);
+        if ($package->status == 'Coming') {
+            return view('admin.view.packages.addUser', [
+                'tittle' => 'Add member',
+                'package' => $package,
+                'users' => User::whereHas('department', function ($query) {
+                    $query->where('name', 'Customer');
                 })
-                ->paginate(10),
-            'members' => $package->users()->get()
-        ]);
+                    ->whereDoesntHave('packages', function ($query) use ($package) {
+                        $query->where('id', $package->id);
+                    })
+                    ->paginate(10),
+                'members' => $package->users()->get()
+            ]);
+        }
+        return redirect()->back()->with('warning', 'This package was closed, cant to add user !!');
     }
     public function searchAddUser(Request $request, Package $package)
     {
@@ -143,7 +148,9 @@ class PackageController extends Controller
             'tittle' => 'Add member',
             'package' => $package,
             'condition' => "Thành viên có $request->item bao gồm $request->key",
-            'users' =>  User::where('roles', 'Customer')
+            'users' =>  User::whereHas('department', function ($query) {
+                $query->where('name', 'Customer');
+            })
                 ->whereDoesntHave('packages', function ($query) use ($package) {
                     $query->where('id', $package->id);
                 })

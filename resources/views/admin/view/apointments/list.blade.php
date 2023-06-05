@@ -44,7 +44,7 @@
                                 <option value="code" selected>Item</option>
                                 <option value="code" @if(isset($item) && $item=='code' ) selected @endif>Code
                                 </option>
-                                <option value="appointment_time" @if(isset($item) &&$item=='appointment_time' ) selected @endif> Time
+                                <option value="time" @if(isset($item) &&$item=='time' ) selected @endif> Time
                                 </option>
                                 <option value="Status" @if(isset($item) &&$item=='Status' ) selected @endif>
                                     Status </option>
@@ -94,8 +94,11 @@
                                         </span>
                                     </h5>
                                 </div>
-                                <div class="d-flex align-items-end flex-column">
-                                    <a class="btn btn-secondary" style="width:40px; height:40px" href="{{route('apointments.create')}}">+</a>
+                                <div class="input-group d-flex justify-content-end">
+                                    <div style=" display: flex; ">
+                                        <a class="btn btn-info" style="width:40px;height:40px;margin-right: 10px;" href="{{route('apointments.deleted')}}"><i class="bi bi-trash3"></i></a>
+                                        <a class="btn btn-secondary" style="width:40px; height:40px" href="{{route('apointments.create')}}">+</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
@@ -120,7 +123,7 @@
                                                 NULL
                                                 @endif
                                             </td>
-                                            <td> {{($apointment->appointment_time)}} </td>
+                                            <td> {{($apointment->time)}} </td>
                                             <td> {{$apointment->status}} </td>
 
                                             <td style="width: 176px;">

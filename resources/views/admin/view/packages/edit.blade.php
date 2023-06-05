@@ -43,7 +43,8 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" value="{{ old('name')?old('name'):$package->name }}">
+                                <input type="text" class="form-control" name="name"
+                                    value="{{ old('name')?old('name'):$package->name }}">
                                 @error('name')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -52,8 +53,19 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Code</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Ex: 1000" value="{{ old('code')?old('code'):$package->code }}" name="code">
+                                <input type="number" class="form-control" placeholder="Ex: 1000"
+                                    value="{{ old('code')?old('code'):$package->code }}" name="code">
                                 @error('code')
+                                <div class="invalidate">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control"
+                                    value="{{ old('price')?old('price'):$package->price }}" name="price">
+                                @error('price')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -113,40 +125,40 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Appicable level</label>
                             <div class="col-sm-10">
-                                <select class="form-select" name="appicable_level">
+                                <select class="form-select" name="level_applied">
                                     <option value="" selected>Choose Level</option>
-                                    <option value="Level 1" @if (!old('appicable_level') &&( $package->appicable_level
+                                    <option value="Level 1" @if (!old('level_applied') &&( $package->level_applied
                                         == 'level 1'))
                                         selected
-                                        @elseif (old('appicable_level')=='Level 1' ) selected @endif>
+                                        @elseif (old('level_applied')=='Level 1' ) selected @endif>
                                         Level 1
                                     </option>
-                                    <option value="Level 2" @if (!old('appicable_level') &&( $package->appicable_level
+                                    <option value="Level 2" @if (!old('level_applied') &&( $package->level_applied
                                         == 'level 2'))
                                         selected
-                                        @elseif (old('appicable_level')=='Level 2' ) selected @endif>
+                                        @elseif (old('level_applied')=='Level 2' ) selected @endif>
                                         Level 2
                                     </option>
-                                    <option value="Level 3" @if (!old('appicable_level') &&( $package->appicable_level
+                                    <option value="Level 3" @if (!old('level_applied') &&( $package->level_applied
                                         == 'level 3'))
                                         selected
-                                        @elseif (old('appicable_level')=='Level 3' ) selected @endif>
+                                        @elseif (old('level_applied')=='Level 3' ) selected @endif>
                                         Level 3
                                     </option>
-                                    <option value="Level 4" @if (!old('appicable_level') &&( $package->appicable_level
+                                    <option value="Level 4" @if (!old('level_applied') &&( $package->level_applied
                                         == 'level 4'))
                                         selected
-                                        @elseif (old('appicable_level')=='Level 4' ) selected @endif>
+                                        @elseif (old('level_applied')=='Level 4' ) selected @endif>
                                         Level 4
                                     </option>
-                                    <option value="Level 5" @if (!old('appicable_level') &&( $package->appicable_level
+                                    <option value="Level 5" @if (!old('level_applied') &&( $package->level_applied
                                         == 'level 5'))
                                         selected
-                                        @elseif (old('appicable_level')=='Level 5' ) selected @endif>
+                                        @elseif (old('level_applied')=='Level 5' ) selected @endif>
                                         Level 5
                                     </option>
                                 </select>
-                                @error('appicable_level')
+                                @error('level_applied')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -154,7 +166,8 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px" name="description">{{old('description')?old('description'):$package->description }}</textarea>
+                                <textarea class="form-control h-100px"
+                                    name="description">{{old('description')?old('description'):$package->description }}</textarea>
                                 @error('description')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

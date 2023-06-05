@@ -73,6 +73,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/{department}/add_user', 'addUser')->name('departments.addUser');
         });
         Route::controller(PackageController::class)->prefix('packages')->group(function () {
+            Route::patch('/{package}', 'update')->name('packages.update');
+            Route::post('/', 'store')->name('packages.store');
             Route::post('/{package}/restore', 'restorePackage')->name('packages.restore');
             Route::get('/deleted', 'getListDeleted')->name('packages.deleted');
             Route::get('/{package}/addUser/search', 'searchAddUser')->name('packages.addUser.search');
@@ -82,11 +84,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/sort', 'sort')->name('packages.sort');
             Route::delete('/{package}', 'destroy')->name('packages.destroy');
             Route::get('/{package}/edit', 'edit')->name('packages.edit');
-            Route::patch('/{package}', 'update')->name('packages.update');
             Route::get('/create', 'create')->name('packages.create');
-            Route::post('/', 'store')->name('packages.store');
-            Route::get('/', 'index')->name('packages.index');
             Route::get('/{package}', 'show')->name('packages.show');
+            Route::get('/', 'index')->name('packages.index');
         });
         Route::controller(ApointmentController::class)->prefix('apointments')->group(function () {
             Route::post('/{package}/restore', 'restoreApointment')->name('apointments.restore');
@@ -103,7 +103,3 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
-
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');

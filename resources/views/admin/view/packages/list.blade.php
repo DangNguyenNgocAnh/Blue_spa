@@ -109,7 +109,7 @@
                                         <th scope="col">Code</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Types</th>
-                                        <th scope="col">Appicable Level</th>
+                                        <th scope="col">Price</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
@@ -120,7 +120,7 @@
                                         <td> {{$package->code}} </td>
                                         <td> {{$package->name}} </td>
                                         <td> {{$package->types}} </td>
-                                        <td> {{ucfirst($package->appicable_level)}} </td>
+                                        <td> {{ucfirst($package->price)}} VND </td>
                                         <td> {{$package->status}} </td>
 
                                         <td style="width: 176px;">

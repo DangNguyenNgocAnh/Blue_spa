@@ -40,6 +40,15 @@
                     <div class="card-body">
                         <h5 class="card-title">Package <span> | {{$tittle}}</span></h5>
                         <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Code</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" value="{{$code}}" name="code" readonly>
+                                @error('code')
+                                <div class="invalidate">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="name" placeholder="Ex: Nguyễn Văn A" value="{{ old('name') }}">
@@ -48,15 +57,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Code</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Ex: 1000" value="{{old('code')}}" name="code">
-                                @error('code')
-                                <div class="invalidate">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Types</label>
                             <div class="col-sm-10">
@@ -79,6 +80,15 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" placeholder="Ex: 1000" value="{{old('price')}}" name="price">
+                                @error('price')
+                                <div class="invalidate">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-10">
                                 <select class="form-select" name="status">
@@ -96,27 +106,27 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Appicable level</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Level appiled</label>
                             <div class="col-sm-10">
-                                <select class="form-select" name="appicable_level">
+                                <select class="form-select" name="level_applied">
                                     <option value="" selected>Choose Level</option>
-                                    <option value="Level 1" @if(old('appicable_level')=='Level 1' ) selected @endif>
+                                    <option value="Level 1" @if(old('level_applied')=='Level 1' ) selected @endif>
                                         Level 1
                                     </option>
-                                    <option value="Level 2" @if(old('appicable_level')=='Level 2' ) selected @endif>
+                                    <option value="Level 2" @if(old('level_applied')=='Level 2' ) selected @endif>
                                         Level 2
                                     </option>
-                                    <option value="Level 3" @if(old('appicable_level')=='Level 3' ) selected @endif>
+                                    <option value="Level 3" @if(old('level_applied')=='Level 3' ) selected @endif>
                                         Level 3
                                     </option>
-                                    <option value="Level 4" @if(old('appicable_level')=='Level 4' ) selected @endif>
+                                    <option value="Level 4" @if(old('level_applied')=='Level 4' ) selected @endif>
                                         Level 4
                                     </option>
-                                    <option value="Level 5" @if(old('appicable_level')=='Level 5' ) selected @endif>
+                                    <option value="Level 5" @if(old('level_applied')=='Level 5' ) selected @endif>
                                         Level 5
                                     </option>
                                 </select>
-                                @error('appicable_level')
+                                @error('level_applied')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
                             </div>

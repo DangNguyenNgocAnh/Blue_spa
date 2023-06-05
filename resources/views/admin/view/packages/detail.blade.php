@@ -9,6 +9,10 @@
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
+    @elseif (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
     @elseif (session('failed'))
     <div class="alert alert-danger">
         {{ session('failed') }}
@@ -45,8 +49,13 @@
                                     <div class="col-lg-9 col-md-8">{{$package->code}}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Appicable Level</div>
-                                    <div class="col-lg-9 col-md-8 text_justify">{{ucfirst($package->appicable_level)}}
+                                    <div class="col-lg-3 col-md-4 label">Level Appied</div>
+                                    <div class="col-lg-9 col-md-8 text_justify">{{ucfirst($package->level_applied)}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Price</div>
+                                    <div class="col-lg-9 col-md-8 text_justify">{{($package->price)}} đồng
                                     </div>
                                 </div>
                                 <div class="row">

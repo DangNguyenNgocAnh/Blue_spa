@@ -127,4 +127,25 @@ class ApointmentController extends Controller
             'apointments' =>  $apointments->withQueryString(),
         ]);
     }
+    public function getListDeleted()
+    {
+        return view('admin.view.apointments.listDeleted', [
+            'tittle' =>  'List Apointment Deleted',
+            'item' => 'Apointment',
+            'route_index' => route('apointments.index'),
+            'route_search' => route('apointments.search'),
+            'name_route_restore' => 'apointments.restore',
+            'apointments' => Apointment::onlyTrashed()->paginate(10),
+            'count' => Apointment::onlyTrashed()->count()
+        ]);
+    }
+    public function restoreApointment(String $id)
+    {
+        try {
+            Apointment::onlyTrashed()->where('id', $id)->restore();
+            return redirect()->route('apointments.index')->with('success', 'Restore successful!');
+        } catch (Exception $exception) {
+            return redirect()->back()->with('failed', $exception->getMessage());
+        }
+    }
 }

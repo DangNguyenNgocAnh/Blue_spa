@@ -31,8 +31,7 @@
                 <div class="card">
                     <div class="detail_update-btn">
                         <a type="button" href="{{route('apointments.index')}}" class="btn btn-secondary">Back</a>
-                        <a type="button" href="{{route('apointments.edit',$apointment->id)}}" class="btn btn-primary"><i
-                                class="bi bi-pencil-square"></i></a>
+                        <a type="button" href="{{route('apointments.edit',$apointment->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
 
                     </div>
                     <div class="card-body">
@@ -43,8 +42,7 @@
                                     <div class="col-lg-3 col-md-4 label ">Customer's name </div>
                                     <div class="col-lg-9 col-md-8">
                                         @if(!empty($apointment->customer))
-                                        <a
-                                            href="{{route('users.show',$apointment->customer->id)}}">{{$apointment->customer->fullname}}</a>
+                                        <a href="{{route('users.show',$apointment->customer->id)}}">{{$apointment->customer->fullname}}</a>
                                         @else
                                         NULL
                                         @endif
@@ -62,8 +60,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Time of apointment</div>
-                                    <div class="col-lg-9 col-md-8">{{$apointment->appointment_time}}</div>
+                                    <div class="col-lg-3 col-md-6 label">Time of apointment</div>
+                                    <div class="col-lg-9 col-md-8">{{$apointment->time}}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Status</div>

@@ -38,24 +38,29 @@
                                 <form action="{{route('users.addPackage.search',$user->id)}}" method="get">
                                     <div class="d-flex justify-content-end">
                                         <div class="col-sm-1">
-                                            <input class="form-check-input" type="radio" name="item" id="code" value="code" checked>
+                                            <input class="form-check-input" type="radio" name="item" id="code"
+                                                value="code" checked>
                                             <label class="form-check-label" for="code">Code</label>
                                         </div>
                                         <div class="col-sm-1">
-                                            <input class="form-check-input" type="radio" name="item" id="name" value="name" checked>
+                                            <input class="form-check-input" type="radio" name="item" id="name"
+                                                value="name" checked>
                                             <label class="form-check-label" for="name">Name</label>
                                         </div>
                                         <div class="col-sm-1">
-                                            <input class="form-check-input" type="radio" name="item" id="types" value="types">
+                                            <input class="form-check-input" type="radio" name="item" id="types"
+                                                value="types">
                                             <label class="form-check-label" for="types">Type</label>
                                         </div>
                                         <div class="search-form">
                                             <input type="text" name="key" required>
-                                            <button type="submit" title="Search" class="btn btn-outline-info" style="width:40px; height:35px"><i class="bi bi-search"></i></button>
+                                            <button type="submit" title="Search" class="btn btn-outline-info"
+                                                style="width:40px; height:35px"><i class="bi bi-search"></i></button>
                                         </div>
                                     </div>
                                 </form>
-                                <form method="post" action="{{route('users.addUser',$user->id)}}" class="row g-3" style="padding:20px;">
+                                <form method="post" action="{{route('users.addUser',$user->id)}}" class="row g-3"
+                                    style="padding:20px;">
                                     @csrf
                                     <table class="table table-bordered">
                                         <thead>
@@ -71,7 +76,8 @@
                                             <tr>
                                                 <th scope="row">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" name="package_id[]" value="{{ $package->id }}">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            name="package_id[]" value="{{ $package->id }}">
                                                     </div>
                                                 </th>
                                                 <td> {{ $package->code }} </td>
@@ -98,7 +104,8 @@
             <div class="col-xl-4">
                 <div class="card">
                     <div class="detail_update-btn">
-                        <a type="button" href="{{route('packages.show',$package->id)}}" class="btn btn-secondary">Back</a>
+                        <a type="button" href="{{route('packages.show',$package->id)}}"
+                            class="btn btn-secondary">Back</a>
                     </div>
                     <div class="card_body">
                         <div class="card-body">
@@ -108,7 +115,8 @@
                                     @forelse($packagesOfUser as $package)
                                     <div class="row">
                                         <div class="col d-flex justify-content-between">
-                                            <p>{{$package->code}} : <a class=" text-primary" href="{{route('users.show',$user->id)}}">
+                                            <p>{{$package->code}} : <a class=" text-primary"
+                                                    href="{{route('users.show',$user->id)}}">
                                                     {{$package->name}}</a></p>
                                         </div>
                                     </div>

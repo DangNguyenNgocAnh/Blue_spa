@@ -15,11 +15,11 @@ class Apointment extends Model
         'code',
         'customer_id',
         'employee_id',
-        'appointment_time',
+        'time',
         'status',
         'message'
     ];
-    public function getAppointmentTimeAttribute($value)
+    public function getTimeAttribute($value)
     {
         return date('H:i d/m/Y', strtotime($value));
     }

@@ -31,7 +31,7 @@ class DepartmentController extends Controller
         if (Gate::allows('isAdmin')) {
             return view('admin.view.departments.create', [
                 'tittle' => 'Create Department',
-                'departments' => Department::all()
+                'code' => Department::max('code') + 1
             ]);
         }
         return redirect()->back()->with('warning', 'No permission');

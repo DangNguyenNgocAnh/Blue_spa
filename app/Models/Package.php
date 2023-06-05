@@ -14,11 +14,12 @@ class Package extends Model
 
     protected $fillable = [
         'name',
-        'appicable_level',
+        'level_applied',
         'code',
         'status',
         'types',
-        'description'
+        'description',
+        'price'
     ];
 
     protected $table = 'packages';

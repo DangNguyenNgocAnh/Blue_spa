@@ -81,8 +81,8 @@
                         <div class="row mb-3">
                             <label for="inputDate" class="col-sm-2 col-form-label">Time</label>
                             <div class="col-sm-10">
-                                <input type="datetime-local" class="form-control" name="appointment_time" value="{{ old('appointment_time') }}">
-                                @error('appointment_time')
+                                <input type="datetime-local" class="form-control" name="time" value="{{ old('time') }}">
+                                @error('time')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
                             </div>

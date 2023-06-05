@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->unique();
-            $table->enum('appicable_level', ['level 1', 'level 2', 'level 3', 'level 4', 'level 5']);
+            $table->enum('level_applied', ['level 1', 'level 2', 'level 3', 'level 4', 'level 5']);
             $table->unsignedInteger('code')->unique();
+            $table->integer('price');
             $table->enum('status', ['Coming', 'Closed', 'Pending'])->nullable();
             $table->enum('types', ['Basic', 'Standard', 'Premium', 'Trial', 'Special'])->nullable();
             $table->string('description', 255)->nullable();

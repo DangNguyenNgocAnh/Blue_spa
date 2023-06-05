@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             [
                 'code' => 1001,
                 'email' => 'admin@gmail.com',
-                'department_id' => 6
+                'department_id' => 1
             ],
             [
                 'code' => 2001,

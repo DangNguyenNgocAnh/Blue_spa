@@ -20,12 +20,12 @@ class PackageFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'appicable_level' => Arr::random(['level 1', 'level 2', 'level 3', 'level 4', 'level 5']),
+            'level_applied' => Arr::random(['level 1', 'level 2', 'level 3', 'level 4', 'level 5']),
             'code' => rand(1000, 9999),
             'status' => Arr::random(['Coming', 'Closed', 'Pending']),
             'types' => Arr::random(['Basic', 'Standard', 'Premium', 'Trial', 'Special']),
-            'description' => Str::random(10)
-
+            'description' => Str::random(10),
+            'price' => rand(100000, 2000000)
         ];
     }
 }

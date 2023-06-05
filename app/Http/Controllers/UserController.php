@@ -156,7 +156,7 @@ class UserController extends Controller
                 'user' => $user,
                 'packageAdds' => Package::whereDoesntHave('users', function ($query) use ($user) {
                     $query->where('id', $user->id);
-                })
+                })->where('status', 'Coming')
                     ->paginate(10),
                 'packagesOfUser' => $user->packages()->get()
             ]);
@@ -185,7 +185,7 @@ class UserController extends Controller
             'user' => $user,
             'packageAdds' => Package::whereDoesntHave('users', function ($query) use ($user) {
                 $query->where('id', $user->id);
-            })->where($request->item, 'like', "%$request->key%")
+            })->where('status', 'Coming')->where($request->item, 'like', "%$request->key%")
                 ->paginate(10),
             'packagesOfUser' => $user->packages()->get(),
             'condition' => "Package có $request->item bao gồm $request->key",

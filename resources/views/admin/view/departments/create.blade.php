@@ -40,6 +40,15 @@
                     <div class="card-body">
                         <h5 class="card-title">Department <span> | {{$tittle}}</span></h5>
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Code</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" value="{{$code}}" name="code" readonly>
+                                @error('code')
+                                <div class="invalidate">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="name" placeholder="Ex: Customer" value="{{ old('name') }}">
@@ -48,15 +57,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Code</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Ex: 1000" value="{{old('code')}}" name="code">
-                                @error('code')
-                                <div class="invalidate">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Note</label>
                             <div class="col-sm-10">
