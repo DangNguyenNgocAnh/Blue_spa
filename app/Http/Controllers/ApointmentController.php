@@ -29,6 +29,8 @@ class ApointmentController extends Controller
         return view('admin.view.apointments.create', [
             'tittle' => 'Apointment Create',
             'code' => Apointment::max('code') + 1,
+            'maxDay' => now()->addDays(7)->format('Y-m-d'),
+            'minDay' => now()->format('Y-m-d'),
             'customers' => User::whereHas('department', function ($query) {
                 $query->where('name', 'Customer');
             })->get(),

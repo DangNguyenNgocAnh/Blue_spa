@@ -24,12 +24,9 @@
                             <input class="form-check-input" type="radio" name="item" id="code" value="code" checked>
                             <label class="form-check-label" for="code">Code</label>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <input class="form-check-input" type="radio" name="item" id="customer_name" value="customer_name">
-                            <label class="form-check-label" for="customer_name">Name</label>
-                            @error('roles')
-                            <div class="invalidate">{{ $message }}</div>
-                            @enderror
+                            <label class="form-check-label" for="customer_name">Customer</label>
                         </div>
                         <div class="search-form">
                             <input type="text" name="key" required>

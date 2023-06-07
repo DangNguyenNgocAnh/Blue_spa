@@ -33,6 +33,37 @@
         <div class="row">
             <div class="col-xl-4">
                 <div class="card">
+                    <div class="detail_update-btn">
+                        <button type="button" class="btn btn-danger user_list_btn" data-bs-toggle="modal"
+                            data-bs-target="#resetModal{{ $user->id }}">
+                            <i class="bi bi-repeat"></i>
+                        </button>
+                        <form action="{{route('users.resetPassword',$user->id)}}" method="post">
+                            @csrf
+                            <div class="modal fade" id="resetModal{{ $user->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                Confirm Reset Password
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to reset password this person ? <br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-info w-100px">Reset</button>
+                                            <button type="button" class="btn btn-secondary w-100px"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <div class="mb-2">
                             <span class="badge rounded-pill bg-warning text-dark">{{ $user->levels }}</span>
@@ -80,7 +111,6 @@
                             <i class="bi bi-trash"></i>
                         </button>
                         <a type="button" href="{{route('users.index')}}" class="btn btn-secondary">Back</a>
-
                         <form action="{{route('users.destroy',$user->id)}}" method="post">
                             @method('DELETE')
                             @csrf

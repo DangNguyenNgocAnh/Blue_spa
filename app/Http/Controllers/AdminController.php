@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Jobs\SendMailJob;
 use App\Models\Department;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -82,7 +84,9 @@ class AdminController extends Controller
     {
         return view('admin.view.staff.detail', [
             'tittle' => 'Staff Detail',
-            'user' => $user
+            'user' => $user,
+            'permission' => (Auth::user() != $user) &&
+                (Gate::allows('isAdmin') ||  Gate::allows('isManager'))
         ]);
     }
 
@@ -124,7 +128,7 @@ class AdminController extends Controller
         try {
             $user->fill($request->all());
             $user->save();
-            return redirect()->route('staff.index')->with('success', 'Update success');
+            return redirect()->route('staff.show', $user->id)->with('success', 'Update success');
         } catch (Exception $exception) {
             return redirect()->back()->with('failed', $exception->getMessage());
         }
@@ -186,6 +190,29 @@ class AdminController extends Controller
         try {
             User::onlyTrashed()->where('id', $id)->restore();
             return redirect()->route('staff.index')->with('success', 'Restore successful!');
+        } catch (Exception $exception) {
+            return redirect()->back()->with('failed', $exception->getMessage());
+        }
+    }
+    public function resetPassword(User $user)
+    {
+        try {
+            if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+                $user->password = Hash::make('password');
+                $user->save();
+                dispatch(new SendMailJob([
+                    'from' => env('MAIL_USERNAME'),
+                    'to' => $user->email,
+                    'subject' => 'Reset Password',
+                    'data' => [
+                        'header' => "Xin chào <b>$user->fullname</b>",
+                        'body' => 'Tài khoản của bạn trong website spa đã được reset password lại thành <b>password</b>.',
+                        'footer' => '<b>Xin chân thành cảm ơn !!!</b>'
+                    ]
+                ]))->delay(now()->addSeconds(10));
+                return redirect()->back()->with('success', 'Reset password successful!');
+            }
+            return redirect()->back()->with('warning', 'No permission');
         } catch (Exception $exception) {
             return redirect()->back()->with('failed', $exception->getMessage());
         }

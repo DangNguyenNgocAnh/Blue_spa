@@ -80,11 +80,23 @@
                         </div>
                         <div class="row mb-3">
                             <label for="inputDate" class="col-sm-2 col-form-label">Time</label>
-                            <div class="col-sm-10">
-                                <input type="datetime-local" class="form-control" name="time" value="{{ old('time') }}">
-                                @error('time')
-                                <div class="invalidate">{{ $message }}</div>
-                                @enderror
+                            <div class="col-sm-10 row">
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" name="date"
+                                        value="{{ old('date')?old('date'):$minDay}}" min="{{$minDay}}" max={{$maxDay}}>
+                                    @error('date')
+                                    <div class=" invalidate">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="time" class="form-control" name="time" min="09:00:00" max="18:00:00"
+                                        step="900">
+                                    @error('time')
+                                    <div class=" invalidate">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -109,7 +121,8 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Message</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px" name="description">{{ old('message') }}</textarea>
+                                <textarea class="form-control h-100px"
+                                    name="description">{{ old('message') }}</textarea>
                                 @error('message')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

@@ -123,7 +123,9 @@ class DepartmentController extends Controller
             return view('admin.view.departments.addUser', [
                 'tittle' => 'Add member',
                 'department' => $department,
-                'users' => User::whereNot('roles', 'Customer')->whereNot('department_id', $department->id)->paginate(10),
+                'users' => User::whereNot('department_id', $department->id)->whereHas('department', function ($query) {
+                    $query->whereNot('name', 'Customer');
+                })->paginate(10),
                 'members' => $department->users()->get()
             ]);
         }

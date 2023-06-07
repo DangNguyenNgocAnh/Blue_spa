@@ -27,7 +27,7 @@ class DepartmentObserver
      */
     public function deleted(Department $department): void
     {
-        $department->users()->update(['department_id' => 8]);
+        $department->users()->update(['department_id' => 6]);
     }
 
     /**

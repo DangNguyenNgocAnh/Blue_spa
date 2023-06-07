@@ -3,9 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\UserController;
+use App\Jobs\SendMailJob;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +25,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'index')->name('login');
-    Route::post('/', 'login');
+    Route::post('/', 'login')->name('loginAccount');
     Route::get('/logout', 'logout')->name('logout');
+});
+Route::controller(UserController::class)->group(function () {
+    Route::get('/register', 'getFormRegister')->name('user.getFormRegister');
+    Route::post('/register', 'register')->name('user.register');
 });
 Route::middleware('auth')->group(function () {
     Route::middleware('admin')->prefix('admin')->group(function () {
@@ -30,6 +38,7 @@ Route::middleware('auth')->group(function () {
             return view('admin.view.dashboard', ['tittle' => 'Dashboard']);
         })->name('dashboard');
         Route::controller(AdminController::class)->prefix('staff')->group(function () {
+            Route::post('/{user}/reset', 'resetPassword')->name('staff.resetPassword');
             Route::post('/{user}/restore', 'restoreStaff')->name('staff.restore');
             Route::get('/deleted', 'getListDeleted')->name('staff.deleted');
             Route::get('/search', 'search')->name('staff.search');
@@ -41,7 +50,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('staff.index');
             Route::get('/{user}', 'show')->name('staff.show');
         });
-        Route::controller(UserController::class)->prefix('customers')->group(function () {
+        Route::controller(CustomerController::class)->prefix('customers')->group(function () {
+            Route::post('/{user}/reset', 'resetPassword')->name('users.resetPassword');
             Route::post('/{user}/restore', 'restoreCustomer')->name('users.restore');
             Route::get('/deleted', 'getListDeleted')->name('users.deleted');
             Route::get('/{user}/addPackage/search', 'searchAddPackage')->name('users.addPackage.search');
@@ -103,3 +113,6 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');

@@ -26,7 +26,7 @@ class ApointmentRequest extends FormRequest
             'code' => ['required', "numeric", Rule::unique('apointments')->ignore(request()->id)],
             'customer_id' => 'required|exists:users,id',
             'employee_id' => 'nullable|exists:users,id',
-            'appointment_time' =>  'required|date|after:today|before_or_equal:' . date('Y-m-d', strtotime('+1 week')),
+            'time' =>  'required|date|after_or_equal:today|before_or_equal:' . date('Y-m-d', strtotime('+1 week')),
             'status' => [
                 'required', Rule::in(['Completed', 'Confirmed', 'Cancelled', 'Missed']),
             ],
@@ -37,7 +37,7 @@ class ApointmentRequest extends FormRequest
         return [
             'customer_id' => 'customer',
             'employee_id' => 'staff',
-            'appointment_time' => 'time of apointment'
+            'time' => 'time of apointment'
         ];
     }
 }

@@ -54,8 +54,8 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Code</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Ex: 1000"
-                                    value="{{old('code')?old('code'):$department->code }}" name="code">
+                                <input type="number" class="form-control" value="{{$department->code }}" name="code"
+                                    readonly>
                                 @error('code')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

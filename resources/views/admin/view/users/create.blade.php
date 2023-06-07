@@ -27,7 +27,7 @@
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
     <form method="post" action="{{$route_create}}">
         @csrf
         <section class="section dashboard">
@@ -47,7 +47,8 @@
                         <div class="row mb-3">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="email" placeholder="Ex: Example@gmail.com" value="{{ old('email') }}">
+                                <input type="text" class="form-control" name="email" placeholder="Ex: Example@gmail.com"
+                                    value="{{ old('email') }}">
                                 @error('email')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -56,7 +57,8 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Fullname</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="fullname" placeholder="Ex: Nguyễn Văn A" value="{{ old('fullname') }}">
+                                <input type="text" class="form-control" name="fullname" placeholder="Ex: Nguyễn Văn A"
+                                    value="{{ old('fullname') }}">
                                 @error('fullname')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -65,7 +67,8 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Phone number</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="phone_number" placeholder="Ex: 123456789" value="{{ old('phone_number') }}">
+                                <input type="text" class="form-control" name="phone_number" placeholder="Ex: 123456789"
+                                    value="{{ old('phone_number') }}">
                                 @error('phone_number')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -74,7 +77,9 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="address" placeholder="Ex: 01 Nguyễn Văn Linh, P Hòa Cường Bắc, TP Đà Nẵng" value="{{ old('address') }}">
+                                <input type="text" class="form-control" name="address"
+                                    placeholder="Ex: 01 Nguyễn Văn Linh, P Hòa Cường Bắc, TP Đà Nẵng"
+                                    value="{{ old('address') }}">
                                 @error('address')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -86,7 +91,8 @@
                                 <div class="col-sm-6">
                                     <label for="inputNumber" class="col-form-label">Code</label>
                                     <div class="">
-                                        <input type="number" class="form-control" value="{{$code}}" name="code" readonly>
+                                        <input type="number" class="form-control" value="{{$code}}" name="code"
+                                            readonly>
                                         @error('code')
                                         <div class="invalidate">{{ $message }}</div>
                                         @enderror
@@ -137,7 +143,8 @@
                                 <div class="col-sm-6">
                                     <label for="inputNumber" class="col-form-label">Day of birth</label>
                                     <div class="">
-                                        <input type="date" class="form-control" name="day_of_birth" value="{{ old('day_of_birth') }}">
+                                        <input type="date" class="form-control" name="day_of_birth"
+                                            value="{{ old('day_of_birth') }}">
                                         @error('day_of_birth')
                                         <div class="invalidate">{{ $message }}</div>
                                         @enderror
@@ -160,5 +167,5 @@
         </section>
     </form>
 
-</main><!-- End #main -->
+</main>
 @endsection
