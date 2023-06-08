@@ -18,7 +18,7 @@
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="\dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('departments.index')}}">Department</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
@@ -30,8 +30,7 @@
             <div class="col-xl-6">
                 <div class="card">
                     <div class="detail_update-btn">
-                        <a type="button" href="{{route('departments.edit',$department->id)}}" class="btn btn-primary"><i
-                                class="bi bi-pencil-square"></i></a>
+                        <a type="button" href="{{route('departments.edit',$department->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
@@ -61,8 +60,7 @@
                 <div class="card">
                     <div class="detail_update-btn">
                         <a type="button" href="{{route('departments.index')}}" class="btn btn-secondary">Back</a>
-                        <a type="button" href="{{route('departments.formAddUser',$department->id)}}"
-                            class="btn btn-primary">+</a>
+                        <a type="button" href="{{route('departments.formAddUser',$department->id)}}" class="btn btn-primary">+</a>
                     </div>
                     <div class="card_body">
                         <div class="card-body">
@@ -72,16 +70,13 @@
                                     @forelse($users as $key=>$user)
                                     <div class="row">
                                         <div class="col d-flex justify-content-between">
-                                            <p>{{++$key}} : <a class=" text-primary"
-                                                    href="{{route('users.show',$user->id)}}">
+                                            <p>{{++$key}} : <a class=" text-primary" href="{{route('users.show',$user->id)}}">
                                                     {{$user->fullname}}</a></p>
                                             <div class="d-flex justify-content-end">
-                                                <a class="btn btn-outline-info"
-                                                    href="{{route('users.show',$user->id)}}">
+                                                <a class="btn btn-outline-info" href="{{route('users.show',$user->id)}}">
                                                     <i class="bi bi-person-vcard"></i>
                                                 </a>
-                                                <a class="btn btn-outline-success"
-                                                    href="{{route('users.edit',$user->id)}}">
+                                                <a class="btn btn-outline-success" href="{{route('users.edit',$user->id)}}">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
                                             </div>

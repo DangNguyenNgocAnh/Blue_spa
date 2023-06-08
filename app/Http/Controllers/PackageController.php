@@ -167,7 +167,7 @@ class PackageController extends Controller
         try {
             $list_id = array_values($request->user_id);
             foreach ($list_id as $user_id) {
-                User::find($user_id)->packages()->attach($package->id);
+                User::find($user_id)->packages()->attach($package->id, ['created_at' => now(), 'updated_at' => now()]);
             }
             return redirect()->route('packages.show', $package->id)->with('success', 'Add successfull !');
         } catch (Exception $exception) {

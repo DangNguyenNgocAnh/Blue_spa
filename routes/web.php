@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApointmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\UserController;
@@ -34,9 +35,7 @@ Route::controller(UserController::class)->group(function () {
 });
 Route::middleware('auth')->group(function () {
     Route::middleware('admin')->prefix('admin')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.view.dashboard', ['tittle' => 'Dashboard']);
-        })->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
         Route::controller(AdminController::class)->prefix('staff')->group(function () {
             Route::post('/{user}/reset', 'resetPassword')->name('staff.resetPassword');
             Route::post('/{user}/restore', 'restoreStaff')->name('staff.restore');

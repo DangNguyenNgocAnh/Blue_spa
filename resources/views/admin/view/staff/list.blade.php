@@ -11,7 +11,7 @@
                 <h1>{{$tittle}}</h1>
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="\dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{route('staff.index')}}">Staff</a></li>
                         <li class="breadcrumb-item active">{{$tittle}}</li>
                     </ol>
@@ -24,8 +24,7 @@
                         <div class="row mb-3">
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="item" id="code" value="code"
-                                        checked>
+                                    <input class="form-check-input" type="radio" name="item" id="code" value="code" checked>
                                     <label class="form-check-label" for="code">Code</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -33,8 +32,7 @@
                                     <label class="form-check-label" for="email">Email</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="item" id="fullname"
-                                        value="fullname">
+                                    <input class="form-check-input" type="radio" name="item" id="fullname" value="fullname">
                                     <label class="form-check-label" for="fullname">Fullname</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -85,10 +83,8 @@
                                 </div>
                                 <div class="input-group d-flex justify-content-end">
                                     <div style=" display: flex; ">
-                                        <a class="btn btn-info" style="width:40px;height:40px;margin-right: 10px;"
-                                            href="{{route('staff.deleted')}}"><i class="bi bi-trash3"></i></a>
-                                        <a class="btn btn-secondary" style="width:40px; height:40px"
-                                            href="{{route('staff.create')}}">+</a>
+                                        <a class="btn btn-info" style="width:40px;height:40px;margin-right: 10px;" href="{{route('staff.deleted')}}"><i class="bi bi-trash3"></i></a>
+                                        <a class="btn btn-secondary" style="width:40px; height:40px" href="{{route('staff.create')}}">+</a>
                                     </div>
                                 </div>
                             </div>
@@ -113,16 +109,13 @@
                                     <td>{{ $user->fullname }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td style="width: 176px;">
-                                        <a class="btn btn-outline-info user_list_btn"
-                                            href="{{route('staff.show',$user->id)}}">
+                                        <a class="btn btn-outline-info user_list_btn" href="{{route('staff.show',$user->id)}}">
                                             <i class="bi bi-person-vcard"></i>
                                         </a>
-                                        <a class="btn btn-outline-success user_list_btn"
-                                            href="{{route('staff.edit',$user->id)}}">
+                                        <a class="btn btn-outline-success user_list_btn" href="{{route('staff.edit',$user->id)}}">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <button type="button" class="btn btn-outline-danger user_list_btn"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal{{ $user->id }}">
+                                        <button type="button" class="btn btn-outline-danger user_list_btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $user->id }}">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </td>
@@ -131,16 +124,14 @@
                                 <form action="{{route('staff.destroy',$user->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">
                                                         Confirm Delete
                                                     </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     Are you sure you want to delete the person with the code number
@@ -151,8 +142,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-danger w-100px">Remove</button>
-                                                    <button type="button" class="btn btn-secondary w-100px"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>

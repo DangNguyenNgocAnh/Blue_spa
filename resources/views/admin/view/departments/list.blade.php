@@ -11,7 +11,7 @@
                 <h1>{{$tittle}}</h1>
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="\dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{route('departments.index')}}">Department</a></li>
                         <li class="breadcrumb-item active">{{$tittle}}</li>
                     </ol>
@@ -46,8 +46,7 @@
                                     </h5>
                                 </div>
                                 <div class="input-group d-flex justify-content-end">
-                                    <a class="btn btn-secondary" style="width:40px; height:40px"
-                                        href="{{route('departments.create')}}">+</a>
+                                    <a class="btn btn-secondary" style="width:40px; height:40px" href="{{route('departments.create')}}">+</a>
                                 </div>
                             </div>
                         </div>
@@ -70,24 +69,18 @@
                                         <td>{{ $department->name }}</td>
                                         <td>
                                             {{ $department->users->count() }}
-                                            <button type="button" class="btn btn-outline-success" style="border: none;"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#listUserModal{{ $department->id }}">
+                                            <button type="button" class="btn btn-outline-success" style="border: none;" data-bs-toggle="modal" data-bs-target="#listUserModal{{ $department->id }}">
                                                 <i class="bi bi-search"></i>
                                             </button>
                                         </td>
                                         <td style="width: 176px;">
-                                            <a class="btn btn-outline-info department_list_btn"
-                                                href="{{route('departments.show',$department->id)}}">
+                                            <a class="btn btn-outline-info department_list_btn" href="{{route('departments.show',$department->id)}}">
                                                 <i class="bi bi-person-vcard"></i>
                                             </a>
-                                            <a class="btn btn-outline-success department_list_btn"
-                                                href="{{route('departments.edit',$department->id)}}">
+                                            <a class="btn btn-outline-success department_list_btn" href="{{route('departments.edit',$department->id)}}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <button type="button" class="btn btn-outline-danger department_list_btn"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $department->id }}">
+                                            <button type="button" class="btn btn-outline-danger department_list_btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $department->id }}">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </td>
@@ -96,47 +89,40 @@
                                     <form action="{{route('departments.destroy',$department->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <div class="modal fade" id="deleteModal{{ $department->id }}" tabindex="-1"
-                                            aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ $department->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="deleteModalLabel">
                                                             Confirm Delete
                                                         </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         Are you sure you want to delete the department with the name is
                                                         <b>{{ $department->name }}</b>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit"
-                                                            class="btn btn-danger w-100px">Remove</button>
-                                                        <button type="button" class="btn btn-secondary w-100px"
-                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-danger w-100px">Remove</button>
+                                                        <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
-                                    <div class="modal fade" id="listUserModal{{ $department->id }}" tabindex="-1"
-                                        aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="listUserModal{{ $department->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="deleteModalLabel">
                                                         List User
                                                     </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     @if($department->users->count()>0)
                                                     <div class="d-flex justify-content-end">
-                                                        <a type="button" class="btn btn-outline-info"
-                                                            href="{{route('departments.users',$department->id)}}">List
+                                                        <a type="button" class="btn btn-outline-info" href="{{route('departments.users',$department->id)}}">List
                                                             Detail</a>
                                                     </div>
                                                     @endif
@@ -165,8 +151,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary w-100px"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>

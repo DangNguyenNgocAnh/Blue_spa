@@ -18,7 +18,7 @@
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('departments.index')}}">Department</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
@@ -44,8 +44,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" placeholder="Ex: Customer"
-                                    value="{{old('name')?old('name'):$department->name }}">
+                                <input type="text" class="form-control" name="name" placeholder="Ex: Customer" value="{{old('name')?old('name'):$department->name }}">
                                 @error('name')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -54,8 +53,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Code</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" value="{{$department->code }}" name="code"
-                                    readonly>
+                                <input type="number" class="form-control" value="{{$department->code }}" name="code" readonly>
                                 @error('code')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -64,8 +62,7 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Note</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px"
-                                    name="note">{{old('note')?old('note'):$department->note }}</textarea>
+                                <textarea class="form-control h-100px" name="note">{{old('note')?old('note'):$department->note }}</textarea>
                                 @error('note')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

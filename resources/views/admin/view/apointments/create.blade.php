@@ -18,7 +18,7 @@
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('apointments.index')}}">Apointment</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
@@ -82,16 +82,14 @@
                             <label for="inputDate" class="col-sm-2 col-form-label">Time</label>
                             <div class="col-sm-10 row">
                                 <div class="col-sm-4">
-                                    <input type="date" class="form-control" name="date"
-                                        value="{{ old('date')?old('date'):$minDay}}" min="{{$minDay}}" max={{$maxDay}}>
+                                    <input type="date" class="form-control" name="date" value="{{ old('date')?old('date'):$minDay}}" min="{{$minDay}}" max={{$maxDay}}>
                                     @error('date')
                                     <div class=" invalidate">{{ $message }}
                                     </div>
                                     @enderror
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="time" class="form-control" name="time" min="09:00:00" max="18:00:00"
-                                        step="900">
+                                    <input type="time" class="form-control" name="time" min="09:00:00" max="18:00:00" step="900">
                                     @error('time')
                                     <div class=" invalidate">{{ $message }}
                                     </div>
@@ -121,8 +119,7 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Message</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px"
-                                    name="description">{{ old('message') }}</textarea>
+                                <textarea class="form-control h-100px" name="description">{{ old('message') }}</textarea>
                                 @error('message')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
