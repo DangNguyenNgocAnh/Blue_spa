@@ -8,25 +8,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\UserController;
-use App\Jobs\SendMailJob;
-use App\Mail\SendMail;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/', 'index')->name('login');
-    Route::post('/', 'login')->name('loginAccount');
+    Route::get('/login', 'index')->name('login');
+    Route::post('/login', 'login')->name('loginAccount');
     Route::get('/logout', 'logout')->name('logout');
 });
 Route::controller(UserController::class)->group(function () {
@@ -112,6 +98,6 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', function () {
+    return view('user.view.dashboard');
+})->name('dashboad');

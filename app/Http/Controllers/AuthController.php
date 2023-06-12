@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('login');
+        return view('user.view.login');
     }
     public function login(AuthRequest $request)
     {
@@ -20,7 +20,7 @@ class AuthController extends Controller
             if (Gate::allows('notCustomer')) {
                 return redirect()->route('dashboard');
             }
-            return redirect()->route('welcome');
+            return redirect()->route('dashboad');
         }
         return redirect()->back()->withErrors([
             'email' => 'The provided credentials do not match our records.',

@@ -46,9 +46,6 @@
     <!-- ======= Header ======= -->
     @include('user.components.header')
 
-    <!-- ======= Sidebar ======= -->
-    @include('user.components.sidebar')
-
     <!-- ======= Content ======= -->
     @yield('content')
 

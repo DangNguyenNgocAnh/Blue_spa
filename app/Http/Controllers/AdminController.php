@@ -133,7 +133,6 @@ class AdminController extends Controller
             return redirect()->back()->with('failed', $exception->getMessage());
         }
     }
-
     /**
      * Remove the specified resource from storage.
      */

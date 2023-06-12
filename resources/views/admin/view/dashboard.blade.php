@@ -11,7 +11,7 @@
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
         </nav>
@@ -25,17 +25,14 @@
                             <div class="card-body">
                                 <h5 class="card-title">Packages <span>| This month</span></h5>
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{$packages['count']}}</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold">{{number_format($packages['compare']*100,2)}}
+                                        <span class="text-success small pt-1 fw-bold">{{number_format($packages['compare']*100,2)}}
                                             %</span>
-                                        <span
-                                            class="text-muted small pt-2 ps-1">{{$packages['increase']? 'increase' : 'decrease'}}</span>
+                                        <span class="text-muted small pt-2 ps-1">{{$packages['increase']? 'increase' : 'decrease'}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -47,16 +44,13 @@
                             <div class="card-body">
                                 <h5 class="card-title">Revenue <span>| This Month</span></h5>
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{$revenue['sum']}}</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold">{{round($revenue['compare']*100,2)}}%</span>
-                                        <span
-                                            class="text-muted small pt-2 ps-1">{{$revenue['increase']? 'increase' : 'decrease'}}</span>
+                                        <span class="text-success small pt-1 fw-bold">{{round($revenue['compare']*100,2)}}%</span>
+                                        <span class="text-muted small pt-2 ps-1">{{$revenue['increase']? 'increase' : 'decrease'}}</span>
 
                                     </div>
                                 </div>
@@ -69,12 +63,11 @@
                             <div class="card-body">
                                 <h5 class="card-title">Customers <span>| This Year</span></h5>
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{$customers['count']}}</h6> customer
+                                        <h6>{{$customers['count']}}</h6> Customer
                                     </div>
                                 </div>
                             </div>
@@ -82,18 +75,6 @@
                     </div>
                     <div class="col-12">
                         <div class="card top-selling overflow-auto">
-
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                </ul>
-                            </div>
                             <div class="card-body pb-0">
                                 <h5 class="card-title">Top Package <span>| This month</span></h5>
                                 <table class="table table-borderless">
@@ -111,8 +92,7 @@
                                         <tr>
                                             <th scope="row">{{++$key}}
                                             </th>
-                                            <td><a href="{{route('packages.show',$package['id'])}}"
-                                                    class="text-primary fw-bold">{{$package['name']}}</a></td>
+                                            <td><a href="{{route('packages.show',$package['id'])}}" class="text-primary fw-bold">{{$package['name']}}</a></td>
                                             <td>{{number_format($package['price']) }} VND</td>
                                             <td class="fw-bold">{{$package['count']}}</td>
                                             <td>{{number_format($package['sum'])}} VND</td>
@@ -149,10 +129,8 @@
                                         <tr>
                                             <th scope="row">{{++$key}}
                                             </th>
-                                            <td><a href="{{route('users.show',$customer['id'])}}"
-                                                    class="text-primary fw-bold">{{$customer['code']}}</a></td>
-                                            <td><a href="{{route('users.show',$customer['id'])}}"
-                                                    class="text-primary fw-bold">{{$customer['name']}}</a></td>
+                                            <td><a href="{{route('users.show',$customer['id'])}}" class="text-primary fw-bold">{{$customer['code']}}</a></td>
+                                            <td><a href="{{route('users.show',$customer['id'])}}" class="text-primary fw-bold">{{$customer['name']}}</a></td>
                                             <td>{{number_format($customer['sum']) }} VND</td>
                                         </tr>
                                         @empty
@@ -176,36 +154,36 @@
                         <h5 class="card-title">Type of package</h5>
                         <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
                         <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                            echarts.init(document.querySelector("#trafficChart")).setOption({
-                                tooltip: {
-                                    trigger: 'item'
-                                },
-                                legend: {
-                                    top: '5%',
-                                    left: 'center'
-                                },
-                                series: [{
-                                    name: 'Access From',
-                                    type: 'pie',
-                                    radius: ['40%', '70%'],
-                                    avoidLabelOverlap: false,
-                                    label: {
-                                        show: false,
-                                        position: 'center'
+                            document.addEventListener("DOMContentLoaded", () => {
+                                echarts.init(document.querySelector("#trafficChart")).setOption({
+                                    tooltip: {
+                                        trigger: 'item'
                                     },
-                                    emphasis: {
+                                    legend: {
+                                        top: '5%',
+                                        left: 'center'
+                                    },
+                                    series: [{
+                                        name: 'Access From',
+                                        type: 'pie',
+                                        radius: ['40%', '70%'],
+                                        avoidLabelOverlap: false,
                                         label: {
-                                            show: true,
-                                            fontSize: '18',
-                                            fontWeight: 'bold'
-                                        }
-                                    },
-                                    labelLine: {
-                                        show: false
-                                    },
-                                    data: [
-                                        <?php
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            label: {
+                                                show: true,
+                                                fontSize: '18',
+                                                fontWeight: 'bold'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        },
+                                        data: [
+                                            <?php
                                             if (isset($typePackage)) {
                                                 $str = '';
                                                 foreach ($typePackage as $package) {
@@ -213,10 +191,10 @@
                                                 }
                                             }
                                             ?>
-                                    ]
-                                }]
+                                        ]
+                                    }]
+                                });
                             });
-                        });
                         </script>
 
                     </div>
@@ -245,10 +223,8 @@
                                 </div>
                                 <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                                 <div class="activity-content">
-                                    <b> <a style="color:black"
-                                            href="{{route('apointments.show',$apointment['id'])}}">{{ $apointment['code']}}</a></b><br>
-                                    <a href="{{route('users.show',$apointment['customer_id'])}}"
-                                        class="fw-bold text-dark">{{ $apointment['customerName']}}</a><br>
+                                    <b> <a style="color:black" href="{{route('apointments.show',$apointment['id'])}}">{{ $apointment['code']}}</a></b><br>
+                                    <a href="{{route('users.show',$apointment['customer_id'])}}" class="fw-bold text-dark">{{ $apointment['customerName']}}</a><br>
                                     {{ $apointment['status']}}
                                 </div>
                             </div>

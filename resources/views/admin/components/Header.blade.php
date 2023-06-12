@@ -1,31 +1,21 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-        <a href="#" class="logo d-flex align-items-center">
-            <img src="{{ Vite::asset('resources/assets/img/logo.png') }}" alt="">
-            <span class="d-none d-lg-block">Blue Spa Admin</span>
-        </a>
+        <div class="logo d-flex align-items-center">
+            <a href="#">
+                <img src="{{ Vite::asset('resources/assets/img/logo.png') }}" alt="">
+            </a>
+            <div style="padding-top: 13px;">
+                <span class="d-none d-lg-block">Blue Spa</span>
+                <p style="font-weight: lighter;">Beauty Center Admin</p>
+            </div>
+        </div>
         <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div>
-
-    <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
     </div>
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
-
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li>
-
             <div class="dropdown">
-                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     Languages
                 </a>
 
@@ -87,15 +77,13 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile"
-                        class="rounded-circle">
+                    <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->fullname}}</span>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6><a style="color: black;"
-                                href="{{route('staff.show',Auth::user())}}">{{Auth::user()->fullname}}</a></h6>
+                        <h6><a style="color: black;" href="{{route('staff.show',Auth::user())}}">{{Auth::user()->fullname}}</a></h6>
                         <span>{{Auth::user()->roles}}</span>
                     </li>
                     <li>
@@ -112,8 +100,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <button id="show-setting" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
+                        <button id="show-setting" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="bi bi-gear"></i>
                             <span>Change password</span>
                         </button>
@@ -154,27 +141,20 @@
             <div class="modal-body">
                 <ul class="nav nav-tabs d-flex" id="myTabjustified" role="tablist">
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab"
-                            data-bs-target="#home-justified" type="button" role="tab" aria-controls="home"
-                            aria-selected="true">
+                        <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-justified" type="button" role="tab" aria-controls="home" aria-selected="true">
                             <i class="bi bi-shield-lock"></i>
                             Sercurity
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab"
-                            data-bs-target="#profile-justified" type="button" role="tab" aria-controls="profile"
-                            aria-selected="false"></button>
+                        <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-justified" type="button" role="tab" aria-controls="profile" aria-selected="false"></button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab"
-                            data-bs-target="#contact-justified" type="button" role="tab" aria-controls="contact"
-                            aria-selected="false"></button>
+                        <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-justified" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>
                     </li>
                 </ul>
                 <div class="tab-content pt-2" id="myTabjustifiedContent">
-                    <div class="tab-pane fade show active" id="home-justified" role="tabpanel"
-                        aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="home-justified" role="tabpanel" aria-labelledby="home-tab">
                         <h5 class="setting-content_title">Change Password</h5>
                         <form action="{{route('users.change-pass')}}" method="POST">
                             @csrf
@@ -182,45 +162,42 @@
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-form-label">Current password</label>
                                 <div class="col-sm-12">
-                                    <input type="password" name="currentPass" class="form-control"
-                                        value="{{ old('currentPass') }}">
+                                    <input type="password" name="currentPass" class="form-control" value="{{ old('currentPass') }}">
                                 </div>
                                 @error('currentPass')
                                 <div class="invalidate">{{ $message }}</div>
                                 <script>
-                                window.onload = function() {
-                                    document.getElementById('show-setting').click();
-                                }
+                                    window.onload = function() {
+                                        document.getElementById('show-setting').click();
+                                    }
                                 </script>
                                 @enderror
                             </div>
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-form-label">New password</label>
                                 <div class="col-sm-12">
-                                    <input type="password" name="newPass" class="form-control"
-                                        value="{{ old('newPass') }}">
+                                    <input type="password" name="newPass" class="form-control" value="{{ old('newPass') }}">
                                 </div>
                                 @error('newPass')
                                 <div class="invalidate">{{ $message }}</div>
                                 <script>
-                                window.onload = function() {
-                                    document.getElementById('show-setting').click();
-                                }
+                                    window.onload = function() {
+                                        document.getElementById('show-setting').click();
+                                    }
                                 </script>
                                 @enderror
                             </div>
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-form-label">Confirm Password</label>
                                 <div class="col-sm-12">
-                                    <input type="password" name="confPass" class="form-control"
-                                        value="{{ old('password') }}">
+                                    <input type="password" name="confPass" class="form-control" value="{{ old('password') }}">
                                 </div>
                                 @error('confPass')
                                 <div class="invalidate">{{ $message }}</div>
                                 <script>
-                                window.onload = function() {
-                                    document.getElementById('show-setting').click();
-                                }
+                                    window.onload = function() {
+                                        document.getElementById('show-setting').click();
+                                    }
                                 </script>
                                 @enderror
                             </div>
