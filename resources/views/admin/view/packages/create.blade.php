@@ -57,7 +57,21 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Category</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" name="category_id">
+                                    <option value="" selected>Choose category</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}" @if(old('category_id')==$category->id)
+                                        selected @endif >{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                <div class="invalidate">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Types</label>
                             <div class="col-sm-10">
@@ -95,38 +109,15 @@
                                     <option value="" selected>Choose Status</option>
                                     <option value="Coming" @if(old('status')=='Coming' ) selected @endif>Coming
                                     </option>
+                                    <option value="Active" @if(old('status')=='Active' ) selected @endif>Active
+                                    </option>
                                     <option value="Closed" @if(old('status')=='Closed' ) selected @endif>Closed
                                     </option>
                                     <option value="Pending" @if(old('status')=='Pending' ) selected @endif>Pending
                                     </option>
+
                                 </select>
                                 @error('status')
-                                <div class="invalidate">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Level appiled</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" name="level_applied">
-                                    <option value="" selected>Choose Level</option>
-                                    <option value="Level 1" @if(old('level_applied')=='Level 1' ) selected @endif>
-                                        Level 1
-                                    </option>
-                                    <option value="Level 2" @if(old('level_applied')=='Level 2' ) selected @endif>
-                                        Level 2
-                                    </option>
-                                    <option value="Level 3" @if(old('level_applied')=='Level 3' ) selected @endif>
-                                        Level 3
-                                    </option>
-                                    <option value="Level 4" @if(old('level_applied')=='Level 4' ) selected @endif>
-                                        Level 4
-                                    </option>
-                                    <option value="Level 5" @if(old('level_applied')=='Level 5' ) selected @endif>
-                                        Level 5
-                                    </option>
-                                </select>
-                                @error('level_applied')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
                             </div>

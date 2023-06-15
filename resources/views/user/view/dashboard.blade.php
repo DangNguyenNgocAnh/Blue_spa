@@ -5,3 +5,5 @@ Login
 
 @section('content')
 @endsection
+<main id="main" class="main" style="margin-left: 0px; background-image: none;">
+</main>

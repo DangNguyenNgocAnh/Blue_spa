@@ -33,8 +33,13 @@ class UserController extends Controller
             return redirect()->back()->with('failed', $exception->getMessage());
         }
     }
-    public function show(User $user)
+    public function show()
     {
+        return view('user.view.profile', [
+            'tittle' => 'My Profile',
+            'user' => Auth::user(),
+            'packages' => []
+        ]);
     }
     public function createApointment(User $user)
     {

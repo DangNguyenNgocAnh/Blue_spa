@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PackageRequest;
+use App\Models\Category;
 use App\Models\Package;
 use App\Models\User;
 use Exception;
@@ -30,7 +31,8 @@ class PackageController extends Controller
         if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
             return view('admin.view.packages.create', [
                 'tittle' => 'Packages Create',
-                'code' => Package::max('code') + 1
+                'code' => Package::max('code') + 1,
+                'categories' => Category::all()
             ]);
         }
         return redirect()->route('packages.index')->with('warning', 'No permission');
@@ -70,7 +72,8 @@ class PackageController extends Controller
 
             return view('admin.view.packages.edit', [
                 'tittle' => 'Edit Package',
-                'package' => $package
+                'package' => $package,
+                'categories' => Category::all()
             ]);
         }
         return redirect()->route('packages.index')->with('warning', 'No permission');

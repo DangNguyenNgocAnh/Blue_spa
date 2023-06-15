@@ -28,6 +28,7 @@ class DashboardController extends Controller
         //topPackage
         $arrCountPackage = array_count_values($packageThis);
         foreach ($arrTopPackage as &$package) {
+            $package['price'] = str_replace(",", "", $package['price']);
             $package['count'] = $arrCountPackage[$package['id']];
             $package['sum'] = $package['count'] * $package['price'];
         }

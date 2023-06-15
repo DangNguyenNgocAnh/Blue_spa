@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'code' => rand(999, 9999),
             'phone_number' => rand(100000000, 999999999),
             'day_of_birth' => $faker->date($format = 'Y-m-d', $max = 'now'),
-            'address' => $faker->address(),
+            'address' => $faker->city,
             'level' => Arr::random(['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5']),
             'department_id' => Department::inRandomOrder()->first()->id
         ];
