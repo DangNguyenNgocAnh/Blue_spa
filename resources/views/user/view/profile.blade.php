@@ -19,7 +19,7 @@
         {{ session('failed') }}
     </div>
     @endif
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style=" padding-top: 10px;">
         <div class="col-md-9 d-flex flex-column">
             <div class="pagetitle">
                 <h1>{{$tittle}}</h1>

@@ -20,15 +20,18 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'getFormRegister')->name('user.getFormRegister');
     Route::post('/register', 'register')->name('user.register');
 });
-Route::get('/', function () {
-    return view('user.view.dashboard');
-})->name('dashboad');
+Route::controller(DashboardController::class)->group(function () {
+
+    Route::get('/', 'user')->name('user.dashboard');
+    Route::get('/about', 'about')->name('user.about');
+    Route::get('/listItem', 'list')->name('user.list');
+});
 Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/profile', 'show')->name('user.show');
     });
     Route::middleware('admin')->prefix('admin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
         Route::controller(AdminController::class)->prefix('staff')->group(function () {
             Route::post('/{user}/reset', 'resetPassword')->name('staff.resetPassword');
             Route::post('/{user}/restore', 'restoreStaff')->name('staff.restore');

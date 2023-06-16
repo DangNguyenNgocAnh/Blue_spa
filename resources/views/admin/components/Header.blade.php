@@ -1,7 +1,7 @@
-<header id="header" class="header fixed-top d-flex align-items-center">
+<header id="header" class="header fixed-top d-flex align-items-center" style="height:10vh">
     <div class="d-flex align-items-center justify-content-between">
         <div class="logo d-flex align-items-center">
-            <a href="#">
+            <a href="{{route('admin.dashboard')}}">
                 <img src="{{ Vite::asset('resources/assets/img/logo.png') }}" alt="">
             </a>
             <div style="padding-top: 13px;">
@@ -11,124 +11,6 @@
         </div>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
-
-    <nav class="header-nav ms-auto">
-        <ul class="d-flex align-items-center">
-            <div class="dropdown">
-                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Languages
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="min-width: 112px !important;">
-                    <li><a class="dropdown-item" href="">VietNamese</a></li>
-                    <li><a class="dropdown-item" href="">English</a></li>
-                    <li><a class="dropdown-item" href="#">Japanese</a></li>
-                </ul>
-            </div>
-
-            <li class="nav-item dropdown">
-
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                    <i class="bi bi-bell"></i>
-                    <span class="badge bg-primary badge-number">2</span>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                    <li class="dropdown-header">
-                        You have 2 new notifications
-                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="notification-item">
-                        <i class="bi bi-exclamation-circle text-warning"></i>
-                        <div>
-                            <h4>Lorem Ipsum</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>30 min. ago</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="notification-item">
-                        <i class="bi bi-info-circle text-primary"></i>
-                        <div>
-                            <h4>Dicta reprehenderit</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>4 hrs. ago</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="dropdown-footer">
-                        <a href="#">Show all notifications</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown pe-3">
-
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->fullname}}</span>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                    <li class="dropdown-header">
-                        <h6><a style="color: black;" href="{{route('staff.show',Auth::user())}}">{{Auth::user()->fullname}}</a></h6>
-                        <span>{{Auth::user()->roles}}</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{route('staff.show',Auth::user())}}">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <button id="show-setting" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i class="bi bi-gear"></i>
-                            <span>Change password</span>
-                        </button>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="">
-                            <i class="bi bi-house"></i>
-                            <span>User homepage</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="/logout">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign out</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-        </ul>
-    </nav>
 </header>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

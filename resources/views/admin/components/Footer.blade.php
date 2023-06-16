@@ -1,8 +1,5 @@
 <footer id="footer" class="footer">
-    <div class="copyright">
-        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
     <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <i class="bi bi-heart-arrow"></i> Designed by <b>Blue spa team</b> <i class="bi bi-balloon-heart-fill"></i>
     </div>
 </footer>

@@ -10,6 +10,24 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    public function sumPricePackage($arr = [])
+    {
+        return Package::whereIn('id', $arr)
+            ->sum('price');
+    }
+    public function sort($arr, $item)
+    {
+        for ($i = 0; $i < count($arr) - 1; $i++) {
+            for ($j = $i + 1; $j < count($arr); $j++) {
+                if ($arr[$i][$item] < $arr[$j][$item]) {
+                    $temp = $arr[$i];
+                    $arr[$i] = $arr[$j];
+                    $arr[$j] = $temp;
+                }
+            }
+        }
+        return array_slice($arr, 0, 10);
+    }
     public function admin()
     {
         $packageThis = UserPackage::where(function ($query) {
@@ -83,22 +101,22 @@ class DashboardController extends Controller
 
         ]);
     }
-    public function sumPricePackage($arr = [])
+    public function user()
     {
-        return Package::whereIn('id', $arr)
-            ->sum('price');
+        return view('user.view.dashboard', [
+            'tittle' => 'Dashboard'
+        ]);
     }
-    public function sort($arr, $item)
+    public function about()
     {
-        for ($i = 0; $i < count($arr) - 1; $i++) {
-            for ($j = $i + 1; $j < count($arr); $j++) {
-                if ($arr[$i][$item] < $arr[$j][$item]) {
-                    $temp = $arr[$i];
-                    $arr[$i] = $arr[$j];
-                    $arr[$j] = $temp;
-                }
-            }
-        }
-        return array_slice($arr, 0, 10);
+        return view('user.view.about', [
+            'tittle' => 'About'
+        ]);
+    }
+    public function list()
+    {
+        return view('user.view.listItem', [
+            'tittle' => 'List Item'
+        ]);
     }
 }
