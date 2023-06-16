@@ -59,9 +59,34 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Category</label>
+                            <div class="col-sm-10">
+
+                                <select class="form-select" name="category_id">
+                                    <option value="" selected>Choose category</option>
+                                    @if(isset($categories))
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}" @if (!old('category_id') &&( $package->
+                                        category_id==$category->id))
+                                        selected
+                                        @elseif (old('category_id')==$category->id ) selected @endif
+                                        >{{$category->name}}</option>
+                                    @endforeach
+                                    @else
+                                    <option value="{{$category->id}}" @if($package->
+                                        category_id==$category->id)
+                                        selected @endif >{{$category->name}}</option>
+                                    @endif
+                                </select>
+                            </div>
+                            @error('category_id')
+                            <div class="invalidate">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Price</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" value="{{ old('price')?old('price'):$package->price }}" name="price">
+                                <input type="number" class="form-control" value="{{ str_replace(',', '', $package->price)}}" name="price">
                                 @error('price')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

@@ -25,11 +25,19 @@ class PackageRequest extends FormRequest
         return [
             'name' => ['required', 'max:100',  Rule::unique('packages')->ignore($this->package)],
             'price' => ['required', 'numeric', 'min:10000'],
-            'level_applied' => ['required',  Rule::in(['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'])],
             'code' => ['required', 'numeric', Rule::unique('packages')->ignore($this->package)],
             'status' => ['nullable', Rule::in(['Coming', 'Closed', 'Pending'])],
             'types' => ['nullable', Rule::in(['Basic', 'Standard', 'Premium', 'Trial', 'Special'])],
             'description' => 'nullable|max:255',
+            'category_id' => [
+                'required', 'exists:categories,id,deleted_at,NULL',
+            ],
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'category_id' => 'category'
         ];
     }
 }

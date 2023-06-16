@@ -10,19 +10,25 @@
             </div>
         </div>
     </div>
-    <ul class="d-flex align-items-center  justify-content-between" style="padding-right: 30px;flex-grow: 1; padding-top: 12px">
-        <li class="dropdown-item a-hover" style="color:black"><a href="">Điều trị da</a> </li>
-        <li class="dropdown-item a-hover"><a href="">Chăm sóc da</a></li>
-        <li class="dropdown-item a-hover"><a href=""> Thẩm mỹ</a></li>
-        <li class="dropdown-item a-hover"> <a href="">Phun xăm</a> </li>
-        <li class="dropdown-item a-hover"><a href="">Đặt lịch hẹn</a> </li>
-        <li class="dropdown-item a-hover"><a href="">About us</a> </li>
+    <ul class="d-flex align-items-center  justify-content-between"
+        style="padding-left: 0px;flex-grow: 1; padding-top: 12px">
+        <li class="dropdown-item" style="text-align: center;"><a href="">Điều trị
+                da</a>
+        </li>
+        <li class="dropdown-item" style="text-align: center;"><a href="">Chăm sóc da</a>
+        </li>
+        <li class="dropdown-item" style="text-align: center;"><a href=""> Thẩm mỹ</a></li>
+        <li class="dropdown-item" style="text-align: center;"> <a href="">Phun xăm</a> </li>
+        <li class="dropdown-item" style="text-align: center;"><a href="">Đặt lịch hẹn</a>
+        </li>
+        <li class="dropdown-item" style="text-align: center;"><a href="">About us</a> </li>
     </ul>
     <nav class="header-nav">
         <div>
             <ul class="d-flex align-items-center" style="padding-right: 30px;">
                 <div class="dropdown">
-                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Languages
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="min-width: 112px !important;">
@@ -58,7 +64,8 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <button id="show-setting" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button id="show-setting" class="dropdown-item d-flex align-items-center"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="bi bi-gear"></i>
                                 <span>Change password</span>
                             </button>

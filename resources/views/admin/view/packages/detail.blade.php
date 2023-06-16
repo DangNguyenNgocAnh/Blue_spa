@@ -49,9 +49,8 @@
                                     <div class="col-lg-9 col-md-8">{{$package->code}}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Level Appied</div>
-                                    <div class="col-lg-9 col-md-8 text_justify">{{ucfirst($package->level_applied)}}
-                                    </div>
+                                    <div class="col-lg-3 col-md-4 label ">Catelogy</div>
+                                    <div class="col-lg-9 col-md-8">{{$package->category->name}}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Price</div>

@@ -184,5 +184,5 @@
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 @endsection

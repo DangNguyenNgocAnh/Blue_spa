@@ -36,8 +36,8 @@ h6 {
     transition: all 0.3s;
     background-image: url('/Users/admin/Laravel_docker/spa/resources/assets/img/background.jpeg');
     background-size: cover;
+    min-height: 90vh;
 }
-
 .inactive {
     display: none !important;
 }
@@ -222,8 +222,8 @@ h6 {
     line-height: 0;
 }
 
-.dropdown-menu .dropdown-item:hover {
-    background-color: #f6f9ff;
+.dropdown-menu .dropdown-item li:hover {
+    background-color: #ce1b21;
 }
 
 @media (min-width: 768px) {
@@ -1389,9 +1389,6 @@ h6 {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
-.a-hover :hover{
-    color: black;
-}
 .form-login{
     border: 2px solid white;
     background-color: white;

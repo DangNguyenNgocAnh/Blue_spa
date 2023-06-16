@@ -8,7 +8,6 @@ Login
     <div class="card-body">
         <div class="row justify-content-center" style="margin-top: 50px;">
             <div class="col-lg-4 col-md-6 d-flex flex-column  form-login">
-
                 <div class="pt-2 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Login</h5>
                     <br>
@@ -44,8 +43,7 @@ Login
                         <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
                     <div class="col-12">
-                        <p>You have account? Back to <a href="{{route('user.register')}}">Form Register
-                                <i lass="ri-arrow-left-line"></i></a></p>
+                        <p>You have account? Go to <a href="{{route('user.getFormRegister')}}">Form Register</a></p>
                     </div>
                 </form>
 

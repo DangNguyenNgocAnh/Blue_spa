@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
@@ -19,7 +20,13 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'getFormRegister')->name('user.getFormRegister');
     Route::post('/register', 'register')->name('user.register');
 });
+Route::get('/', function () {
+    return view('user.view.dashboard');
+})->name('dashboad');
 Route::middleware('auth')->group(function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/profile', 'show')->name('user.show');
+    });
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
         Route::controller(AdminController::class)->prefix('staff')->group(function () {
@@ -96,8 +103,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/{apointment}', 'show')->name('apointments.show');
             Route::get('/', 'index')->name('apointments.index');
         });
+        Route::controller(CategoryController::class)->prefix('categories')->group(function () {
+            Route::delete('/{category}', 'destroy')->name('categories.destroy');
+            Route::get('/{category}/edit', 'edit')->name('categories.edit');
+            Route::patch('/{category}', 'update')->name('categories.update');
+            Route::get('/', 'index')->name('categories.index');
+            Route::get('/{category}/packages', 'showPackage')->name('categories.packages');
+            Route::get('/create', 'create')->name('categories.create');
+            Route::post('/', 'store')->name('categories.store');
+            Route::get('/{category}', 'show')->name('categories.show');
+        });
     });
 });
-Route::get('/', function () {
-    return view('user.view.dashboard');
-})->name('dashboad');
