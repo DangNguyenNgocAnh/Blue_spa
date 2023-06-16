@@ -18,7 +18,7 @@
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('categories.index')}}">Category</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
@@ -30,8 +30,7 @@
             <div class="col-xl-6">
                 <div class="card">
                     <div class="detail_update-btn">
-                        <a type="button" href="{{route('categories.edit',$category->id)}}" class="btn btn-primary"><i
-                                class="bi bi-pencil-square"></i></a>
+                        <a type="button" href="{{route('categories.edit',$category->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
@@ -66,16 +65,13 @@
                                     @forelse($packages as $key=>$package)
                                     <div class="row">
                                         <div class="col d-flex justify-content-between">
-                                            <p>{{++$key}} : <a class=" text-primary"
-                                                    href="{{route('packages.show',$package->id)}}">
+                                            <p>{{++$key}} : <a class=" text-primary" href="{{route('packages.show',$package->id)}}">
                                                     {{$package->name}}</a></p>
                                             <div class="d-flex justify-content-end">
-                                                <a class="btn btn-outline-info"
-                                                    href="{{route('packages.show',$package->id)}}">
+                                                <a class="btn btn-outline-info" href="{{route('packages.show',$package->id)}}">
                                                     <i class="bi bi-person-vcard"></i>
                                                 </a>
-                                                <a class="btn btn-outline-success"
-                                                    href="{{route('packages.edit',$package->id)}}">
+                                                <a class="btn btn-outline-success" href="{{route('packages.edit',$package->id)}}">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
                                             </div>

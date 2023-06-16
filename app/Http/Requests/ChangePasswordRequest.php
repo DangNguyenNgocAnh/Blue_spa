@@ -24,7 +24,7 @@ class ChangePasswordRequest extends FormRequest
         return [
             'currentPass' => 'required|max:25|min:8',
             'newPass' => 'required|max:25|min:8',
-            'confPass' => 'required|max:25|min:8|same:newPass'
+            'confPass' => 'required|max:25|min:8|same:newPass',
         ];
     }
     public function attributes()

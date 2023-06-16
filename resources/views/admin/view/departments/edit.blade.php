@@ -18,7 +18,7 @@
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('departments.index')}}">Department</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>

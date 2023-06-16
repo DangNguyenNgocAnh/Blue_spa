@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Department;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -28,7 +30,7 @@ class UserController extends Controller
             ]));
             Auth::login($user);
             $request->session()->regenerate();
-            return redirect()->route('welcome');
+            return redirect()->route('user.dashboard');
         } catch (Exception $exception) {
             return redirect()->back()->with('failed', $exception->getMessage());
         }
@@ -47,7 +49,19 @@ class UserController extends Controller
     public function showAllPackage(User $user)
     {
     }
-    public function changePassword(User $user)
+    public function changePassword(ChangePasswordRequest $request)
     {
+        if (Hash::check($request->currentPass, ->password)) {
+            try {
+                $user->password = Hash::make($request->newPass);
+                $user->save();
+                return redirect()->back()->with('success', 'Update password success');
+            } catch (Exception $ex) {
+                return redirect()->back()->with('failed', $ex->getMessage());
+            }
+        }
+        $errors = new MessageBag();
+        $errors->add('currentPass', 'Password is incorrect');
+        return redirect()->back()->withErrors($errors);
     }
 }

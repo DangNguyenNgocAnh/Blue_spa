@@ -10,10 +10,8 @@
             </div>
         </div>
     </div>
-    <ul class="d-flex align-items-center  justify-content-between"
-        style="padding-left: 0px;flex-grow: 1; padding-top: 12px">
-        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a"
-                href="{{route('user.about')}}">Giới
+    <ul class="d-flex align-items-center  justify-content-between" style="padding-left: 0px;flex-grow: 1; padding-top: 12px">
+        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('user.about')}}">Giới
                 thiệu</a></li>
 
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="">Chăm sóc da</a>
@@ -53,8 +51,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <button id="show-setting" class="dropdown-item d-flex align-items-center"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button id="show-setting" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="bi bi-gear"></i>
                                 <span>Change password</span>
                             </button>
@@ -96,73 +93,63 @@
             <div class="modal-body">
                 <ul class="nav nav-tabs d-flex" id="myTabjustified" role="tablist">
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab"
-                            data-bs-target="#home-justified" type="button" role="tab" aria-controls="home"
-                            aria-selected="true">
+                        <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-justified" type="button" role="tab" aria-controls="home" aria-selected="true">
                             <i class="bi bi-shield-lock"></i>
                             Sercurity
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab"
-                            data-bs-target="#profile-justified" type="button" role="tab" aria-controls="profile"
-                            aria-selected="false"></button>
+                        <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-justified" type="button" role="tab" aria-controls="profile" aria-selected="false"></button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab"
-                            data-bs-target="#contact-justified" type="button" role="tab" aria-controls="contact"
-                            aria-selected="false"></button>
+                        <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-justified" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>
                     </li>
                 </ul>
                 <div class="tab-content pt-2" id="myTabjustifiedContent">
-                    <div class="tab-pane fade show active" id="home-justified" role="tabpanel"
-                        aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="home-justified" role="tabpanel" aria-labelledby="home-tab">
                         <h5 class="setting-content_title">Change Password</h5>
                         <form action="{{route('users.change-pass')}}" method="POST">
                             @csrf
-                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="id" value="{{Auth::user()->id??null}}">
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-form-label">Current password</label>
                                 <div class="col-sm-12">
-                                    <input type="password" name="currentPass" class="form-control"
-                                        value="{{ old('currentPass') }}">
+                                    <input type="password" name="currentPass" class="form-control" value="{{ old('currentPass') }}">
                                 </div>
                                 @error('currentPass')
                                 <div class="invalidate">{{ $message }}</div>
                                 <script>
-                                window.onload = function() {
-                                    document.getElementById('show-setting').click();
-                                }
+                                    window.onload = function() {
+                                        document.getElementById('show-setting').click();
+                                    }
                                 </script>
                                 @enderror
                             </div>
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-form-label">New password</label>
                                 <div class="col-sm-12">
-                                    <input type="password" name="newPass" class="form-control"
-                                        value="{{ old('newPass') }}">
+                                    <input type="password" name="newPass" class="form-control" value="{{ old('newPass') }}">
                                 </div>
                                 @error('newPass')
                                 <div class="invalidate">{{ $message }}</div>
                                 <script>
-                                window.onload = function() {
-                                    document.getElementById('show-setting').click();
-                                }
+                                    window.onload = function() {
+                                        document.getElementById('show-setting').click();
+                                    }
                                 </script>
                                 @enderror
                             </div>
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-form-label">Confirm Password</label>
                                 <div class="col-sm-12">
-                                    <input type="password" name="confPass" class="form-control"
-                                        value="{{ old('password') }}">
+                                    <input type="password" name="confPass" class="form-control" value="{{ old('password') }}">
                                 </div>
                                 @error('confPass')
                                 <div class="invalidate">{{ $message }}</div>
                                 <script>
-                                window.onload = function() {
-                                    document.getElementById('show-setting').click();
-                                }
+                                    window.onload = function() {
+                                        document.getElementById('show-setting').click();
+                                    }
                                 </script>
                                 @enderror
                             </div>
