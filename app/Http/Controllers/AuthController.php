@@ -15,7 +15,7 @@ class AuthController extends Controller
     }
     public function login(AuthRequest $request)
     {
-        if (Auth::attempt($request->only(['email', 'password'], $request->filled('remember')))) {
+        if (Auth::attempt($request->only(['email', 'password'], $request->filled('rememberMe')))) {
             $request->session()->regenerate();
             if (Gate::allows('notCustomer')) {
                 return redirect()->route('admin.dashboard');

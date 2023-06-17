@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Department;
 use App\Models\User;
 use Exception;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\MessageBag;
 
 class UserController extends Controller
 {
@@ -43,15 +45,10 @@ class UserController extends Controller
             'packages' => []
         ]);
     }
-    public function createApointment(User $user)
-    {
-    }
-    public function showAllPackage(User $user)
-    {
-    }
     public function changePassword(ChangePasswordRequest $request)
     {
-        if (Hash::check($request->currentPass, ->password)) {
+        $user = User::find(Auth::user()->id);
+        if (Hash::check($request->currentPass, $user->password)) {
             try {
                 $user->password = Hash::make($request->newPass);
                 $user->save();
@@ -63,5 +60,24 @@ class UserController extends Controller
         $errors = new MessageBag();
         $errors->add('currentPass', 'Password is incorrect');
         return redirect()->back()->withErrors($errors);
+    }
+
+    public function update(UserRequest $request)
+    {
+        dd(1);
+        $user = User::find(Auth::user()->id);
+        try {
+            $user->fill($request->all());
+            $user->save();
+            return redirect()->back()->with('success', 'Update password success');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('failed', $ex->getMessage());
+        }
+    }
+    public function createApointment(User $user)
+    {
+    }
+    public function showAllPackage(User $user)
+    {
     }
 }

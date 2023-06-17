@@ -5,6 +5,28 @@
 
 @section('content')
 <main id="main" class="main" style="margin-left: 0px; background-image: none;">
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i>
+        {{session('success')}}
+        {{session()->forget('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('warning'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('warning')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('failed')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <div class="card-dashboard">
         <div class="card-body">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -43,28 +65,32 @@
                     <img src="{{asset('img/item1-1.jpeg')}}" alt="">
                     <div class="content-options-static-content-item-text">
                         <p>Chăm sóc</p>
-                        <a href="" style="color:white">Xem chi tiết</a>
+                        <a href="{{route('category.listItem',1)}}" style="color:white">Xem chi
+                            tiết</a>
                     </div>
                 </div>
                 <div class="content-options-static-content-item">
                     <img src="{{asset('img/item1-2.jpeg')}}" alt="">
                     <div class="content-options-static-content-item-text">
                         <p>Điều trị</p>
-                        <a href="" style="color:white">Xem chi tiết</a>
+                        <a href="{{route('category.listItem',2)}}" style="color:white">Xem chi
+                            tiết</a>
                     </div>
                 </div>
                 <div class="content-options-static-content-item">
                     <img src="{{asset('img/item1-3.jpeg')}}" alt="">
                     <div class="content-options-static-content-item-text">
                         <p>Thẩm mỹ</p>
-                        <a href="" style="color:white">Xem chi tiết</a>
+                        <a href="{{route('category.listItem',3)}}" style="color:white">Xem chi
+                            tiết</a>
                     </div>
                 </div>
                 <div class="content-options-static-content-item">
                     <img src="{{asset('img/item1-4.jpeg')}}" alt="">
                     <div class="content-options-static-content-item-text">
                         <p>Phun xăm</p>
-                        <a href="" style="color:white">Xem chi tiết</a>
+                        <a href="{{route('category.listItem',4)}}" style="color:white">Xem chi
+                            tiết</a>
                     </div>
                 </div>
             </div>

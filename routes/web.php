@@ -24,15 +24,19 @@ Route::controller(DashboardController::class)->group(function () {
 
     Route::get('/', 'user')->name('user.dashboard');
     Route::get('/about', 'about')->name('user.about');
-    Route::get('/listItem', 'list')->name('user.list');
+    Route::get('/{category}/listItem', 'list')->name('category.listItem');
 });
 Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/profile', 'show')->name('user.show');
+        Route::post('/changePassword', 'changePassword')->name('user.changePassword');
+        Route::patch('/update', 'update')->name('user.updateProfile');
     });
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
         Route::controller(AdminController::class)->prefix('staff')->group(function () {
+            Route::get('/profile', 'profile')->name('staff.profile');
+            Route::get('/editProfile', 'editProfile')->name('staff.editProfile');
             Route::post('/{user}/reset', 'resetPassword')->name('staff.resetPassword');
             Route::post('/{user}/restore', 'restoreStaff')->name('staff.restore');
             Route::get('/deleted', 'getListDeleted')->name('staff.deleted');

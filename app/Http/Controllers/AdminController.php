@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         return view('admin.view.dashboard', [
-            'tittle' => 'Dashboard Admin'
+            'tittle' => 'Dashboard Admin',
         ]);
     }
     public function index()
@@ -215,5 +215,23 @@ class AdminController extends Controller
         } catch (Exception $exception) {
             return redirect()->back()->with('failed', $exception->getMessage());
         }
+    }
+    public function profile()
+    {
+        return view('admin.view.staff.profile', [
+            'tittle' => 'Staff Profile',
+            'user' => Auth::user(),
+        ]);
+    }
+    public function editProfile()
+    {
+        return view('admin.view.staff.editProfile', [
+            'tittle' => 'Edit Information',
+            'user' => Auth::user(),
+            'route_index' => route('staff.index'),
+            'title_index' => 'Staff',
+            'route_update' => route('staff.update', Auth::id()),
+            'departments' => Department::whereNot('name', 'Customer')->get()
+        ]);
     }
 }

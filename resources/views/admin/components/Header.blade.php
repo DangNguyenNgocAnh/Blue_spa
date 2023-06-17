@@ -11,6 +11,68 @@
         </div>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
+    <nav class="header-nav">
+        <div>
+            <ul class="d-flex align-items-center" style="padding-right: 30px;padding-top: 13px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                        <span class="">Hello, {{Auth::user()->fullname}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6><a style="color: black;" href="">{{Auth::user()->fullname}}</a></h6>
+                            <span>Code : {{Auth::user()->code}}</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('staff.profile')}}">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('staff.editProfile')}}">
+                                <i class="bi bi-person"></i>
+                                <span>Edit information</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <button id="show-setting" class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="bi bi-gear"></i>
+                                <span>Change password</span>
+                            </button>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('user.dashboard')}}">
+                                <i class="bi bi-house"></i>
+                                <span>User homepage</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -40,7 +102,6 @@
                         <h5 class="setting-content_title">Change Password</h5>
                         <form action="{{route('users.change-pass')}}" method="POST">
                             @csrf
-                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-form-label">Current password</label>
                                 <div class="col-sm-12">

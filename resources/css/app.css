@@ -1690,9 +1690,11 @@ a{
     width: 50%;
 }
 .design-title{
-    padding-top: 30px;
     width: 100%;
     text-align:left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .design-title h2{
     font-family: "Josefin Sans",sans-serif;

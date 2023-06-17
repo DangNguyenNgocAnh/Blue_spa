@@ -2,21 +2,28 @@
 @section('tittle')
 {{ $tittle }}
 @endsection
-
-@section('content')
 @section('content')
 <main id="main" class="main" style="margin-left: 0px; height:95vh">
     @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @elseif (session('failed'))
-    <div class="alert alert-danger">
-        {{ session('failed') }}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i>
+        {{session('success')}}
+        {{session()->forget('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @elseif (session('warning'))
-    <div class="alert alert-warning">
-        {{ session('failed') }}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('warning')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('failed')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <div class="row justify-content-center" style=" padding-top: 10px;">
@@ -41,7 +48,9 @@
                     <div class="col-xl-8">
                         <div class="card">
                             <div class="detail_update-btn">
-                                <a type="button" href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                <a id="show-edit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
                                 <a type="button" href="" class="btn btn-secondary">Back</a>
                             </div>
                             <div class="card-body">
@@ -93,6 +102,154 @@
                 </div>
             </section>
         </div>
+        <!-- Modal detail package -->
+        <div class="modal fade" id="modalDialogScrollable" tabindex="-1">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style='font-weight: bold;'>Edit information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <form method="POST" action="{{route('user.updateProfile')}}">
+                                    @csrf
+                                    @METHOD('PATCH')
+                                    <section class="section dashboard">
+                                        <div class="col-xxl-4 col-md-12">
+                                            <div class="card info-card">
+                                                <div class="card-body">
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-4 col-form-label">Code</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" name="code" value="{{old('code')?old('code'):$user->code }}" readonly>
+                                                            @error('code')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <input type="hidden" name="id" value="{{$user->id}}">
+                                                        <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" name="email" placeholder="Ex: Example@gmail.com" value="{{old('email')?old('email'):$user->email }}">
+                                                            @error('email')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-4 col-form-label">Fullname</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" name="fullname" placeholder="Ex: Nguyễn Văn A" value="{{old('fullname')?old('fullname'):$user->fullname }}">
+                                                            @error('fullname')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-4 col-form-label">Level</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" name="level" value="{{old('level')?old('level'):$user->level }}" readonly>
+                                                            @error('level')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-4 col-form-label">Phone
+                                                            number</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" name="phone_number" placeholder="Ex: 123456789" value="{{old('phone_number')?old('phone_number'):$user->phone_number }}">
+                                                            @error('phone_number')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-4 col-form-label">Address</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" name="address" value="{{old('address')?old('address'):$user->address }}">
+                                                            @error('address')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-4 col-form-label">Day of
+                                                            birth</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" name="day_of_birth" value="{{date('Y-m-d', strtotime(str_replace('/', '-', $user->day_of_birth)))}}">
+                                                            @error('day_of_birth')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-4 col-form-label">Note</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" name="note" value="{{old('note')?old('note'):$user->note }}">
+                                                            @error('note')
+                                                            <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
 </main>
-@endsection
 @endsection

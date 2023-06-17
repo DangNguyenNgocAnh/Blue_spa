@@ -14,10 +14,10 @@
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('user.about')}}">Giới
                 thiệu</a></li>
 
-        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="">Chăm sóc da</a>
+        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('category.listItem',1)}}">Chăm sóc da</a>
         </li>
-        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href=""> Thẩm mỹ</a></li>
-        <li class="dropdown-item" style="text-align: center;"> <a class="header-item-a" href="">Phun xăm</a> </li>
+        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('category.listItem',3)}}"> Thẩm mỹ</a></li>
+        <li class="dropdown-item" style="text-align: center;"> <a class="header-item-a" href="{{route('category.listItem',4)}}">Phun xăm</a> </li>
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="">Đặt lịch hẹn</a>
         </li>
     </ul>
@@ -108,7 +108,7 @@
                 <div class="tab-content pt-2" id="myTabjustifiedContent">
                     <div class="tab-pane fade show active" id="home-justified" role="tabpanel" aria-labelledby="home-tab">
                         <h5 class="setting-content_title">Change Password</h5>
-                        <form action="{{route('users.change-pass')}}" method="POST">
+                        <form action="{{route('user.changePassword')}}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{Auth::user()->id??null}}">
                             <div class="row mb-3">

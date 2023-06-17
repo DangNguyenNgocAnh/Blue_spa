@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CategoryEnum;
 use App\Models\Apointment;
+use App\Models\Category;
 use App\Models\Package;
 use App\Models\User;
 use App\Models\UserPackage;
@@ -113,10 +115,15 @@ class DashboardController extends Controller
             'tittle' => 'About'
         ]);
     }
-    public function list()
+    public function list(Category $category)
     {
+        $packages = $category->packages()->get();
+        $chunks = array_chunk($packages->toArray(), 3);
         return view('user.view.listItem', [
-            'tittle' => 'List Item'
+            'tittle' => 'List Item',
+            'category' => $category,
+            'packages' => $chunks,
+            'count' => $packages->count()
         ]);
     }
 }

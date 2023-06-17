@@ -30,7 +30,8 @@
                         </div>
                         <div class="search-form">
                             <input type="text" name="key" required>
-                            <button type="submit" title="Search" class="btn btn-outline-info" style="width:40px; height:35px"><i class="bi bi-search"></i></button>
+                            <button type="submit" title="Search" class="btn btn-outline-info"
+                                style="width:40px; height:35px"><i class="bi bi-search"></i></button>
                         </div>
                     </div>
                 </form>
@@ -65,7 +66,7 @@
                     </div>
                 </form>
             </div>
-        </div><!-- End Page Title -->
+        </div>
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="bi bi-check-circle me-1"></i>
@@ -73,11 +74,17 @@
             {{session()->forget('success')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif
-        @if (session('warning'))
+        @elseif (session('warning'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <i class="bi bi-exclamation-triangle me-1"></i>
             {{session('warning')}}
+            {{session()->forget('warning')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @elseif (session('failed'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            {{session('failed')}}
             {{session()->forget('warning')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -94,7 +101,8 @@
                                     </h5>
                                 </div>
                                 <div class="d-flex align-items-end flex-column">
-                                    <a class="btn btn-secondary" style="width:70px; height:40px" href="{{route('packages.index')}}">Back</a>
+                                    <a class="btn btn-secondary" style="width:70px; height:40px"
+                                        href="{{route('packages.index')}}">Back</a>
                                     </br>
                                 </div>
                             </div>
@@ -122,7 +130,8 @@
                                         <td> {{$package->deleted_at}} </td>
 
                                         <td style="width: 40px;">
-                                            <button type="button" class="btn btn-outline-danger user_list_btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $package->id }}">
+                                            <button type="button" class="btn btn-outline-danger user_list_btn"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal{{ $package->id }}">
                                                 <i class="bi bi-box-arrow-left"></i>
                                             </button>
                                         </td>
@@ -130,14 +139,16 @@
                                     <!-- Modal -->
                                     <form action="{{route($name_route_restore,$package->id)}}" method="post">
                                         @csrf
-                                        <div class="modal fade" id="exampleModal{{ $package->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{ $package->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">
                                                             Confirm Restore
                                                         </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         Are you sure you want to restore the packages with the code
@@ -148,8 +159,10 @@
                                                         <b>{{ $package->fullname }}</b>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary w-100px">Restore</button>
-                                                        <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary w-100px">Restore</button>
+                                                        <button type="button" class="btn btn-secondary w-100px"
+                                                            data-bs-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
