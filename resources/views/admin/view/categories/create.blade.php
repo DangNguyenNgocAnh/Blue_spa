@@ -5,25 +5,37 @@
 
 @section('content')
 <main id="main" class="main">
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @elseif (session('failed'))
-    <div class="alert alert-danger">
-        {{ session('failed') }}
-    </div>
-    @endif
     <div class="pagetitle">
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('categories.index')}}">Category</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div> @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i>
+        {{session('success')}}
+        {{session()->forget('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('warning'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('warning')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('failed')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <form method="post" action="{{route('categories.store')}}">
         @csrf
         <section class="section dashboard">
@@ -42,8 +54,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" placeholder="Ex: Customer"
-                                    value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="name" placeholder="Ex: Customer" value="{{ old('name') }}">
                                 @error('name')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -53,8 +64,7 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px"
-                                    name="description">{{ old('description') }}</textarea>
+                                <textarea class="form-control h-100px" name="description">{{ old('description') }}</textarea>
                                 @error('description')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

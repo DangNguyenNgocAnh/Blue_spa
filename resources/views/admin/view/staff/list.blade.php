@@ -11,7 +11,7 @@
                 <h1>{{$tittle}}</h1>
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{route('staff.index')}}">Staff</a></li>
                         <li class="breadcrumb-item active">{{$tittle}}</li>
                     </ol>
@@ -35,10 +35,6 @@
                                     <input class="form-check-input" type="radio" name="item" id="fullname" value="fullname">
                                     <label class="form-check-label" for="fullname">Fullname</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="item" id="roles" value="roles">
-                                    <label class="form-check-label" for="roles">Roles</label>
-                                </div>
                             </div>
                             <div class="form-outline btn-group">
                                 <input name="input" type="search" class="form-control" required />
@@ -58,11 +54,17 @@
             {{session()->forget('success')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif
-        @if (session('warning'))
+        @elseif (session('warning'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <i class="bi bi-exclamation-triangle me-1"></i>
             {{session('warning')}}
+            {{session()->forget('warning')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @elseif (session('failed'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            {{session('failed')}}
             {{session()->forget('warning')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

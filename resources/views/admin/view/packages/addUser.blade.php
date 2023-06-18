@@ -5,26 +5,38 @@
 
 @section('content')
 <main id="main" class="main">
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @elseif (session('failed'))
-    <div class="alert alert-danger">
-        {{ session('failed') }}
-    </div>
-    @endif
     <div class="pagetitle">
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('packages.index')}}">Package</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
-
+    </div>
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i>
+        {{session('success')}}
+        {{session()->forget('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('warning'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('warning')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('failed')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <section class="section profile">
         <div class="row">
             <div class="col-xl-8">
@@ -38,20 +50,24 @@
                                 <form action="{{route('packages.addUser.search',$package->id)}}" method="get">
                                     <div class="d-flex justify-content-end">
                                         <div class="col-sm-2">
-                                            <input class="form-check-input" type="radio" name="item" id="code" value="code" checked>
+                                            <input class="form-check-input" type="radio" name="item" id="code"
+                                                value="code" checked>
                                             <label class="form-check-label" for="code">Code</label>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input class="form-check-input" type="radio" name="item" id="fullname" value="fullname">
+                                            <input class="form-check-input" type="radio" name="item" id="fullname"
+                                                value="fullname">
                                             <label class="form-check-label" for="fullname">Name</label>
                                         </div>
                                         <div class="search-form">
                                             <input type="text" name="key" required>
-                                            <button type="submit" title="Search" class="btn btn-outline-info" style="width:40px; height:35px"><i class="bi bi-search"></i></button>
+                                            <button type="submit" title="Search" class="btn btn-outline-info"
+                                                style="width:40px; height:35px"><i class="bi bi-search"></i></button>
                                         </div>
                                     </div>
                                 </form>
-                                <form method="post" action="{{route('packages.addUser',$package->id)}}" class="row g-3" style="padding:20px;">
+                                <form method="post" action="{{route('packages.addUser',$package->id)}}" class="row g-3"
+                                    style="padding:20px;">
                                     @csrf
                                     <table class="table table-bordered">
                                         <thead>
@@ -67,7 +83,8 @@
                                             <tr>
                                                 <th scope="row">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" name="user_id[]" value="{{ $user->id }}">
+                                                        <input class="form-check-input" type="checkbox" name="user_id[]"
+                                                            value="{{ $user->id }}">
                                                     </div>
                                                 </th>
                                                 <td> {{ $user->code }} </td>
@@ -94,7 +111,8 @@
             <div class="col-xl-4">
                 <div class="card">
                     <div class="detail_update-btn">
-                        <a type="button" href="{{route('packages.show',$package->id)}}" class="btn btn-secondary">Back</a>
+                        <a type="button" href="{{route('packages.show',$package->id)}}"
+                            class="btn btn-secondary">Back</a>
                     </div>
                     <div class="card_body">
                         <div class="card-body">
@@ -104,7 +122,8 @@
                                     @forelse($members as $key=>$user)
                                     <div class="row">
                                         <div class="col d-flex justify-content-between">
-                                            <p>{{$user->code}} : <a class=" text-primary" href="{{route('users.show',$user->id)}}">
+                                            <p>{{$user->code}} : <a class=" text-primary"
+                                                    href="{{route('users.show',$user->id)}}">
                                                     {{$user->fullname}}</a></p>
                                         </div>
                                     </div>

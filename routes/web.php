@@ -19,17 +19,27 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'getFormRegister')->name('user.getFormRegister');
     Route::post('/register', 'register')->name('user.register');
+    Route::get('/apointment', 'makeApointment')->name('user.apointment');
 });
-Route::get('/', function () {
-    return view('user.view.dashboard');
-})->name('dashboad');
+Route::controller(DashboardController::class)->group(function () {
+
+    Route::get('/', 'user')->name('user.dashboard');
+    Route::get('/about', 'about')->name('user.about');
+    Route::get('/{category}/listItem', 'list')->name('category.listItem');
+});
 Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/profile', 'show')->name('user.show');
+        Route::post('/changePassword', 'changePassword')->name('user.changePassword');
+        Route::patch('/update', 'update')->name('user.updateProfile');
+        Route::post('/apointment', 'createApointment')->name('user.createApointment');
+        Route::get('/listApointment', 'showAllPackage')->name('user.showAllPackage');
     });
     Route::middleware('admin')->prefix('admin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
         Route::controller(AdminController::class)->prefix('staff')->group(function () {
+            Route::get('/profile', 'profile')->name('staff.profile');
+            Route::get('/editProfile', 'editProfile')->name('staff.editProfile');
             Route::post('/{user}/reset', 'resetPassword')->name('staff.resetPassword');
             Route::post('/{user}/restore', 'restoreStaff')->name('staff.restore');
             Route::get('/deleted', 'getListDeleted')->name('staff.deleted');

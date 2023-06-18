@@ -5,25 +5,38 @@
 
 @section('content')
 <main id="main" class="main">
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @elseif (session('failed'))
-    <div class="alert alert-danger">
-        {{ session('failed') }}
-    </div>
-    @endif
     <div class="pagetitle">
         <h1>{{$tittle}}</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('apointments.index')}}">Apointment</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i>
+        {{session('success')}}
+        {{session()->forget('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('warning'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('warning')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{session('failed')}}
+        {{session()->forget('warning')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <form method="post" action="{{route('apointments.store')}}">
         @csrf
         <section class="section dashboard">
@@ -110,7 +123,8 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Message</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px" name="description">{{ old('message') }}</textarea>
+                                <textarea class="form-control h-100px"
+                                    name="description">{{ old('message') }}</textarea>
                                 @error('message')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'password' => 'password',
             'remember_token' => Str::random(10),
             'code' => rand(999, 9999),
-            'phone_number' => rand(100000000, 999999999),
+            'phone_number' => $faker->numerify('0#########'),
             'day_of_birth' => $faker->date($format = 'Y-m-d', $max = 'now'),
             'address' => $faker->city,
             'level' => Arr::random(['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5']),

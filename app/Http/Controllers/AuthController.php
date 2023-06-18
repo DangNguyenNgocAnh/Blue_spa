@@ -15,12 +15,12 @@ class AuthController extends Controller
     }
     public function login(AuthRequest $request)
     {
-        if (Auth::attempt($request->only(['email', 'password'], $request->filled('remember')))) {
+        if (Auth::attempt($request->only(['email', 'password'], $request->filled('rememberMe')))) {
             $request->session()->regenerate();
             if (Gate::allows('notCustomer')) {
-                return redirect()->route('dashboard');
+                return redirect()->route('admin.dashboard');
             }
-            return redirect()->route('dashboad');
+            return redirect()->route('user.dashboard');
         }
         return redirect()->back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -30,6 +30,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('user.dashboard');
     }
 }

@@ -43,16 +43,13 @@
 </head>
 
 <body>
-    <!-- ======= Header ======= -->
+
     @include('user.components.header')
 
-    <!-- ======= Content ======= -->
     @yield('content')
 
-    <!-- ======= Footer ======= -->
     @include('user.components.footer')
 
-    <!-- Vendor JS Files -->
     {{-- <script src="{{ URL::asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor/echarts/echarts.min.js') }}"></script> --}}

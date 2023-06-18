@@ -11,7 +11,7 @@
                 <h1>{{$tittle}}</h1>
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{route('apointments.index')}}">Apointment</a></li>
                         <li class="breadcrumb-item active">{{$tittle}}</li>
                     </ol>
@@ -63,7 +63,7 @@
                     </div>
                 </form>
             </div>
-        </div><!-- End Page Title -->
+        </div>
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="bi bi-check-circle me-1"></i>
@@ -71,11 +71,17 @@
             {{session()->forget('success')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif
-        @if (session('warning'))
+        @elseif (session('warning'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <i class="bi bi-exclamation-triangle me-1"></i>
             {{session('warning')}}
+            {{session()->forget('warning')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @elseif (session('failed'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            {{session('failed')}}
             {{session()->forget('warning')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
