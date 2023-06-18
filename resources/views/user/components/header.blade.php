@@ -18,7 +18,7 @@
         </li>
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('category.listItem',3)}}"> Thẩm mỹ</a></li>
         <li class="dropdown-item" style="text-align: center;"> <a class="header-item-a" href="{{route('category.listItem',4)}}">Phun xăm</a> </li>
-        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="">Đặt lịch hẹn</a>
+        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('user.apointment')}}">Đặt lịch hẹn</a>
         </li>
     </ul>
     <nav class="header-nav">
@@ -41,6 +41,17 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        @if(Auth::user()->department->name != 'Customer')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('admin.dashboard')}}">
+                                <i class="bi bi-house"></i>
+                                <span>Admin homepage</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        @endif
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{route('user.show')}}">
                                 <i class="bi bi-person"></i>
@@ -60,7 +71,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="">
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('user.showAllPackage')}}">
                                 <i class="bi bi-house"></i>
                                 <span>My packages</span>
                             </a>

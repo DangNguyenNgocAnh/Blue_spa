@@ -43,7 +43,8 @@
                     <div class="description-package">
                         <div class='description-package-form'>
                             <h4 style="color:black; font-weight:bold;">{{$package['name']}}</h4>
-                            <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
+                            <a type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modalDialogScrollable">
                                 Detail
                             </a>
                             <p> {{$package['description']}}</p>
@@ -55,54 +56,58 @@
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" style='font-weight: bold;'>Detail Package</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" style='font-weight: bold;'>Detail
+                                    Package</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label " style='font-weight: bold;'>Name
+                                                <div class="col-lg-4 col-md-4 label " style='font-weight: bold;'>Name
                                                 </div>
-                                                <div class="col-lg-9 col-md-8 text_justify">{{$package['name']}}
+                                                <div class="col-lg-8 col-md-8 text_justify">
+                                                    {{$package['name']}}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label" style='font-weight: bold;'>
+                                                <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
                                                     Code
                                                 </div>
-                                                <div class="col-lg-9 col-md-8 text_justify">{{$package['code']}}
+                                                <div class="col-lg-8 col-md-8 text_justify">
+                                                    {{$package['code']}}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label" style='font-weight: bold;'>
+                                                <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
                                                     Price
                                                 </div>
-                                                <div class="col-lg-9 col-md-8 text_justify">
+                                                <div class="col-lg-8 col-md-8 text_justify">
                                                     {{($package['price'])}} đồng
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label" style='font-weight: bold;'>
+                                                <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
                                                     Type
                                                 </div>
-                                                <div class="col-lg-9 col-md-8 text_justify">
+                                                <div class="col-lg-8 col-md-8 text_justify">
                                                     {{$package['types']}}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label" style='font-weight: bold;'>
+                                                <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
                                                     Status
                                                 </div>
-                                                <div class="col-lg-9 col-md-8 text_justify">
+                                                <div class="col-lg-8 col-md-8 text_justify">
                                                     {{$package['status']}}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label" style='font-weight: bold;'>
+                                                <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
                                                     Description</div>
-                                                <div class="col-lg-9 col-md-8 text_justify">
+                                                <div class="col-lg-8 col-md-8 text_justify">
                                                     {{$package['description']}}
                                                 </div>
                                             </div>
@@ -116,7 +121,6 @@
                         </div>
                     </div>
                 </div>
-
                 @endforeach
             </div>
             @empty

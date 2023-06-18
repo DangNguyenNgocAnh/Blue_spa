@@ -48,10 +48,10 @@
                     <div class="col-xl-8">
                         <div class="card">
                             <div class="detail_update-btn">
-                                <a id="show-edit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
+                                <a id="show-edit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateInformation">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <a type="button" href="" class="btn btn-secondary">Back</a>
+                                <a type="button" href="{{route('user.dashboard')}}" class="btn btn-secondary">Back</a>
                             </div>
                             <div class="card-body">
                                 <div class="tab-content">
@@ -92,7 +92,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">My packages</div>
-                                            <div class="col-lg-9 col-md-8 text_justify"><a href="">Go to</a></div>
+                                            <div class="col-lg-9 col-md-8 text_justify"><a id="show-packages" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalListPackage">
+                                                    <i class=" ri-eye-line"></i>
+                                                </a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -102,8 +104,8 @@
                 </div>
             </section>
         </div>
-        <!-- Modal detail package -->
-        <div class="modal fade" id="modalDialogScrollable" tabindex="-1">
+        <!-- Modal update user -->
+        <div class="modal fade" id="modalUpdateInformation" tabindex="-1">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -185,6 +187,11 @@
                                                             <input type="text" class="form-control" name="phone_number" placeholder="Ex: 123456789" value="{{old('phone_number')?old('phone_number'):$user->phone_number }}">
                                                             @error('phone_number')
                                                             <div class="invalidate">{{ $message }}</div>
+                                                            <script>
+                                                                window.onload = function() {
+                                                                    document.getElementById('show-edit').click();
+                                                                }
+                                                            </script>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -233,7 +240,6 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -246,10 +252,47 @@
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                     </form>
-
                 </div>
             </div>
         </div>
-
+        <!-- Modal list package -->
+        <div class="modal fade" id="modalListPackage" tabindex="-1">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            List packages
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @if(Auth::user()->packages->count()>0)
+                        <div class="table1">
+                            <div class="table1-row table1-header">
+                                <div class="table1-cell">STT</div>
+                                <div class="table1-cell">Code</div>
+                                <div class="table1-cell">Name</div>
+                            </div>
+                            @foreach (Auth::user()->packages as $key => $package)
+                            <div class="table1-row">
+                                <div class="table1-cell">{{++$key}}</div>
+                                <div class="table1-cell">{{$package->code}}</div>
+                                <div class="table1-cell">{{$package->name}}</div>
+                            </div>
+                            @endforeach
+                        </div>
+                        @else
+                        <div class="table1-row">
+                            <i class="ri-shopping-cart-2-line" style="font-size: 40px; color:#012970"></i>
+                            <div class="table1-row">Bạn chưa đăng ký package nào! </div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </main>
 @endsection

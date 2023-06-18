@@ -123,7 +123,8 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Message</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px" name="description">{{ old('message') }}</textarea>
+                                <textarea class="form-control h-100px"
+                                    name="description">{{ old('message') }}</textarea>
                                 @error('message')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

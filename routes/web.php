@@ -19,6 +19,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'getFormRegister')->name('user.getFormRegister');
     Route::post('/register', 'register')->name('user.register');
+    Route::get('/apointment', 'makeApointment')->name('user.apointment');
 });
 Route::controller(DashboardController::class)->group(function () {
 
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', 'show')->name('user.show');
         Route::post('/changePassword', 'changePassword')->name('user.changePassword');
         Route::patch('/update', 'update')->name('user.updateProfile');
+        Route::post('/apointment', 'createApointment')->name('user.createApointment');
+        Route::get('/listApointment', 'showAllPackage')->name('user.showAllPackage');
     });
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');

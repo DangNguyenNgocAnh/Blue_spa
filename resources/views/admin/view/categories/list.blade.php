@@ -92,7 +92,7 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <!-- Modal -->
+                                    <!-- Modal delete-->
                                     <form action="{{route('categories.destroy',$category->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
@@ -116,6 +116,7 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <!-- Modal list package-->
                                     <div class="modal fade" id="listpackageModal{{ $category->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

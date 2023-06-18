@@ -1740,4 +1740,7 @@ a{
     padding-top: 20px;
     margin-bottom: 0px;
 }
-
+.list-apoint-user{
+    width: 80vw;
+    margin: 50px auto;
+}

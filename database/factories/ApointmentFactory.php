@@ -21,10 +21,10 @@ class ApointmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'customer_id' => rand(1, User::where('department_id', 5)->count()),
-            'employee_id' => rand(1, User::whereNot('department_id', 5)->count()),
+            'customer_id' => User::where('department_id', 5)->inRandomOrder()->value('id'),
+            'employee_id' => User::whereNot('department_id', 5)->inRandomOrder()->value('id'),
             'code' => rand(1000, 9999),
-            'time' => fake()->date($format = 'Y-m-d', $min = '2023-05-18', $max = '+1 month'),
+            'time' => fake()->dateTimeBetween(now(), now()->addDays(7))->format('Y-m-d H:i:s'),
             'status' => Arr::random(['Completed', 'Confirmed', 'Cancelled', 'Missed']),
             'message' => Str::random(10)
         ];
