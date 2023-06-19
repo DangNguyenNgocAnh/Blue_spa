@@ -21,7 +21,7 @@ class PackageFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'code' => rand(1000, 9999),
+            'code' => rand(100, 9999),
             'status' => Arr::random(['Coming', 'Closed', 'Pending', 'Active']),
             'types' => Arr::random(['Basic', 'Standard', 'Premium', 'Trial', 'Special']),
             'description' => Str::random(10),

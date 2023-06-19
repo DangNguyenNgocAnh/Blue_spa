@@ -43,9 +43,8 @@
                     <div class="description-package">
                         <div class='description-package-form'>
                             <h4 style="color:black; font-weight:bold;">{{$package['name']}}</h4>
-                            <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#modalDialogScrollable">
-                                Detail
+                            <a type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
+                                <i class="ri-eye-line"></i>
                             </a>
                             <p> {{$package['description']}}</p>
                         </div>
@@ -58,8 +57,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" style='font-weight: bold;'>Detail
                                     Package</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="card-body">

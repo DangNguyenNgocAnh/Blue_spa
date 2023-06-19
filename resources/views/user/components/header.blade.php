@@ -14,8 +14,10 @@
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('user.about')}}">Giới
                 thiệu</a></li>
 
-        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('category.listItem',1)}}">Chăm sóc da</a>
+        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('category.listItem',1)}}">Chăm sóc</a>
         </li>
+        <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('category.listItem',2)}}"> Điều trị</a></li>
+
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('category.listItem',3)}}"> Thẩm mỹ</a></li>
         <li class="dropdown-item" style="text-align: center;"> <a class="header-item-a" href="{{route('category.listItem',4)}}">Phun xăm</a> </li>
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a" href="{{route('user.apointment')}}">Đặt lịch hẹn</a>

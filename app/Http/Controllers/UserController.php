@@ -36,7 +36,7 @@ class UserController extends Controller
             ]));
             Auth::login($user);
             $request->session()->regenerate();
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.dashboard')->with('success', 'Bạn đã đăng ký tài khoản thành công !');
         } catch (Exception $exception) {
             return redirect()->back()->with('failed', $exception->getMessage());
         }
@@ -106,13 +106,19 @@ class UserController extends Controller
     }
     public function createApointment(Request $request)
     {
+        if ($request->date == now()->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')) {
+            $rule_hour =  [
+                'required', 'date_format:H',
+                'after:' . now()->setTimezone('Asia/Ho_Chi_Minh')->format('H')
+            ];
+        } else {
+            $rule_hour =  ['required'];
+        }
         $validator = Validator::make($request->all(), [
-            'hour' => ['required', 'date_format:H', 'after:' . now()->setTimezone('Asia/Ho_Chi_Minh')->format('H')],
-            'minute' => ['required'],
+            'hour' => $rule_hour,
 
         ], [
             'hour.after' => 'The hour must be after the current time',
-            'minute.after' => 'The hour must be after the current time'
         ]);
         if ($validator->fails()) {
             return redirect()->back()
@@ -125,12 +131,14 @@ class UserController extends Controller
                     'code' => Apointment::max('code') + 1,
                     'customer_id' => Auth::id(),
                     'employee_id' => $request->employee_id ?? null,
-                    'time' => DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:$request->minute"),
+                    'time' => ($request->minute)
+                        ? DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:$request->minute")
+                        : DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:00"),
                     'status' => 'Confirmed',
                     'message' => $request->message
                 ]
             );
-            return redirect()->route('user.dashboard')->with('success', 'Make a apointment successfull ! ');
+            return redirect()->route('user.showAllPackage')->with('success', 'Make a apointment successfull ! ');
         } catch (Exception $ex) {
             return redirect()->back()->with('failed', 'Error');
         }

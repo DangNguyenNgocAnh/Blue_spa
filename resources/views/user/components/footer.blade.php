@@ -18,12 +18,12 @@
         <div class="footer-right">
             <ul>
                 <span>
-                    Quy định – Chính sách
+                    Rất mong được phục vụ quý khách <i class="bi bi-heart-fill"></i>
                 </span>
-                <li> Hình thức thanh toán </li>
-                <li> Chính sách đổi trả – bảo hành </li>
-                <li> Chính sách giao hàng </li>
-                <li> Chính sách bán hàng – lưu kho </li>
+                <li><i class="ri-door-open-line"></i> Mở cửa lúc 9h</li>
+                <li><i class="ri-door-closed-line"></i> Đóng cửa lúc 20h</li>
+                <li><i class="ri-double-quotes-l"></i> Nếu muốn được tư vấn vui lòng liên hệ 0702751033</li>
+                <li><i class="ri-double-quotes-l"></i> Nếu muốn đặt lịch vui lòng <a href="{{route('user.apointment')}}"> Click <i class="bi bi-chat-left-heart"></i> </a></li>
             </ul>
         </div>
     </div>

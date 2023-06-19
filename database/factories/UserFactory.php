@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -22,11 +23,13 @@ class UserFactory extends Factory
     {
         $faker = Faker::create('vi_VN');
         return [
-            'fullname' => $faker->name(),
+            'fullname' => Arr::random(['Nguyễn', 'Đặng', 'Hoàng', 'Trần', 'Phạm', 'Lê', 'Tôn', 'Đỗ', 'Bùi', 'Huỳnh', 'Hồ', 'Ngô'])
+                . ' ' . Arr::random(['Văn', 'Thị', 'Ngọc', 'Minh', 'Hoàng', 'Hữu', 'Thành', 'Văn', 'Hữu', 'Bá', 'Thế', 'Xuân', 'Tấn'])
+                . ' ' . Arr::random(['An', 'Anh', 'Ân', 'Chiến', 'Công', 'Nhi', 'Minh', 'Hân', 'Vi', 'Quỳnh', 'Mai', 'Thanh', 'Linh', 'Nghĩa', 'Nguyệt', 'Quyết', 'Tiên', 'Thắm']),
             'email' => $faker->unique()->safeEmail(),
             'password' => 'password',
             'remember_token' => Str::random(10),
-            'code' => rand(999, 9999),
+            'code' => rand(1000, 9999),
             'phone_number' => $faker->numerify('0#########'),
             'day_of_birth' => $faker->date($format = 'Y-m-d', $max = 'now'),
             'address' => $faker->city,
