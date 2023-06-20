@@ -46,17 +46,14 @@
                             <div class="card-body">
                                 <h5 class="card-title">Packages <span>| This month</span></h5>
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{$packages['count']}}</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold">{{number_format($packages['compare']*100,2)}}
+                                        <span class="text-success small pt-1 fw-bold">{{number_format($packages['compare']*100,2)}}
                                             %</span>
-                                        <span
-                                            class="text-muted small pt-2 ps-1">{{$packages['increase']? 'increase' : 'decrease'}}</span>
+                                        <span class="text-muted small pt-2 ps-1">{{$packages['increase']? 'increase' : 'decrease'}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -68,16 +65,13 @@
                             <div class="card-body">
                                 <h5 class="card-title">Revenue <span>| This Month</span></h5>
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{$revenue['sum']}}</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold">{{round($revenue['compare']*100,2)}}%</span>
-                                        <span
-                                            class="text-muted small pt-2 ps-1">{{$revenue['increase']? 'increase' : 'decrease'}}</span>
+                                        <span class="text-success small pt-1 fw-bold">{{round($revenue['compare']*100,2)}}%</span>
+                                        <span class="text-muted small pt-2 ps-1">{{$revenue['increase']? 'increase' : 'decrease'}}</span>
 
                                     </div>
                                 </div>
@@ -90,8 +84,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Customers <span>| This Year</span></h5>
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
@@ -120,8 +113,7 @@
                                         <tr>
                                             <th scope="row">{{++$key}}
                                             </th>
-                                            <td><a href="{{route('packages.show',$package['id'])}}"
-                                                    class="text-primary fw-bold">{{$package['name']}}</a></td>
+                                            <td><a href="{{route('packages.show',$package['id'])}}" class="text-primary fw-bold">{{$package['name']}}</a></td>
                                             <td>{{number_format($package['price']) }} VND</td>
                                             <td class="fw-bold">{{$package['count']}}</td>
                                             <td>{{number_format($package['sum'])}} VND</td>
@@ -150,7 +142,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Code</th>
                                             <th scope="col">Fullname</th>
-                                            <th scope="col">Price</th>
+                                            <th scope="col">Total money</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -158,10 +150,8 @@
                                         <tr>
                                             <th scope="row">{{++$key}}
                                             </th>
-                                            <td><a href="{{route('users.show',$customer['id'])}}"
-                                                    class="text-primary fw-bold">{{$customer['code']}}</a></td>
-                                            <td><a href="{{route('users.show',$customer['id'])}}"
-                                                    class="text-primary fw-bold">{{$customer['name']}}</a></td>
+                                            <td><a href="{{route('users.show',$customer['id'])}}" class="text-primary fw-bold">{{$customer['code']}}</a></td>
+                                            <td><a href="{{route('users.show',$customer['id'])}}" class="text-primary fw-bold">{{$customer['name']}}</a></td>
                                             <td>{{number_format($customer['sum']) }} VND</td>
                                         </tr>
                                         @empty
@@ -185,36 +175,36 @@
                         <h5 class="card-title">Type of package</h5>
                         <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
                         <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                            echarts.init(document.querySelector("#trafficChart")).setOption({
-                                tooltip: {
-                                    trigger: 'item'
-                                },
-                                legend: {
-                                    top: '5%',
-                                    left: 'center'
-                                },
-                                series: [{
-                                    name: 'Access From',
-                                    type: 'pie',
-                                    radius: ['40%', '70%'],
-                                    avoidLabelOverlap: false,
-                                    label: {
-                                        show: false,
-                                        position: 'center'
+                            document.addEventListener("DOMContentLoaded", () => {
+                                echarts.init(document.querySelector("#trafficChart")).setOption({
+                                    tooltip: {
+                                        trigger: 'item'
                                     },
-                                    emphasis: {
+                                    legend: {
+                                        top: '5%',
+                                        left: 'center'
+                                    },
+                                    series: [{
+                                        name: 'Access From',
+                                        type: 'pie',
+                                        radius: ['40%', '70%'],
+                                        avoidLabelOverlap: false,
                                         label: {
-                                            show: true,
-                                            fontSize: '18',
-                                            fontWeight: 'bold'
-                                        }
-                                    },
-                                    labelLine: {
-                                        show: false
-                                    },
-                                    data: [
-                                        <?php
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            label: {
+                                                show: true,
+                                                fontSize: '18',
+                                                fontWeight: 'bold'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        },
+                                        data: [
+                                            <?php
                                             if (isset($typePackage)) {
                                                 $str = '';
                                                 foreach ($typePackage as $package) {
@@ -222,10 +212,10 @@
                                                 }
                                             }
                                             ?>
-                                    ]
-                                }]
+                                        ]
+                                    }]
+                                });
                             });
-                        });
                         </script>
 
                     </div>
@@ -241,10 +231,8 @@
                                 </div>
                                 <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                                 <div class="activity-content">
-                                    <b> <a style="color:black"
-                                            href="{{route('apointments.show',$apointment['id'])}}">{{ $apointment['code']}}</a></b><br>
-                                    <a href="{{route('users.show',$apointment['customer_id'])}}"
-                                        class="fw-bold text-dark">{{ $apointment['customerName']}}</a><br>
+                                    <b> <a style="color:black" href="{{route('apointments.show',$apointment['id'])}}">{{ $apointment['code']}}</a></b><br>
+                                    <a href="{{route('users.show',$apointment['customer_id'])}}" class="fw-bold text-dark">{{ $apointment['customerName']}}</a><br>
                                     {{ $apointment['status']}}
                                 </div>
                             </div>

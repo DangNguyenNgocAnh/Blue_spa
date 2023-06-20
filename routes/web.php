@@ -20,6 +20,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'getFormRegister')->name('user.getFormRegister');
     Route::post('/register', 'register')->name('user.register');
     Route::get('/apointment', 'makeApointment')->name('user.apointment');
+    Route::post('/reset-password', 'resetPassword')->name('user.resetPassword');
 });
 Route::controller(DashboardController::class)->group(function () {
 

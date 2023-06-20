@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
         return [
             'fullname' => 'required|max:50',
             'email' => ['required', 'email', 'max:50', Rule::unique('users')],
-            'password' =>  'required|max:25|min:8',
+            'password' =>  'required|max:25|min:15',
             'confPass' => 'required|max:25|min:8|same:password',
             'phone_number' => ["required", "numeric", "regex:/^([0-9\s\-\+\(\)]*)$/", "min:9", Rule::unique('users')],
             'day_of_birth' => 'nullable|date|before:today|after:' . now()->subYears(100)->format('Y-m-d'),

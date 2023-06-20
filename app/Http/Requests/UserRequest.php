@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
             'code' => ['required', "numeric", Rule::unique('users')->ignore(request()->id)],
             'fullname' => 'required|max:50',
             'email' => ['required', 'email', 'max:50', Rule::unique('users')->ignore(request()->id)],
-            'password' =>  'nullable|max:25|min:8',
+            'password' =>  'nullable|max:25|min:15',
             'phone_number' => ["required", "numeric", "regex:/^([0-9\s\-\+\(\)]*)$/", "min:9", Rule::unique('users')->ignore(request()->id)],
             'day_of_birth' => 'required|date|before:today|after:' . now()->subYears(100)->format('Y-m-d'),
             'address' => 'nullable|max:100',

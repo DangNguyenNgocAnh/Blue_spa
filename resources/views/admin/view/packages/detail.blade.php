@@ -42,7 +42,8 @@
             <div class="col-xl-8">
                 <div class="card">
                     <div class="detail_update-btn">
-                        <a type="button" href="{{route('packages.edit',$package->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                        <a type="button" href="{{route('packages.edit',$package->id)}}" class="btn btn-primary"><i
+                                class="bi bi-pencil-square"></i></a>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
@@ -86,16 +87,18 @@
                 <div class="card">
                     <div class="detail_update-btn">
                         <a type="button" href="{{route('packages.index')}}" class="btn btn-secondary">Back</a>
-                        <a type="button" href="{{route('packages.formAddUser',$package->id)}}" class="btn btn-primary">+</a>
+                        <a type="button" href="{{route('packages.formAddUser',$package->id)}}"
+                            class="btn btn-primary">+</a>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                <h5 class="user_detail-tittle">List member</h5>
+                                <h5 class="user_detail-tittle">List customers</h5>
                                 @forelse($users as $user)
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">{{$user->code}}</div>
-                                    <div class="col-lg-9 col-md-8"> <a href="{{route('users.show',$user->id)}}">{{$user->fullname}}</a></div>
+                                    <div class="col-lg-9 col-md-8"> <a
+                                            href="{{route('users.show',$user->id)}}">{{$user->fullname}}</a></div>
                                 </div>
                                 @empty
                                 <div class="row">

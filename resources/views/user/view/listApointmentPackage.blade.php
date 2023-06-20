@@ -32,8 +32,176 @@
                 <div class="col-xl-5">
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                            <h2>{{ $user->fullname }}</h2>
+                            <h2>Hello, {{ $user->fullname }} <a id="show-edit" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalUpdateInformation">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a></h2>
+                            <!-- Modal update apointment -->
+                            <div class="modal fade" id="modalUpdateInformation" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" style='font-weight: bold;'>Edit Information
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card-body">
+                                                <div class="tab-content">
+                                                    <form method="POST" action="{{route('user.updateProfile')}}">
+                                                        @csrf
+                                                        @METHOD('PATCH')
+                                                        <section class="section dashboard">
+                                                            <div class="col-xxl-4 col-md-12">
+                                                                <div class="card info-card">
+                                                                    <div class="card-body">
+                                                                        <div class="row mb-3">
+                                                                            <label for="inputText" class="col-sm-4 col-form-label">Code</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="code" value="{{old('code')?old('code'):$user->code }}" readonly>
+                                                                                @error('code')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <input type="hidden" name="id" value="{{$user->id}}">
+                                                                            <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="email" placeholder="Ex: Example@gmail.com" value="{{old('email')?old('email'):$user->email }}">
+                                                                                @error('email')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row mb-3">
+                                                                            <label for="inputText" class="col-sm-4 col-form-label">Fullname</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="fullname" placeholder="Ex: Nguyễn Văn A" value="{{old('fullname')?old('fullname'):$user->fullname }}">
+                                                                                @error('fullname')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label for="inputText" class="col-sm-4 col-form-label">Level</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="level" value="{{old('level')?old('level'):$user->level }}" readonly>
+                                                                                @error('level')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label for="inputText" class="col-sm-4 col-form-label">Phone
+                                                                                number</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="phone_number" placeholder="Ex: 123456789" value="{{old('phone_number')?old('phone_number'):$user->phone_number }}">
+                                                                                @error('phone_number')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label for="inputText" class="col-sm-4 col-form-label">Address</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="address" value="{{old('address')?old('address'):$user->address }}">
+                                                                                @error('address')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row mb-3">
+                                                                            <label for="inputText" class="col-sm-4 col-form-label">Day of
+                                                                                birth</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="date" class="form-control" name="day_of_birth" value="{{date('Y-m-d', strtotime(str_replace('/', '-', $user->day_of_birth)))}}">
+                                                                                @error('day_of_birth')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row mb-3">
+                                                                            <label for="inputText" class="col-sm-4 col-form-label">Note</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="note" value="{{old('note')?old('note'):$user->note }}">
+                                                                                @error('note')
+                                                                                <div class="invalidate">{{ $message }}
+                                                                                </div>
+                                                                                <script>
+                                                                                    window.onload = function() {
+                                                                                        document.getElementById(
+                                                                                            'show-edit').click();
+                                                                                    }
+                                                                                </script>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
@@ -61,7 +229,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="max-height: 90vh;overflow: auto;">
                                                             <div class="tab-content">
                                                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                                                     <div class="row">
@@ -123,7 +291,7 @@
                                     </div>
                                     @empty
                                     <div class="row">
-                                        <div class="col-lg-9 col-md-8">No package registration
+                                        <div class="col-lg-9 col-md-8">Don't have package registration
                                         </div>
                                     </div>
                                     @endforelse
@@ -159,6 +327,126 @@
                                                     <td> {{$apointment->code}} </td>
                                                     <td> {{($apointment->time)}} </td>
                                                     <td> {{$apointment->status}} </td>
+                                                    <td> <a id="update-status" href="" data-bs-toggle="modal" data-bs-target="#modalUpdateApointment" style="color:#0d6efd"><i class="ri-mark-pen-line"></i></a>
+                                                    </td>
+                                                    <!-- Modal update apointment -->
+                                                    <div class="modal fade" id="modalUpdateApointment" tabindex="-1">
+                                                        <div class="modal-dialog modal-dialog-scrollable">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" style='font-weight: bold;'>
+                                                                        Change status apointment</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="card-body">
+                                                                        <div class="tab-content">
+                                                                            <form method="POST" action="{{route('user.updateProfile')}}">
+                                                                                @csrf
+                                                                                @METHOD('PATCH')
+                                                                                <section class="section dashboard">
+                                                                                    <div class="col-xxl-4 col-md-12">
+                                                                                        <div class="card info-card">
+                                                                                            <div class="card-body">
+                                                                                                <div class="row mb-3">
+                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Code</label>
+                                                                                                    <div class="col-sm-8">
+                                                                                                        <input type="text" class="form-control" name="code" value="{{old('code')?old('code'):$apointment->code }}" readonly>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row mb-3">
+                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Time</label>
+                                                                                                    <div class="col-sm-8">
+                                                                                                        <input type="text" readonly class="form-control" name="time" value="{{date('m-d-Y', strtotime(str_replace('/', '-', $apointment->time)))}}">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row mb-3">
+                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Status</label>
+                                                                                                    <div class="col-sm-8">
+                                                                                                        <select class="form-select" name="status">
+                                                                                                            <option value="Completed" @if($apointment->
+                                                                                                                status
+                                                                                                                ==
+                                                                                                                'Completed')
+                                                                                                                selected
+                                                                                                                @endif>Completed
+                                                                                                            </option>
+                                                                                                            <option value="Confirmed" @if($apointment->
+                                                                                                                status
+                                                                                                                ==
+                                                                                                                'Confirmed')
+                                                                                                                selected
+                                                                                                                @endif>Confirmed
+                                                                                                            </option>
+                                                                                                            <option value="Cancelled" @if($apointment->
+                                                                                                                status
+                                                                                                                ==
+                                                                                                                'Cancelled')
+                                                                                                                selected
+                                                                                                                @endif>Cancelled
+                                                                                                            </option>
+                                                                                                            <option value="Missed" @if($apointment->
+                                                                                                                status
+                                                                                                                ==
+                                                                                                                'Missed')
+                                                                                                                selected
+                                                                                                                @endif>Missed
+                                                                                                            </option>
+                                                                                                        </select>
+                                                                                                        @error('status')
+                                                                                                        <div class="invalidate">
+                                                                                                            {{ $message }}
+                                                                                                        </div>
+                                                                                                        <script>
+                                                                                                            window.onload =
+                                                                                                                function() {
+                                                                                                                    document
+                                                                                                                        .getElementById(
+                                                                                                                            'update-status'
+                                                                                                                        )
+                                                                                                                        .click();
+                                                                                                                }
+                                                                                                        </script>
+                                                                                                        @enderror
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row mb-3">
+                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Message</label>
+                                                                                                    <div class="col-sm-8">
+                                                                                                        <input type="text" class="form-control" name="note" value="{{old('message')?old('message'):$apointment->message }}">
+                                                                                                        @error('message')
+                                                                                                        <div class="invalidate">
+                                                                                                            {{ $message }}
+                                                                                                        </div>
+                                                                                                        <script>
+                                                                                                            window.onload =
+                                                                                                                function() {
+                                                                                                                    document
+                                                                                                                        .getElementById(
+                                                                                                                            'update-status'
+                                                                                                                        )
+                                                                                                                        .click();
+                                                                                                                }
+                                                                                                        </script>
+                                                                                                        @enderror
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </section>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save
+                                                                        changes</button>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </tr>
                                                 @endforeach
                                                 @else
@@ -166,6 +454,11 @@
                                                 @endif
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" d-flex justify-content-end">
+                                            {{ $apointments->links() }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

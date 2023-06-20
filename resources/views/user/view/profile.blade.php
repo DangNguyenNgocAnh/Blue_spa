@@ -40,7 +40,6 @@
                                     <span class="badge rounded-pill bg-warning text-dark">{{ $user->levels }}</span>
                                     <span class="badge rounded-pill bg-primary">{{ $user->roles }}</span>
                                 </div>
-                                <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
                                 <h2>{{ $user->fullname }}</h2>
                             </div>
                         </div>
@@ -48,7 +47,7 @@
                     <div class="col-xl-8">
                         <div class="card">
                             <div class="detail_update-btn">
-                                <a id="show-edit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateInformation">
+                                <a id="show-edit" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalUpdateInformation">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <a type="button" href="{{route('user.dashboard')}}" class="btn btn-secondary">Back</a>

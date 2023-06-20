@@ -204,9 +204,19 @@ class AdminController extends Controller
                     'to' => $user->email,
                     'subject' => 'Reset Password',
                     'data' => [
-                        'header' => "Xin chào <b>$user->fullname</b>",
-                        'body' => 'Tài khoản của bạn trong website spa đã được reset password lại thành <b>password</b>.',
-                        'footer' => '<b>Xin chân thành cảm ơn !!!</b>'
+                        'header' => "Xin chào <b>$user->fullname.</b>",
+                        'body' =>
+                        "<p>Chúng tôi là <b>Blue spa team</b>, admin vừa reset lại mật khẩu của bạn .</p>
+                        <p>Tài khoản của bạn đã được reset password lại thành <b>password</b>.</p>
+                         <p>Vui lòng đăng nhập lại với password như trên và đổi lại mật khẩu nếu muốn.</p>",
+                        'footer' =>
+                        " <p>Nếu có gì thắc mắc xin vui lòng liên hệ với chúng tôi thông qua:</p>
+                        <ul>
+                        <li> số điện thoại: <b>0702751033</b></li>
+                        <li> email: <b>bluespa.admin@gmail.com</b></li>
+                        <li> Địa chỉ trang web: <b><a href ='http://spa.test/'> Blue spa</a></b></li>
+                        </ul>
+                         <b>Xin chân thành cảm ơn !!!</b>"
                     ]
                 ]))->delay(now()->addSeconds(10));
                 return redirect()->back()->with('success', 'Reset password successful!');

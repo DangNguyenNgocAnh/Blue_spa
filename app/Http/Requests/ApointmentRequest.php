@@ -2,6 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Apointment;
+use App\Models\User;
+use App\Rules\HaveApointmentRule;
+use App\Rules\QuantityLimitRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -22,11 +26,19 @@ class ApointmentRequest extends FormRequest
      */
     public function rules(): array
     {
+        $count = Apointment::where('time', request()->time)->whereNot('status', 'Cancelled')->count();
+        $customer = User::find(request()->customer_id);
         return [
             'code' => ['required', "numeric", Rule::unique('apointments')->ignore(request()->id)],
             'customer_id' => 'required|exists:users,id',
             'employee_id' => 'nullable|exists:users,id',
-            'time' =>  'required|date|after_or_equal:today|before_or_equal:' . date('Y-m-d', strtotime('+1 week')),
+            'time' =>  [
+                'required', 'date',
+                'after_or_equal:today',
+                'before_or_equal:' . date('Y-m-d', strtotime('+1 week')),
+                new QuantityLimitRule($count),
+                new HaveApointmentRule($customer->apointments()->whereDate('time', substr(request()->time, 0, 10))->count())
+            ],
             'status' => [
                 'required', Rule::in(['Completed', 'Confirmed', 'Cancelled', 'Missed']),
             ],

@@ -18,9 +18,9 @@ class AuthController extends Controller
         if (Auth::attempt($request->only(['email', 'password'], $request->filled('rememberMe')))) {
             $request->session()->regenerate();
             if (Gate::allows('notCustomer')) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.dashboard')->with('success', 'Login successfull !');
             }
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.dashboard')->with('success', "Welcome " . Auth::user()->fullname . " !");
         }
         return redirect()->back()->withErrors([
             'email' => 'The provided credentials do not match our records.',

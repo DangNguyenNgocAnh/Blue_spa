@@ -1,4 +1,4 @@
-@extends('user.layout.master')
+@extends('user.layout.masterLogin')
 @section('tittle')
 {{ $tittle }}
 @endsection
