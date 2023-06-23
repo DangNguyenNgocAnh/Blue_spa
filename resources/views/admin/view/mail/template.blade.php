@@ -3,13 +3,13 @@
 
 <body>
     <header>
-        {!! html_entity_decode(htmlspecialchars($data['header'])) !!}
+        {!! (($data['header'])) !!}
     </header>
     <p>
-        {!! html_entity_decode(htmlspecialchars($data['body'])) !!}
+        {!! (($data['body'])) !!}
     </p>
     <footer>
-        {!! html_entity_decode(htmlspecialchars($data['footer'])) !!}
+        {!! (($data['footer'])) !!}
     </footer>
 </body>
 

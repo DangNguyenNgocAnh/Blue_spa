@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/update', 'update')->name('user.updateProfile');
         Route::post('/apointment', 'createApointment')->name('user.createApointment');
         Route::get('/listApointment', 'showAllPackage')->name('user.showAllPackage');
+        Route::patch('/apointment', 'setValueStatus')->name('user.setValueStatus');
     });
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');

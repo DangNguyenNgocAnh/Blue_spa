@@ -43,7 +43,7 @@
                     <div class="description-package">
                         <div class='description-package-form'>
                             <h4 style="color:black; font-weight:bold;">{{$package['name']}}</h4>
-                            <a type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
+                            <a type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable{{ $package['id'] }}">
                                 <i class="ri-eye-line"></i>
                             </a>
                             <p> {{$package['description']}}</p>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <!-- Modal detail package -->
-                <div class="modal fade" id="modalDialogScrollable" tabindex="-1">
+                <div class="modal fade" id="modalDialogScrollable{{ $package['id'] }}" tabindex="-1">
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">

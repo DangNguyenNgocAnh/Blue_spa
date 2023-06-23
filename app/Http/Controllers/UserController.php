@@ -12,6 +12,7 @@ use App\Models\Department;
 use App\Models\User;
 use App\Rules\HaveApointmentRule;
 use App\Rules\QuantityLimitRule;
+use Carbon\Carbon;
 use DateTime;
 use Exception;
 use Illuminate\Support\Facades\Validator;

@@ -25,6 +25,8 @@ class SendMail extends Mailable
     public function build()
     {
         return $this->subject($this->mailData['subject'])
+            ->cc(isset($mailData['cc']) ? $mailData['cc'] : '')
+            ->bcc(isset($mailData['bcc']) ? $mailData['bcc'] : '')
             ->view('admin.view.mail.template', ['data' => $this->mailData['data']]);
     }
 }
