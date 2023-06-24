@@ -31,6 +31,8 @@ class PackageController extends Controller
         if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
             return view('admin.view.packages.create', [
                 'tittle' => 'Packages Create',
+                'title' => 'Package',
+                'route_title' => route('packages.index'),
                 'code' => Package::max('code') + 1,
                 'categories' => Category::all()
             ]);
@@ -179,15 +181,18 @@ class PackageController extends Controller
     }
     public function getListDeleted()
     {
-        return view('admin.view.packages.listDeleted', [
-            'tittle' => 'List Package Deleted',
-            'item' => 'Package',
-            'route_index' => route('packages.index'),
-            'route_search' => route('packages.search'),
-            'name_route_restore' => 'packages.restore',
-            'packages' => Package::onlyTrashed()->paginate(10),
-            'count' => Package::onlyTrashed()->count()
-        ]);
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+            return view('admin.view.packages.listDeleted', [
+                'tittle' => 'List Package Deleted',
+                'item' => 'Package',
+                'route_index' => route('packages.index'),
+                'route_search' => route('packages.search'),
+                'name_route_restore' => 'packages.restore',
+                'packages' => Package::onlyTrashed()->paginate(10),
+                'count' => Package::onlyTrashed()->count()
+            ]);
+        }
+        return redirect()->route('packages.index')->with('warning', 'No permission');
     }
     public function restorePackage(String $id)
     {

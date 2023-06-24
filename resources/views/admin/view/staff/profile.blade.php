@@ -10,7 +10,6 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{route('staff.index')}}">Staff</a></li>
                 <li class="breadcrumb-item active">{{$tittle}}</li>
             </ol>
         </nav>
@@ -48,7 +47,8 @@
                             <span class="badge rounded-pill bg-warning text-dark">{{ $user->levels }}</span>
                             <span class="badge rounded-pill bg-primary">{{ $user->roles }}</span>
                         </div>
-                        <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
+                        <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile"
+                            class="rounded-circle">
                         <h2>{{ $user->fullname }}</h2>
                     </div>
                 </div>
@@ -58,14 +58,15 @@
             <div class="col-xl-8">
                 <div class="card">
                     <div class="detail_update-btn">
-                        <a type="button" href="{{route('staff.editProfile')}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                        <a type="button" href="{{route('staff.editProfile')}}" class="btn btn-primary"><i
+                                class="bi bi-pencil-square"></i></a>
                         </button>
                         <a type="button" href="{{route('staff.index')}}" class="btn btn-secondary">Back</a>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                <h5 class="user_detail-tittle">Staff's Information</h5>
+                                <h5 class="user_detail-tittle">My Information</h5>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Fullname</div>

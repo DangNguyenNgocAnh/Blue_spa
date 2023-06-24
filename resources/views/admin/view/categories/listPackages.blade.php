@@ -61,6 +61,7 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <table class="table table-striped">
+                                @if(count($packages)>0)
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -71,7 +72,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($packages as $key => $package)
+                                    @foreach ($packages as $key => $package)
                                     <tr>
                                         <th scope="row">{{ ++$key }}</th>
                                         <td>{{ $package->name }}</td>
@@ -117,12 +118,10 @@
                                             </div>
                                         </div>
                                     </form>
-                                    @empty
-                                    <tr></tr>
-                                    <tr>
-                                        <td class="row">No relevant data available for the conditions</td>
-                                    </tr>
-                                    @endforelse
+                                    @endforeach
+                                    @else
+                                    <td class="row">Dont have any package.</td>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

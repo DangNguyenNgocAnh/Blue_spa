@@ -7,6 +7,7 @@ use App\Models\Apointment;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ApointmentController extends Controller
 {
@@ -98,12 +99,15 @@ class ApointmentController extends Controller
      */
     public function destroy(Apointment $apointment)
     {
-        try {
-            $apointment->delete();
-            return redirect()->route('apointments.index')->with('success', 'Success');
-        } catch (Exception $exception) {
-            return redirect()->back()->with('failed', $exception->getMessage());
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+            try {
+                $apointment->delete();
+                return redirect()->route('apointments.index')->with('success', 'Success');
+            } catch (Exception $exception) {
+                return redirect()->back()->with('failed', $exception->getMessage());
+            }
         }
+        return redirect()->back()->with('warning', 'No permission');
     }
     public function sort(Request $request)
     {
@@ -131,15 +135,18 @@ class ApointmentController extends Controller
     }
     public function getListDeleted()
     {
-        return view('admin.view.apointments.listDeleted', [
-            'tittle' =>  'List Apointment Deleted',
-            'item' => 'Apointment',
-            'route_index' => route('apointments.index'),
-            'route_search' => route('apointments.search'),
-            'name_route_restore' => 'apointments.restore',
-            'apointments' => Apointment::onlyTrashed()->paginate(10),
-            'count' => Apointment::onlyTrashed()->count()
-        ]);
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+            return view('admin.view.apointments.listDeleted', [
+                'tittle' =>  'List Apointment Deleted',
+                'item' => 'Apointment',
+                'route_index' => route('apointments.index'),
+                'route_search' => route('apointments.search'),
+                'name_route_restore' => 'apointments.restore',
+                'apointments' => Apointment::onlyTrashed()->paginate(10),
+                'count' => Apointment::onlyTrashed()->count()
+            ]);
+        }
+        return redirect()->back()->with('warning', 'No permission');
     }
     public function restoreApointment(String $id)
     {

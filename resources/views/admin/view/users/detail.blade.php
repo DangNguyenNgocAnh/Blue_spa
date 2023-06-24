@@ -42,26 +42,30 @@
             <div class="col-xl-4">
                 <div class="card">
                     <div class="detail_update-btn">
-                        <button type="button" class="btn btn-danger user_list_btn" data-bs-toggle="modal" data-bs-target="#resetModal{{ $user->id }}">
+                        <button type="button" class="btn btn-danger user_list_btn" data-bs-toggle="modal"
+                            data-bs-target="#resetModal{{ $user->id }}">
                             <i class="bi bi-repeat"></i>
                         </button>
                         <form action="{{route('users.resetPassword',$user->id)}}" method="post">
                             @csrf
-                            <div class="modal fade" id="resetModal{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="resetModal{{ $user->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
                                                 Confirm Reset Password
                                             </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             Are you sure you want to reset password this person ? <br>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-info w-100px">Reset</button>
-                                            <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary w-100px"
+                                                data-bs-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
@@ -73,13 +77,13 @@
                             <span class="badge rounded-pill bg-warning text-dark">{{ $user->levels }}</span>
                             <span class="badge rounded-pill bg-primary">{{ $user->roles }}</span>
                         </div>
-                        <img src="{{ Vite::asset('resources/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
                         <h2>{{ $user->fullname }}</h2>
                     </div>
                 </div>
                 <div class="card">
                     <div class="detail_update-btn">
-                        <a type="button" href="{{route('users.formAddPackage',$user->id)}}" class="btn btn-primary">+</a>
+                        <a type="button" href="{{route('users.formAddPackage',$user->id)}}"
+                            class="btn btn-primary">+</a>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
@@ -88,7 +92,8 @@
                                 @forelse($packages as $key=>$package)
                                 <div class="row">
                                     <div class="col-lg-2 col-md-2 label ">{{++$key}}</div>
-                                    <div class="col-lg-9 col-md-8"><a href="{{route('packages.show',$package->id)}}">{{ $package->name}}</a></div>
+                                    <div class="col-lg-9 col-md-8"><a
+                                            href="{{route('packages.show',$package->id)}}">{{ $package->name}}</a></div>
                                 </div>
                                 @empty
                                 <div class="row">
@@ -106,8 +111,10 @@
                 <div class="card">
                     <div class="detail_update-btn">
                         @if($user->id != Auth::id())
-                        <a type="button" href="{{route('users.edit',$user->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                        <button type="button" class="btn btn-danger user_list_btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $user->id }}">
+                        <a type="button" href="{{route('users.edit',$user->id)}}" class="btn btn-primary"><i
+                                class="bi bi-pencil-square"></i></a>
+                        <button type="button" class="btn btn-danger user_list_btn" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ $user->id }}">
                             <i class="bi bi-trash"></i>
                         </button>
                         @endif
@@ -115,14 +122,16 @@
                         <form action="{{route('users.destroy',$user->id)}}" method="post">
                             @method('DELETE')
                             @csrf
-                            <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
                                                 Confirm Delete
                                             </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             Are you sure you want to delete the person with the code number
@@ -133,7 +142,8 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-danger w-100px">Remove</button>
-                                            <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary w-100px"
+                                                data-bs-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>

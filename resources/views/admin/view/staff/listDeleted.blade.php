@@ -17,40 +17,6 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-xl-6">
-                <div class="input-group justify-content-end">
-                    <form class="search-form d-flex align-items-center" method="get" action="{{$route_search}}">
-                        <div class="row mb-3">
-                            <div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="item" id="code" value="code"
-                                        checked>
-                                    <label class="form-check-label" for="code">Code</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="item" id="email" value="email">
-                                    <label class="form-check-label" for="email">Email</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="item" id="fullname"
-                                        value="fullname">
-                                    <label class="form-check-label" for="fullname">Fullname</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="item" id="roles" value="roles">
-                                    <label class="form-check-label" for="roles">Roles</label>
-                                </div>
-                            </div>
-                            <div class="form-outline btn-group">
-                                <input name="input" type="search" class="form-control" required />
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -99,6 +65,7 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <table class="table table-striped">
+                            @if(count($users)>0)
                             <thead>
                                 <tr>
                                     <th scope="col">STT</th>
@@ -157,13 +124,10 @@
                                         </div>
                                     </div>
                                 </form>
-                                @empty
-                                <tr></tr>
-                                <tr>
-                                    <td class="row">No relevant data available for the conditions</td>
-                                </tr>
-
-                                @endforelse
+                                @endforeach
+                                @else
+                                <td class="row">Dont have any person deleted</td>
+                                @endif
                             </tbody>
                         </table>
                     </div>

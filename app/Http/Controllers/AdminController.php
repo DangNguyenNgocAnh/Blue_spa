@@ -170,28 +170,36 @@ class AdminController extends Controller
     }
     public function getListDeleted()
     {
-        return view('admin.view.staff.listDeleted', [
-            'tittle' => 'Staff List Deleted',
-            'item' => 'Staff',
-            'route_index' => route('staff.index'),
-            'route_search' => route('staff.search'),
-            'name_route_restore' => 'staff.restore',
-            'users' => User::onlyTrashed()->whereHas('department', function ($query) {
-                $query->whereNot('name', 'Customer');
-            })->paginate(10),
-            'count' => User::onlyTrashed()->whereHas('department', function ($query) {
-                $query->whereNot('name', 'Customer');
-            })->count()
-        ]);
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+
+            return view('admin.view.staff.listDeleted', [
+                'tittle' => 'Staff List Deleted',
+                'item' => 'Staff',
+                'route_index' => route('staff.index'),
+                'route_search' => route('staff.search'),
+                'name_route_restore' => 'staff.restore',
+                'users' => User::onlyTrashed()->whereHas('department', function ($query) {
+                    $query->whereNot('name', 'Customer');
+                })->paginate(10),
+                'count' => User::onlyTrashed()->whereHas('department', function ($query) {
+                    $query->whereNot('name', 'Customer');
+                })->count()
+            ]);
+        }
+        return redirect()->back()->with('warning', 'No permission');
     }
     public function restoreStaff(String $id)
     {
-        try {
-            User::onlyTrashed()->where('id', $id)->restore();
-            return redirect()->route('staff.index')->with('success', 'Restore successful!');
-        } catch (Exception $exception) {
-            return redirect()->back()->with('failed', $exception->getMessage());
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+
+            try {
+                User::onlyTrashed()->where('id', $id)->restore();
+                return redirect()->route('staff.index')->with('success', 'Restore successful!');
+            } catch (Exception $exception) {
+                return redirect()->back()->with('failed', $exception->getMessage());
+            }
         }
+        return redirect()->back()->with('warning', 'No permission');
     }
     public function resetPassword(User $user)
     {
@@ -229,7 +237,7 @@ class AdminController extends Controller
     public function profile()
     {
         return view('admin.view.staff.profile', [
-            'tittle' => 'Staff Profile',
+            'tittle' => 'Profile',
             'user' => Auth::user(),
         ]);
     }

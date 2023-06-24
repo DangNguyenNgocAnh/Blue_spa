@@ -116,6 +116,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('apointments.index');
         });
         Route::controller(CategoryController::class)->prefix('categories')->group(function () {
+            Route::get('/{category}/addPackage', 'addPackage')->name('categories.addPackage');
+
             Route::delete('/{category}', 'destroy')->name('categories.destroy');
             Route::get('/{category}/edit', 'edit')->name('categories.edit');
             Route::patch('/{category}', 'update')->name('categories.update');

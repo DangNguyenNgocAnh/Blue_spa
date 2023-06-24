@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Package;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -111,10 +112,23 @@ class CategoryController extends Controller
         return view(
             'admin.view.categories.listPackages',
             [
-                'tittle2' => "MemberList",
+                'tittle2' => "List packages",
                 'tittle' => "$category->name",
                 'packages' => $category->packages()->paginate(10)
             ]
         );
+    }
+    public function addPackage(Category $category)
+    {
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+            return view('admin.view.packages.create', [
+                'tittle' => 'Create package',
+                'title' => 'Category',
+                'route_title' => route('categories.index'),
+                'code' => Package::max('code') + 1,
+                'categories' => Category::where('id', $category->id)->get(),
+            ]);
+        }
+        return redirect()->route('packages.index')->with('warning', 'No permission');
     }
 }

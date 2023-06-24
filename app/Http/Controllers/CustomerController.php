@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserRequest;
 use App\Jobs\SendMailJob;
+use App\Mail\SendMail;
 use App\Models\Department;
 use App\Models\Package;
 use App\Models\User;
@@ -12,6 +13,7 @@ use Exception;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
 
 class CustomerController extends Controller
@@ -224,19 +226,43 @@ class CustomerController extends Controller
         try {
             $user->password = Hash::make('password');
             $user->save();
-            dispatch(new SendMailJob([
+            if (!$this->sendMailConfirm($user) || (!$user)) {
+                return redirect()->back()->with('failed', 'Đã có lỗi xảy ra, vui lòng thử lại !');
+            };
+            return redirect()->back()->with('success', 'Reset password successful!');
+        } catch (Exception $exception) {
+            return redirect()->back()->with('failed', $exception->getMessage());
+        }
+    }
+    public function sendMailConfirm(User $user)
+    {
+        try {
+            $mailData = [
                 'from' => env('MAIL_USERNAME'),
                 'to' => $user->email,
                 'subject' => 'Reset Password',
                 'data' => [
-                    'header' => "Xin chào <b>$user->fullname</b>",
-                    'body' => 'Tài khoản của bạn trong website spa đã được reset password lại thành <b>password</b>.',
-                    'footer' => '<b>Xin chân thành cảm ơn !!!</b>'
+                    'header' => "Xin chào <b>$user->fullname.</b>",
+                    'body' =>
+                    "<p>Chúng tôi là <b>Blue spa team</b>, admin vừa reset password của bạn thành <b>password</b>.</p> .</p>
+                     <p>Vui lòng đăng nhập lại với password như trên và đổi lại mật khẩu nếu muốn.</p>",
+                    'footer' =>
+                    " <p>Nếu có gì thắc mắc xin vui lòng liên hệ với chúng tôi thông qua:</p>
+                    <ul>
+                    <li> số điện thoại: <b>0702751033</b></li>
+                    <li> email: <b>bluespa.admin@gmail.com</b></li>
+                    <li> Địa chỉ trang web: <b><a href ='http://spa.test/'> Blue spa</a></b></li>
+                    </ul>
+                     <b>Xin chân thành cảm ơn !!!</b>"
                 ]
-            ]))->delay(now()->addSeconds(10));
-            return redirect()->back()->with('success', 'Reset password successful!');
-        } catch (Exception $exception) {
-            return redirect()->back()->with('failed', $exception->getMessage());
+            ];
+            Mail::to($mailData['to'])
+                ->cc(isset($mailData['cc']) ? $mailData['cc'] : '')
+                ->bcc(isset($mailData['bcc']) ? $mailData['bcc'] : '')
+                ->send(new SendMail($mailData));
+            return 1;
+        } catch (Exception $ex) {
+            return 0;
         }
     }
 }

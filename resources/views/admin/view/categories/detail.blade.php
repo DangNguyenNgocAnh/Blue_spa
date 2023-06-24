@@ -67,6 +67,7 @@
             <div class="col-xl-6">
                 <div class="card">
                     <div class="detail_update-btn">
+                        <a type="button" href="{{route('categories.addPackage',$category->id)}}" class="btn btn-primary">+</a>
                         <a type="button" href="{{route('categories.index')}}" class="btn btn-secondary">Back</a>
                     </div>
                     <div class="card_body">

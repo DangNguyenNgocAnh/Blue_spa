@@ -100,6 +100,9 @@ class DepartmentController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             try {
+                if ($department->name == 'Other') {
+                    return redirect()->back()->with('warning', 'Can not delete this department !');
+                }
                 $department->delete();
                 session()->flash('success', 'Success');
                 return redirect()->route('departments.index');
@@ -126,7 +129,7 @@ class DepartmentController extends Controller
                 'users' => User::whereNot('department_id', $department->id)->whereHas('department', function ($query) {
                     $query->whereNot('name', 'Customer');
                 })->paginate(10),
-                'members' => $department->users()->get()
+                'members' =>  $department->users()->orderBy('id')->get()
             ]);
         }
         return redirect()->back()->with('warning', 'No permission');
@@ -151,8 +154,10 @@ class DepartmentController extends Controller
                 'tittle' => 'Add member',
                 'department' => $department,
                 'condition' => "Thành viên có $request->item bao gồm $request->key",
-                'users' => User::whereNot('roles', 'Customer')->whereNot('department_id', $department->id)->where($request->item, 'like', "%$request->key%")
-                    ->paginate(10)->withQueryString(),
+                'users' => User::whereNot('department_id', $department->id)
+                    ->where($request->item, 'like', "%$request->key%")
+                    ->paginate(10)
+                    ->withQueryString(),
                 'members' => $department->users()->get()
             ]);
         }

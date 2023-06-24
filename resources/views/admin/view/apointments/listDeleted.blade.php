@@ -99,6 +99,7 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <table class="table table-striped">
+                            @if(count($apointments)>0)
                             <thead>
                                 <tr>
                                     <th scope="col">STT</th>
@@ -111,7 +112,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($apointments as $key => $apointment)
+                                @foreach ($apointments as $key => $apointment)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $apointment->code }}</td>
@@ -157,13 +158,10 @@
                                         </div>
                                     </div>
                                 </form>
-                                @empty
-                                <tr></tr>
-                                <tr>
-                                    <td class="row">No relevant data available for the conditions</td>
-                                </tr>
-
-                                @endforelse
+                                @endforeach
+                                @else
+                                <td class="row">Dont have any apointment deleted</td>
+                                @endif
                             </tbody>
                         </table>
                     </div>

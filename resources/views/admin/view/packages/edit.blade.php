@@ -109,35 +109,6 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Types</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" name="types">
-                                    <option value="" selected>Choose Level</option>
-                                    <option value="Basic" @if (!old('types') &&( $package->types == 'Basic')) selected
-                                        @elseif (old('types')=='Basic' ) selected @endif>Basic
-                                    </option>
-                                    <option value="Standard" @if (!old('types') &&( $package->types == 'Standard'))
-                                        selected
-                                        @elseif (old('types')=='Standard' ) selected @endif>Standard
-                                    </option>
-                                    <option value="Premium" @if (!old('types') &&( $package->types == 'Premium'))
-                                        selected
-                                        @elseif (old('types')=='Premium' ) selected @endif>Premium
-                                    </option>
-                                    <option value="Trial" @if (!old('types') &&( $package->types == 'Trial')) selected
-                                        @elseif (old('types')=='Trial' ) selected @endif>Trial
-                                    </option>
-                                    <option value="Special" @if (!old('types') &&( $package->types == 'Special'))
-                                        selected
-                                        @elseif (old('types')=='Special' ) selected @endif>Special
-                                    </option>
-                                </select>
-                                @error('types')
-                                <div class="invalidate">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-10">
                                 <select class="form-select" name="status">
@@ -156,47 +127,6 @@
                                     </option>
                                 </select>
                                 @error('status')
-                                <div class="invalidate">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Appicable level</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" name="level_applied">
-                                    <option value="" selected>Choose Level</option>
-                                    <option value="Level 1" @if (!old('level_applied') &&( $package->level_applied
-                                        == 'level 1'))
-                                        selected
-                                        @elseif (old('level_applied')=='Level 1' ) selected @endif>
-                                        Level 1
-                                    </option>
-                                    <option value="Level 2" @if (!old('level_applied') &&( $package->level_applied
-                                        == 'level 2'))
-                                        selected
-                                        @elseif (old('level_applied')=='Level 2' ) selected @endif>
-                                        Level 2
-                                    </option>
-                                    <option value="Level 3" @if (!old('level_applied') &&( $package->level_applied
-                                        == 'level 3'))
-                                        selected
-                                        @elseif (old('level_applied')=='Level 3' ) selected @endif>
-                                        Level 3
-                                    </option>
-                                    <option value="Level 4" @if (!old('level_applied') &&( $package->level_applied
-                                        == 'level 4'))
-                                        selected
-                                        @elseif (old('level_applied')=='Level 4' ) selected @endif>
-                                        Level 4
-                                    </option>
-                                    <option value="Level 5" @if (!old('level_applied') &&( $package->level_applied
-                                        == 'level 5'))
-                                        selected
-                                        @elseif (old('level_applied')=='Level 5' ) selected @endif>
-                                        Level 5
-                                    </option>
-                                </select>
-                                @error('level_applied')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
                             </div>
