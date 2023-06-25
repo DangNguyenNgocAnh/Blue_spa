@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ApointmentRequest;
 use App\Models\Apointment;
 use App\Models\User;
+use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -46,8 +47,20 @@ class ApointmentController extends Controller
      */
     public function store(ApointmentRequest $request)
     {
+        $apointment_time = ($request->minute)
+            ? DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:$request->minute")
+            : DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:00");
         try {
-            Apointment::create($request->all());
+            Apointment::create(
+                [
+                    'code' => Apointment::max('code') + 1,
+                    'customer_id' => $request->customer_id,
+                    'employee_id' => $request->employee_id ?? null,
+                    'time' => $apointment_time,
+                    'status' => $request->status,
+                    'message' => $request->message
+                ]
+            );
             return redirect()->route('apointments.index')->with('success', 'Success');
         } catch (Exception $excepiton) {
             return redirect()->back()->with('failed', $excepiton->getMessage());

@@ -55,6 +55,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/{user}', 'show')->name('staff.show');
         });
         Route::controller(CustomerController::class)->prefix('customers')->group(function () {
+            Route::get('/{user}/apointments', 'showApointment')->name('users.showApointment');
+            Route::get('/{user}/addApointment', 'addApointment')->name('users.addApointment');
+            Route::post('/{user}/addApointment', 'storeApointment')->name('users.storeApointment');
+
             Route::post('/{user}/reset', 'resetPassword')->name('users.resetPassword');
             Route::post('/{user}/restore', 'restoreCustomer')->name('users.restore');
             Route::get('/deleted', 'getListDeleted')->name('users.deleted');

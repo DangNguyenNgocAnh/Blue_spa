@@ -46,6 +46,7 @@
                             data-bs-target="#resetModal{{ $user->id }}">
                             <i class="bi bi-repeat"></i>
                         </button>
+                        <!-- Modal reset password -->
                         <form action="{{route('users.resetPassword',$user->id)}}" method="post">
                             @csrf
                             <div class="modal fade" id="resetModal{{ $user->id }}" tabindex="-1"
@@ -73,11 +74,69 @@
                         </form>
                     </div>
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        <div class="mb-2">
-                            <span class="badge rounded-pill bg-warning text-dark">{{ $user->levels }}</span>
-                            <span class="badge rounded-pill bg-primary">{{ $user->roles }}</span>
-                        </div>
                         <h2>{{ $user->fullname }}</h2>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill bg-warning text-dark">{{$user->department->name}}</span>
+                            <span class="badge rounded-pill bg-success">{{$user->level}}</span>
+                        </div>
+                        <button type="button" class="btn btn-light mb-2" data-bs-toggle="modal"
+                            data-bs-target="#modalDialogScrollable">
+                            List apointments <span
+                                class="badge bg-secondary text-light">{{$user->apointments->count()}}</span>
+                        </button>
+                        <!-- Modal list apointment -->
+                        <div class="modal fade" id="modalDialogScrollable">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" style='font-weight: bold;'>List apointments registed
+                                            <a type="button" class="btn btn-light"
+                                                href="{{route('users.addApointment',$user->id)}}"><i
+                                                    class=" ri-add-fill"></i></a>
+                                            @if($user->apointments->count()>0)
+                                            <a type="button" class="btn btn-light"
+                                                href="{{route('users.showApointment',$user->id)}}"><i
+                                                    class="ri-file-list-3-line"></i></a>
+                                            @endif
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card-body" style="max-height: 90vh;overflow: auto;">
+                                            @if($user->apointments->count()>0)
+                                            <div class="table1">
+                                                <div class="table1-row table1-header">
+                                                    <div class="table1-cell">#</div>
+                                                    <div class="table1-cell">Code</div>
+                                                    <div class="table1-cell">Time</div>
+                                                    <div class="table1-cell">Status</div>
+                                                </div>
+                                                @foreach ($user->apointments as $key => $apointment)
+                                                <div class="table1-row">
+                                                    <div class="table1-cell">{{++$key}}</div>
+                                                    <div class="table1-cell">{{$apointment->code}}</div>
+                                                    <div class="table1-cell">{{$apointment->time}}</div>
+                                                    <div class="table1-cell">{{$apointment->status}}</div>
+
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            @else
+                                            <div class="table1-row">
+                                                <div class="table1-row">Don't have any apointment registed.
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
@@ -102,11 +161,10 @@
                                 </div>
                                 @endforelse
                             </div>
-                        </div><!-- End Bordered Tabs -->
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-xl-8">
                 <div class="card">
                     <div class="detail_update-btn">
@@ -119,6 +177,7 @@
                         </button>
                         @endif
                         <a type="button" href="{{route('users.index')}}" class="btn btn-secondary">Back</a>
+                        <!-- Modal delete -->
                         <form action="{{route('users.destroy',$user->id)}}" method="post">
                             @method('DELETE')
                             @csrf
@@ -195,8 +254,7 @@
                                 </div>
 
                             </div>
-                        </div><!-- End Bordered Tabs -->
-
+                        </div>
                     </div>
                 </div>
 

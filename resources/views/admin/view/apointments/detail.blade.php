@@ -52,8 +52,8 @@
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                 <h5 class="user_detail-tittle">Code : {{$apointment->code}}</h5>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Customer's name </div>
-                                    <div class="col-lg-9 col-md-8">
+                                    <div class="col-lg-4 col-md-4 label ">Customer's name </div>
+                                    <div class="col-lg-8 col-md-8">
                                         @if(!empty($apointment->customer))
                                         <a href="{{route('users.show',$apointment->customer->id)}}">{{$apointment->customer->fullname}}</a>
                                         @else
@@ -62,8 +62,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Staff's name </div>
-                                    <div class="col-lg-9 col-md-8">
+                                    <div class="col-lg-4 col-md-4 label ">Staff's name </div>
+                                    <div class="col-lg-8 col-md-8">
                                         @if(!empty($apointment->employee))
                                         <a href="{{route('staff.show',$apointment->employee->id)}}">{{$apointment->employee->fullname}}
                                         </a>
@@ -73,24 +73,23 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-6 label">Time of apointment</div>
-                                    <div class="col-lg-9 col-md-8">{{$apointment->time}}</div>
+                                    <div class="col-lg-4 col-md-6 label">Time of apointment</div>
+                                    <div class="col-lg-8 col-md-8">{{$apointment->time}}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Status</div>
-                                    <div class="col-lg-9 col-md-8 text_justify">{{$apointment->status}}
+                                    <div class="col-lg-4 col-md-4 label">Status</div>
+                                    <div class="col-lg-8 col-md-8 text_justify">{{$apointment->status}}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Message</div>
-                                    <div class="col-lg-9 col-md-8 text_justify">{{$apointment->message}}</div>
+                                    <div class="col-lg-4 col-md-4 label">Message</div>
+                                    <div class="col-lg-8 col-md-8 text_justify">{{$apointment->message}}</div>
                                 </div>
                             </div>
-                        </div><!-- End Bordered Tabs -->
+                        </div>
                     </div>
                 </div>
             </div>
     </section>
-
-</main><!-- End #main -->
+</main>
 @endsection

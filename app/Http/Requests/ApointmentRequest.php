@@ -6,6 +6,7 @@ use App\Models\Apointment;
 use App\Models\User;
 use App\Rules\HaveApointmentRule;
 use App\Rules\QuantityLimitRule;
+use DateTime;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,22 +27,34 @@ class ApointmentRequest extends FormRequest
      */
     public function rules(): array
     {
-        $count = Apointment::where('time', request()->time)->whereNot('status', 'Cancelled')->count();
+        $apointment_time = (request()->minute)
+            ? DateTime::createFromFormat('Y-m-d H:i', "request()->date request()->hour:request()->minute")
+            : DateTime::createFromFormat('Y-m-d H:i', "request()->date request()->hour:00");
         $customer = User::find(request()->customer_id);
+        if (request()->date == now()->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')) {
+            $rule_hour =  [
+                'required', 'date_format:H',
+                'after:' . now()->setTimezone('Asia/Ho_Chi_Minh')->format('H')
+            ];
+        } else {
+            $rule_hour =  ['required'];
+        }
+        if ($customer) {
+            $rule_date = [
+                'required',
+                new QuantityLimitRule(Apointment::where('time', $apointment_time)->count()),
+                new HaveApointmentRule($customer->apointments()->whereDate('time', request()->date)->whereNot('status', 'Cancelled')->count())
+            ];
+        } else $rule_date = ['required'];
         return [
-            'code' => ['required', "numeric", Rule::unique('apointments')->ignore(request()->id)],
+            'code' => ['nullable', "numeric", Rule::unique('apointments')->ignore(request()->id)],
             'customer_id' => 'required|exists:users,id',
             'employee_id' => 'nullable|exists:users,id',
-            'time' =>  [
-                'required', 'date',
-                'after_or_equal:today',
-                'before_or_equal:' . date('Y-m-d', strtotime('+1 week')),
-                new QuantityLimitRule($count),
-                new HaveApointmentRule($customer->apointments()->whereDate('time', substr(request()->time, 0, 10))->count())
-            ],
             'status' => [
-                'required', Rule::in(['Completed', 'Confirmed', 'Cancelled', 'Missed']),
+                'nullable', Rule::in(['Completed', 'Confirmed', 'Cancelled', 'Missed']),
             ],
+            'hour' => $rule_hour,
+            'date' => $rule_date
         ];
     }
     public function attributes()
@@ -50,6 +63,12 @@ class ApointmentRequest extends FormRequest
             'customer_id' => 'customer',
             'employee_id' => 'staff',
             'time' => 'time of apointment'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'hour.after' => 'The hour must be after the current time'
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserRequest;
 use App\Jobs\SendMailJob;
 use App\Mail\SendMail;
+use App\Models\Apointment;
 use App\Models\Department;
 use App\Models\Package;
 use App\Models\User;
@@ -36,17 +37,14 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('notCustomer')) {
-            return view('admin.view.users.create', [
-                'tittle' => 'Create Customer',
-                'code' => User::max('code') + 1,
-                'route_create' => route('users.store'),
-                'route_index' => route('users.index'),
-                'title_index' => 'Customer',
-                'departments' => Department::where('name', 'Customer')->get()
-            ]);
-        }
-        return redirect()->back()->with('warning', 'No permission');
+        return view('admin.view.users.create', [
+            'tittle' => 'Create Customer',
+            'code' => User::max('code') + 1,
+            'route_create' => route('users.store'),
+            'route_index' => route('users.index'),
+            'title_index' => 'Customer',
+            'departments' => Department::where('name', 'Customer')->get()
+        ]);
     }
 
     /**
@@ -80,18 +78,15 @@ class CustomerController extends Controller
      */
     public function edit(User $user)
     {
-        if (Gate::allows('notCustomer')) {
-            return view('admin.view.users.edit', [
-                'tittle' => 'Edit Customer',
-                'user' => $user,
-                'route_index' => route('users.index'),
-                'title_index' => 'Customer',
-                'route_update' => route('users.update', $user->id),
-                'departments' => Department::where('name', 'Customer')->get()
+        return view('admin.view.users.edit', [
+            'tittle' => 'Edit Customer',
+            'user' => $user,
+            'route_index' => route('users.index'),
+            'title_index' => 'Customer',
+            'route_update' => route('users.update', $user->id),
+            'departments' => Department::where('name', 'Customer')->get()
 
-            ]);
-        }
-        return redirect()->back()->with('warning', 'No permission');
+        ]);
     }
 
     /**
@@ -113,7 +108,7 @@ class CustomerController extends Controller
      */
     public function destroy(User $user)
     {
-        if (Gate::allows('notCustomer')) {
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
             try {
                 $user->delete();
                 return redirect()->route('users.index')->with('success', 'Success');
@@ -154,18 +149,15 @@ class CustomerController extends Controller
     }
     public function formAddPackage(User $user)
     {
-        if (Gate::allows('notCustomer')) {
-            return view('admin.view.packages.userAddPackage', [
-                'tittle' => 'Add package',
-                'user' => $user,
-                'packageAdds' => Package::whereDoesntHave('users', function ($query) use ($user) {
-                    $query->where('id', $user->id);
-                })->where('status', 'Coming')
-                    ->paginate(10),
-                'packagesOfUser' => $user->packages()->get()
-            ]);
-        }
-        return redirect()->back()->with('warning', 'No permission');
+        return view('admin.view.packages.userAddPackage', [
+            'tittle' => 'Add package',
+            'user' => $user,
+            'packageAdds' => Package::whereDoesntHave('users', function ($query) use ($user) {
+                $query->where('id', $user->id);
+            })->where('status', 'Coming')
+                ->paginate(10),
+            'packagesOfUser' => $user->packages()->get()
+        ]);
     }
     public function addPackage(Request $request, User $user)
     {
@@ -197,20 +189,23 @@ class CustomerController extends Controller
     }
     public function getListDeleted()
     {
-        return view('admin.view.staff.listDeleted', [
-            'tittle' =>  'List Customer Deleted',
-            'item' => 'Customer',
-            'route_index' => route('users.index'),
-            'route_search' => route('users.search'),
-            'name_route_restore' => 'users.restore',
-            'users' => User::onlyTrashed()->whereHas('department', function ($query) {
-                $query->where('name', 'Customer');
-            })->paginate(10),
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+            return view('admin.view.staff.listDeleted', [
+                'tittle' =>  'List Customer Deleted',
+                'item' => 'Customer',
+                'route_index' => route('users.index'),
+                'route_search' => route('users.search'),
+                'name_route_restore' => 'users.restore',
+                'users' => User::onlyTrashed()->whereHas('department', function ($query) {
+                    $query->where('name', 'Customer');
+                })->paginate(10),
 
-            'count' => User::onlyTrashed()->whereHas('department', function ($query) {
-                $query->where('name', 'Customer');
-            })->count()
-        ]);
+                'count' => User::onlyTrashed()->whereHas('department', function ($query) {
+                    $query->where('name', 'Customer');
+                })->count()
+            ]);
+        }
+        return redirect()->back()->with('warning', 'No permission');
     }
     public function restoreCustomer(String $id)
     {
@@ -223,16 +218,19 @@ class CustomerController extends Controller
     }
     public function resetPassword(User $user)
     {
-        try {
-            $user->password = Hash::make('password');
-            $user->save();
-            if (!$this->sendMailConfirm($user) || (!$user)) {
-                return redirect()->back()->with('failed', 'Đã có lỗi xảy ra, vui lòng thử lại !');
-            };
-            return redirect()->back()->with('success', 'Reset password successful!');
-        } catch (Exception $exception) {
-            return redirect()->back()->with('failed', $exception->getMessage());
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
+            try {
+                $user->password = Hash::make('password');
+                $user->save();
+                if (!$this->sendMailConfirm($user) || (!$user)) {
+                    return redirect()->back()->with('failed', 'Đã có lỗi xảy ra, vui lòng thử lại !');
+                };
+                return redirect()->back()->with('success', 'Reset password successful!');
+            } catch (Exception $exception) {
+                return redirect()->back()->with('failed', $exception->getMessage());
+            }
         }
+        return redirect()->back()->with('warning', 'No permission');
     }
     public function sendMailConfirm(User $user)
     {
@@ -264,5 +262,29 @@ class CustomerController extends Controller
         } catch (Exception $ex) {
             return 0;
         }
+    }
+    public function showApointment(User $user)
+    {
+        return view('admin.view.users.listApointments', [
+            'tittle' => "List apointments",
+            'apointments' => $user->apointments()->paginate(10),
+            'user' => $user
+        ]);
+    }
+    public function addApointment(User $user)
+    {
+        return view('admin.view.users.createApointment', [
+            'tittle' => 'Apointment Create',
+            'code' => Apointment::max('code') + 1,
+            'maxDay' => now()->addDays(7)->format('Y-m-d'),
+            'minDay' => now()->format('Y-m-d'),
+            'staffs' => User::whereHas('department', function ($query) {
+                $query->where('name', 'Staff');
+            })->get(),
+            'user' => $user
+        ]);
+    }
+    public function storeApointment(User $user)
+    {
     }
 }

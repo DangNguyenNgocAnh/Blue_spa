@@ -22,7 +22,7 @@ class ApointmentFactory extends Factory
     {
         return [
             'customer_id' => User::where('department_id', 5)->inRandomOrder()->value('id'),
-            'employee_id' => User::whereNot('department_id', 5)->inRandomOrder()->value('id'),
+            'employee_id' => User::where('department_id', 4)->inRandomOrder()->value('id'),
             'code' => rand(1000, 9999),
             'time' => fake()->dateTimeBetween(now(), now()->addDays(7))->format('Y-m-d H:i:s'),
             'status' => Arr::random(['Completed', 'Confirmed', 'Cancelled', 'Missed']),

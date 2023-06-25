@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ApointmentRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ResetPasswordRequest;
@@ -110,40 +111,16 @@ class UserController extends Controller
             ]
         );
     }
-    public function createApointment(Request $request)
+    public function createApointment(ApointmentRequest $request)
     {
-        $user = Auth::user();
         $apointment_time = ($request->minute)
             ? DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:$request->minute")
             : DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:00");
-        if ($request->date == now()->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')) {
-            $rule_hour =  [
-                'required', 'date_format:H',
-                'after:' . now()->setTimezone('Asia/Ho_Chi_Minh')->format('H')
-            ];
-        } else {
-            $rule_hour =  ['required'];
-        }
-        $validator = Validator::make($request->all(), [
-            'hour' => $rule_hour,
-            'date' => [
-                new QuantityLimitRule(Apointment::where('time', $apointment_time)->count()),
-                new HaveApointmentRule($user->apointments()->whereDate('time', $request->date)->whereNot('status', 'Cancelled')->count())
-            ]
-
-        ], [
-            'hour.after' => 'The hour must be after the current time',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
         try {
             Apointment::create(
                 [
                     'code' => Apointment::max('code') + 1,
-                    'customer_id' => Auth::id(),
+                    'customer_id' => $request->customer_id,
                     'employee_id' => $request->employee_id ?? null,
                     'time' => $apointment_time,
                     'status' => 'Confirmed',

@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('isAdmin')) {
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
             return view('admin.view.categories.create', [
                 'tittle' => 'Create Category',
             ]);
@@ -67,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        if (Gate::allows('isAdmin')) {
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
             return view('admin.view.categories.edit', [
                 'tittle' => "Update Category",
                 'category' => $category
@@ -96,7 +96,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        if (Gate::allows('isAdmin')) {
+        if (Gate::allows('isAdmin') || Gate::allows('isManager')) {
             try {
                 $category->delete();
                 session()->flash('success', 'Success');
