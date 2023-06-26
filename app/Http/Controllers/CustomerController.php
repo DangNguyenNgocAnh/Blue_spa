@@ -284,7 +284,12 @@ class CustomerController extends Controller
             'user' => $user
         ]);
     }
-    public function storeApointment(User $user)
+    public function showCoupons(User $user)
     {
+        return view('admin.view.users.listCoupons', [
+            'tittle' => "List coupons",
+            'coupons' => $user->coupons()->paginate(10),
+            'user' => $user
+        ]);
     }
 }

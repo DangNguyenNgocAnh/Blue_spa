@@ -4,31 +4,40 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApointmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'index')->name('login');
     Route::post('/login', 'login')->name('loginAccount');
-    Route::get('/logout', 'logout')->name('logout');
+    Route::post('/reset-password', 'resetPassword')->name('user.resetPassword');
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'getFormRegister')->name('user.getFormRegister');
     Route::post('/register', 'register')->name('user.register');
     Route::get('/apointment', 'makeApointment')->name('user.apointment');
-    Route::post('/reset-password', 'resetPassword')->name('user.resetPassword');
 });
 Route::controller(DashboardController::class)->group(function () {
 
     Route::get('/', 'user')->name('user.dashboard');
-    Route::get('/about', 'about')->name('user.about');
+    Route::get('/about', 'about')->name('dashboard.about');
     Route::get('/{category}/listItem', 'list')->name('category.listItem');
+    Route::get('/coupons', 'listCoupon')->name('dashboard.coupon');
 });
 Route::middleware('auth')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/logout', 'logout')->name('logout');
+    });
+    Route::controller(PaymentController::class)->group(function () {
+        Route::post('/payment/{coupon}', 'index')->name('payments.index');
+        Route::get('/payment', 'dataReturn')->name('payments.dataReturn');
+    });
     Route::controller(UserController::class)->group(function () {
         Route::get('/profile', 'show')->name('user.show');
         Route::post('/changePassword', 'changePassword')->name('user.changePassword');
@@ -55,6 +64,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{user}', 'show')->name('staff.show');
         });
         Route::controller(CustomerController::class)->prefix('customers')->group(function () {
+            Route::get('/{user}/coupons', 'showCoupons')->name('users.showCoupons');
             Route::get('/{user}/apointments', 'showApointment')->name('users.showApointment');
             Route::get('/{user}/addApointment', 'addApointment')->name('users.addApointment');
             Route::post('/{user}/addApointment', 'storeApointment')->name('users.storeApointment');
@@ -130,6 +140,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/create', 'create')->name('categories.create');
             Route::post('/', 'store')->name('categories.store');
             Route::get('/{category}', 'show')->name('categories.show');
+        });
+        Route::controller(CouponController::class)->prefix('coupons')->group(function () {
+            Route::post('/{id}', 'restore')->name('coupons.restore');
+            Route::get('/listDeleted', 'listDeleted')->name('coupons.listDeleted');
+
+            Route::delete('/{coupon}', 'destroy')->name('coupons.destroy');
+            Route::patch('/{coupon}', 'update')->name('coupons.update');
+            Route::get('/', 'index')->name('coupons.index');
+            Route::post('/', 'store')->name('coupons.store');
         });
     });
 });

@@ -6,9 +6,11 @@ namespace Database\Seeders;
 
 use App\Models\Apointment;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Department;
 use App\Models\Package;
 use App\Models\User;
+use App\Models\UserCoupon;
 use App\Models\UserPackage;
 use Illuminate\Database\Seeder;
 
@@ -347,5 +349,28 @@ class DatabaseSeeder extends Seeder
             ],
         )->create();
         UserPackage::factory(50)->create();
+        Coupon::factory(5)->sequence(
+            [
+                'name' => 'Discount 100.000 VND',
+                'price' => 90000
+            ],
+            [
+                'name' => 'Discount 200.000 VND',
+                'price' => 180000
+            ],
+            [
+                'name' => 'Discount 500.000 VND',
+                'price' => 440000
+            ],
+            [
+                'name' => 'Discount 1.000.000 VND',
+                'price' => 850000
+            ],
+            [
+                'name' => 'Discount 2.000.000 VND',
+                'price' => 1600000
+            ],
+        )->create();
+        // UserCoupon::factory(10)->create();
     }
 }

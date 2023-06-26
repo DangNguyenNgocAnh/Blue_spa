@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\CategoryEnum;
 use App\Models\Apointment;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Package;
 use App\Models\User;
 use App\Models\UserPackage;
@@ -124,6 +125,16 @@ class DashboardController extends Controller
             'category' => $category,
             'packages' => $chunks,
             'count' => $packages->count()
+        ]);
+    }
+    public function listCoupon()
+    {
+        $coupons = Coupon::orderBy('price')->get();
+        $chunks = array_chunk($coupons->toArray(), 3);
+        return view('user.view.listCoupon', [
+            'tittle' => 'List Item',
+            'coupons' => $chunks,
+            'count' => $coupons->count()
         ]);
     }
 }

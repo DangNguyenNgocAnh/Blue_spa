@@ -78,4 +78,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Apointment::class, 'employee_id', 'id');
     }
+    public function coupons(): BelongsToMany
+    {
+        return $this->belongsToMany(Coupon::class, 'user_coupon', 'user_id', 'coupon_id')->withPivot(['timeExpiredAt', 'status']);;
+    }
 }

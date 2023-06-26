@@ -41,6 +41,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('coupons.index')}}">
+                <i class="bi bi-tablet-landscape"></i>
+                <span>Coupon</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('apointments.index')}}">
                 <i class="bi bi-layout-text-window-reverse"> </i>
                 <span>Apointments</span>
