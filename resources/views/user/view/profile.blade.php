@@ -36,11 +36,10 @@
                     <div class="col-xl-4">
                         <div class="card">
                             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                                <div class="mb-2">
-                                    <span class="badge rounded-pill bg-warning text-dark">{{ $user->levels }}</span>
-                                    <span class="badge rounded-pill bg-primary">{{ $user->roles }}</span>
-                                </div>
                                 <h2>{{ $user->fullname }}</h2>
+                                <div class="mb-2">
+                                    <span class="badge rounded-pill bg-success">{{$user->level}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
