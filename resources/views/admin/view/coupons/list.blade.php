@@ -62,8 +62,8 @@
                                     <form action="{{route('coupons.store')}}" method="post">
                                         @method('POST')
                                         @csrf
-                                        <div class="modal fade" id="createModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="createModal" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -163,7 +163,7 @@
                                     <form action="{{route('coupons.destroy',$coupon->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <div class="modal fade" id="deleteModal{{ $coupon->id }}" tabindex="-1"
+                                        <div class="modal fade" id="deleteModal{{ $coupon->id }}"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -236,7 +236,7 @@
                                     <form action="{{route('coupons.update',$coupon->id)}}" method="post">
                                         @method('PATCH')
                                         @csrf
-                                        <div class="modal fade" id="editModal{{$coupon->id}}" tabindex="-1"
+                                        <div class="modal fade" id="editModal{{$coupon->id}}"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">

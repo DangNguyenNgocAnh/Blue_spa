@@ -55,7 +55,8 @@
                                 </div>
                                 <div class="input-group d-flex justify-content-end">
                                     <div style=" display: flex; ">
-                                        <a class="btn btn-secondary" style="width:70px; height:40px" href="{{$route_index}}">Back</a>
+                                        <a class="btn btn-secondary" style="width:70px; height:40px"
+                                            href="{{$route_index}}">Back</a>
                                     </div>
                                 </div>
                             </div>
@@ -80,12 +81,19 @@
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $apointment->code }}</td>
-                                    <td>{{ $apointment->customer->fullname }}</td>
+                                    <td> @if(!empty($apointment->customer))
+                                        <a
+                                            href="{{route('users.show',$apointment->customer->id)}}">{{$apointment->customer->fullname}}</a>
+                                        @else
+                                        NULL
+                                        @endif
+                                    </td>
                                     <td>{{ $apointment->time }}</td>
                                     <td>{{ $apointment->status }}</td>
                                     <td>{{ $apointment->deleted_at }}</td>
                                     <td style="width: 40px;">
-                                        <button type="button" class="btn btn-outline-danger user_list_btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $apointment->id }}">
+                                        <button type="button" class="btn btn-outline-danger user_list_btn"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal{{ $apointment->id }}">
                                             <i class="bi bi-box-arrow-left"></i>
                                         </button>
                                     </td>
@@ -93,14 +101,16 @@
                                 <!-- Modal -->
                                 <form action="{{route($name_route_restore,$apointment->id)}}" method="post">
                                     @csrf
-                                    <div class="modal fade" id="exampleModal{{ $apointment->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $apointment->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">
                                                         Confirm Restore
                                                     </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     Are you sure you want to restore the person with the code number
@@ -110,8 +120,10 @@
                                                     <b>{{ $apointment->fullname }}</b>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary w-100px">Restore</button>
-                                                    <button type="button" class="btn btn-secondary w-100px" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit"
+                                                        class="btn btn-primary w-100px">Restore</button>
+                                                    <button type="button" class="btn btn-secondary w-100px"
+                                                        data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>

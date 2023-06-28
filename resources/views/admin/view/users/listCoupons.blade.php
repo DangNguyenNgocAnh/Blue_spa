@@ -52,7 +52,7 @@
                                     </h5>
                                 </div>
                                 <div class="input-group d-flex justify-content-end">
-                                    <a class="btn btn-secondary" style="width:40px; height:40px" href="">+</a>
+                                    <a class="btn btn-secondary" style="height:40px" href="{{route('coupons.index')}}">Back</a>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
@@ -63,7 +63,6 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Time Expired</th>
-                                            <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,27 +73,12 @@
                                             <td> {{$coupon->price}} </td>
                                             <td> {{date('d/m/Y', strtotime($coupon->pivot->timeExpiredAt))}}
                                             </td>
-                                            <td> @if($coupon->pivot->status)
-                                                <span class="badge rounded-pill bg-success">true</span>
-                                                @else
-                                                <span class="badge rounded-pill bg-warning">true</span>
-                                                @endif
-                                            </td>
-
-                                            <td style="width: 62px;">
-
-                                                <a class="btn btn-outline-success user_list_btn" href="">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                            </td>
                                         </tr>
-
                                         @empty
                                         <tr></tr>
                                         <tr>
                                             <td class="row">No relevant data available for the conditions</td>
                                         </tr>
-
                                         @endforelse
                                     </tbody>
                                 </table>

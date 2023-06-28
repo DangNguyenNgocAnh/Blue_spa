@@ -63,8 +63,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" style='font-weight: bold;'>List coupons </h5>
-                                        <a type="button" class="btn btn-light" href="{{route('users.addApointment',$user->id)}}"><i class=" ri-add-fill"></i></a>
-                                        @if($user->apointments->count()>0)
+                                        @if($user->coupons->count()>0)
                                         <a type="button" class="btn btn-light" href="{{route('users.showCoupons',$user->id)}}"><i class="ri-file-list-3-line"></i></a>
                                         @endif
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -78,7 +77,6 @@
                                                     <div class="table1-cell">Name</div>
                                                     <div class="table1-cell">Price</div>
                                                     <div class="table1-cell">Time Expired</div>
-                                                    <div class="table1-cell">Status</div>
                                                 </div>
                                                 @foreach ($user->coupons as $key => $coupon)
                                                 <div class="table1-row">
@@ -88,19 +86,12 @@
                                                     <div class="table1-cell">
                                                         {{date('d/m/Y', strtotime($coupon->pivot->timeExpiredAt))}}
                                                     </div>
-                                                    <div class="table1-cell">
-                                                        @if($coupon->pivot->status)
-                                                        <span class="badge rounded-pill bg-success">true</span>
-                                                        @else
-                                                        <span class="badge rounded-pill bg-warning">true</span>
-                                                        @endif
-                                                    </div>
                                                 </div>
                                                 @endforeach
                                             </div>
                                             @else
                                             <div class="table1-row">
-                                                <div class="table1-row">Don't have any apointment registed.
+                                                <div class="table1-row">Don't have any coupon registed.
                                                 </div>
                                             </div>
                                             @endif
