@@ -99,8 +99,9 @@
                                                                     <label class="col-sm-2">Price
                                                                     </label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" class="form-control"
-                                                                            name="price" value="{{old('price')}}">
+                                                                        <input type="number" class="form-control"
+                                                                            step="1000" name="price"
+                                                                            value="{{old('price')}}">
                                                                         @error('price')
                                                                         <div class="invalidate">{{ $message }}</div>
                                                                         <script>

@@ -56,8 +56,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name"
-                                    value="{{ old('name')?old('name'):$package->name }}">
+                                <input type="text" class="form-control" name="name" value="{{ old('name')?old('name'):$package->name }}">
                                 @error('name')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -66,8 +65,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Code</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" value="{{ $package->code }}" name="code"
-                                    readonly>
+                                <input type="number" class="form-control" value="{{ $package->code }}" name="code">
                                 @error('code')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -101,8 +99,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Price</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control"
-                                    value="{{ str_replace(',', '', $package->price)}}" name="price">
+                                <input type="number" class="form-control" value="{{ str_replace(',', '', $package->price)}}" name="price">
                                 @error('price')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror
@@ -134,8 +131,7 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control h-100px"
-                                    name="description">{{old('description')?old('description'):$package->description }}</textarea>
+                                <textarea class="form-control h-100px" name="description">{{old('description')?old('description'):$package->description }}</textarea>
                                 @error('description')
                                 <div class="invalidate">{{ $message }}</div>
                                 @enderror

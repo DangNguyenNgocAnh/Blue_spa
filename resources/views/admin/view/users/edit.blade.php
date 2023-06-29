@@ -100,8 +100,9 @@
                                 <div class="col-sm-6">
                                     <label for="inputNumber" class="col-form-label">Code</label>
                                     <div class="">
-                                        <input type="number" class="form-control" readonly
-                                            value="{{old('code')?old('code'):$user->code }}" name="code">
+                                        <input type="number" class="form-control"
+                                            value="{{old('code')?old('code'):$user->code }}" name="code"
+                                            @if(auth()->id()==$user->id) readonly @endif>
                                         @error('code')
                                         <div class="invalidate">{{ $message }}</div>
                                         @enderror
