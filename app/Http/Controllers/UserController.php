@@ -102,7 +102,7 @@ class UserController extends Controller
         return view(
             'user.view.makeApointment',
             [
-                'tittle' => 'Make a apointment',
+                'tittle' => 'Appointment',
                 'staffs' => User::whereHas('department', function ($query) {
                     $query->where('name', 'Staff');
                 })->get(),
@@ -151,6 +151,7 @@ class UserController extends Controller
                 return redirect()->back()->with('failed', "Don't exsist this apointment !");
             }
             $apointment->status = $request->status;
+            $apointment->message = $request->message;
             $apointment->save();
             return redirect()->back()->with('success', "Update apointment successfull !");
         } catch (Exception $exception) {

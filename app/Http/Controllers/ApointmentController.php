@@ -86,6 +86,8 @@ class ApointmentController extends Controller
         return view('admin.view.apointments.edit', [
             'tittle' => 'Edit Apointment',
             'apointment' => $apointment,
+            'maxDay' => now()->addDays(7)->format('Y-m-d'),
+            'minDay' => now()->format('Y-m-d'),
             'staffs' =>  User::whereHas('department', function ($query) {
                 $query->where('name', 'Staff');
             })->get()
@@ -98,8 +100,18 @@ class ApointmentController extends Controller
      */
     public function update(ApointmentRequest $request, Apointment $apointment)
     {
+        $apointment_time = ($request->minute)
+            ? DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:$request->minute")
+            : DateTime::createFromFormat('Y-m-d H:i', "$request->date $request->hour:00");
+
         try {
-            $apointment->fill($request->all());
+            $apointment->update([
+                'customer_id' => $request->customer_id,
+                'employee_id' => $request->employee_id ?? null,
+                'time' => $apointment_time,
+                'status' => $request->status,
+                'message' => $request->message
+            ]);
             $apointment->save();
             return redirect()->route('apointments.index')->with('success', 'Update success');
         } catch (Exception $exception) {

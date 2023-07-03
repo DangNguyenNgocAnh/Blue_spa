@@ -39,6 +39,7 @@ class ApointmentRequest extends FormRequest
         } else {
             $rule_hour =  ['required'];
         }
+
         if ($customer) {
             $rule_date = [
                 'required',

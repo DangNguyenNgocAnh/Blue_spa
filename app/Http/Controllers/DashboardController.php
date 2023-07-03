@@ -107,7 +107,7 @@ class DashboardController extends Controller
     public function user()
     {
         return view('user.view.dashboard', [
-            'tittle' => 'Dashboard'
+            'tittle' => 'Homepage'
         ]);
     }
     public function about()
@@ -121,7 +121,7 @@ class DashboardController extends Controller
         $packages = $category->packages()->get();
         $chunks = array_chunk($packages->toArray(), 3);
         return view('user.view.listItem', [
-            'tittle' => 'List Item',
+            'tittle' => 'List Packages',
             'category' => $category,
             'packages' => $chunks,
             'count' => $packages->count()
@@ -132,7 +132,7 @@ class DashboardController extends Controller
         $coupons = Coupon::orderBy('price')->get();
         $chunks = array_chunk($coupons->toArray(), 3);
         return view('user.view.listCoupon', [
-            'tittle' => 'List Item',
+            'tittle' => 'List Coupons',
             'coupons' => $chunks,
             'count' => $coupons->count()
         ]);

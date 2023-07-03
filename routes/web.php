@@ -117,6 +117,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('packages.index');
         });
         Route::controller(ApointmentController::class)->prefix('apointments')->group(function () {
+            Route::patch('/{apointment}', 'update')->name('apointments.update');
             Route::post('/{package}/restore', 'restoreApointment')->name('apointments.restore');
             Route::get('/deleted', 'getListDeleted')->name('apointments.deleted');
             Route::get('/create', 'create')->name('apointments.create');
@@ -125,7 +126,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/sort', 'sort')->name('apointments.sort');
             Route::delete('/{apointment}', 'destroy')->name('apointments.destroy');
             Route::get('/{apointment}/edit', 'edit')->name('apointments.edit');
-            Route::patch('/{apointment}', 'update')->name('apointments.update');
             Route::get('/{apointment}', 'show')->name('apointments.show');
             Route::get('/', 'index')->name('apointments.index');
         });

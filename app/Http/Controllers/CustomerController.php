@@ -13,6 +13,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
@@ -133,14 +134,14 @@ class CustomerController extends Controller
     }
     public function changePassword(ChangePasswordRequest $request)
     {
-        $user = User::find($request->id);
+        $user = Auth::user();
         if (Hash::check($request->currentPass, $user->password)) {
             try {
                 $user->password = Hash::make($request->newPass);
                 $user->save();
-                return redirect()->back()->with('success', 'Update password success');
+                return redirect()->route('staff.profile')->with('success', 'Update password success');
             } catch (Exception $ex) {
-                return redirect()->back()->with('failed', $ex->getMessage());
+                return redirect()->route('staff.profile')->with('failed', $ex->getMessage());
             }
         }
         $errors = new MessageBag();

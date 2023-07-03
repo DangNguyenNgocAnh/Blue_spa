@@ -252,7 +252,7 @@
                                                                                                 <div class="row mb-3">
                                                                                                     <label for="inputText" class="col-sm-4 col-form-label">Time</label>
                                                                                                     <div class="col-sm-8">
-                                                                                                        <input type="text" readonly class="form-control" name="time" value="{{date('m-d-Y', strtotime(str_replace('/', '-', $apointment->time)))}}">
+                                                                                                        <input type="text" readonly class="form-control" name="time" value="{{date('d-m-Y', strtotime(str_replace('/', '-', $apointment->time)))}}">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row mb-3">
@@ -309,7 +309,7 @@
                                                                                                 <div class="row mb-3">
                                                                                                     <label for="inputText" class="col-sm-4 col-form-label">Message</label>
                                                                                                     <div class="col-sm-8">
-                                                                                                        <input type="text" class="form-control" name="note" value="{{old('message')?old('message'):$apointment->message }}">
+                                                                                                        <input type="text" class="form-control" name="message" value="{{old('message')?old('message'):$apointment->message }}">
                                                                                                         @error('message')
                                                                                                         <div class="invalidate">
                                                                                                             {{ $message }}

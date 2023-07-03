@@ -82,6 +82,9 @@ class AdminController extends Controller
      */
     public function show(User $user)
     {
+        if ($user->id == auth()->id()) {
+            return redirect()->route('staff.profile');
+        }
         return view('admin.view.staff.detail', [
             'tittle' => 'Staff Detail',
             'user' => $user,
@@ -95,6 +98,9 @@ class AdminController extends Controller
      */
     public function edit(User $user)
     {
+        if ($user->id == auth()->id()) {
+            return redirect()->route('staff.editProfile');
+        }
         if (Gate::allows('isAdmin')) {
             return view('admin.view.users.edit', [
                 'tittle' => 'Edit Staff',

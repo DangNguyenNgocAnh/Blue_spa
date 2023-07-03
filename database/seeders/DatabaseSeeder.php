@@ -88,7 +88,6 @@ class DatabaseSeeder extends Seeder
                 'fullname' => 'Nguyen Van Yen Mai',
             ]
         )->create();
-        User::factory(100)->create();
         Category::factory(4)->sequence(
             ['name' => 'Chăm sóc '],
             ['name' => 'Điều trị'],
@@ -96,7 +95,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Phun xăm'],
 
         )->create();
-        Apointment::factory(20)->create();
         Package::factory(13)->sequence(
             [
                 'category_id' => 4,
@@ -348,7 +346,6 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Loại điều trị này sử dụng enzyme để làm sạch da và cải thiện tình trạng da, giúp da trông sáng và mịn màng hơn.'
             ],
         )->create();
-        UserPackage::factory(50)->create();
         Coupon::factory(5)->sequence(
             [
                 'name' => 'Discount 100.000 VND',
@@ -371,6 +368,8 @@ class DatabaseSeeder extends Seeder
                 'price' => 1600000
             ],
         )->create();
+        User::factory(100)->create();
+        UserPackage::factory(50)->create();
         // UserCoupon::factory(10)->create();
     }
 }

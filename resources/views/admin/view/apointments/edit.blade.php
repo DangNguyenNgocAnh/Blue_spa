@@ -95,19 +95,54 @@
                         </div>
                         <div class="row mb-3">
                             <label for="inputDate" class="col-sm-2 col-form-label">Time</label>
-                            <div class="col-sm-10">
-                                <input type="datetime-local" class="form-control" name="time"
-                                    value="{{ date('Y-m-d\ H:i:s', strtotime(str_replace('/', '-', $apointment->time))) }}">
-                                @error('time')
-                                <div class="invalidate">{{ $message }}</div>
-                                @enderror
+                            <div class="col-sm-10 row">
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control" name="date"
+                                        value="{{ old('date')?old('date'):date('Y-d-m', strtotime(substr($apointment->time, 6, 10)))}}"
+                                        min="{{$minDay}}" max={{$maxDay}}>
+                                    @error('date')
+                                    <div class=" invalidate">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-select" name="hour">
+                                        <option value="" selected>Hour</option>
+                                        @for($i=9; $i<=20 ; $i++) <option value="{{$i}}" @if(old('hour')==$i ||
+                                            substr($apointment->time, 0, 2)==$i) selected
+                                            @endif>
+                                            {{$i}} h
+                                            </option>
+                                            @endfor
+                                    </select>
+                                    @error('hour')
+                                    <div class=" invalidate">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-select" name="minute">
+                                        <option value="" selected>Minute</option>
+                                        <option value="0" @if(old('minute')==0 ||substr($apointment->time, 2, 4)==0 )
+                                            selected @endif> 00 m</option>
+                                        <option value="15" @if(old('minute')==15 ||substr($apointment->time, 2, 4)==15 )
+                                            selected @endif>15 m</option>
+                                        <option value="30" @if(old('minute')==30 ||substr($apointment->time, 2, 4)==30 )
+                                            selected @endif>30 m</option>
+                                        <option value="45" @if(old('minute')==45 ||substr($apointment->time, 2, 4)==45
+                                            )selected @endif>45 m</option>
+                                    </select>
+                                    @error('minute')
+                                    <div class=" invalidate">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-10">
                                 <select class="form-select" name="status">
-                                    <option value="" selected>Choose Status</option>
                                     <option value="Completed" @if (!old('status') &&( $apointment->status ==
                                         'Completed'))
                                         selected
