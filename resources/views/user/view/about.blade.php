@@ -31,18 +31,15 @@
         <div class="card-body">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="{{asset('img/item3.jpeg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <div class='form-img'>
+                            <div class='form-img display1'>
                                 <h4 style="color:black; font-weight:bold; padding-top:20px">About us - Blue Spa</h4>
                                 <p> Là một spa chuyên nghiệp với các dịch vụ cao cấp như chăm sóc da, điều
                                     trị, thẩm mỹ, và phun xăm. Với đội ngũ chuyên viên giàu kinh nghiệm và tay nghề cao,
@@ -64,7 +61,7 @@
                     <div class="carousel-item">
                         <img src="{{asset('img/item2.jpeg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <div class='form-img'>
+                            <div class='form-img display1'>
                                 <h4 style="color:black; font-weight:bold; padding-top:20px">Đội ngũ nhân viên - Blue Spa
                                 </h4>
                                 <p> Đội ngũ nhân viên của Blue spa là một đội ngũ chuyên nghiệp, giàu kinh nghiệm và
@@ -91,11 +88,10 @@
                     <div class="carousel-item">
                         <img src="{{asset('img/item1.jpeg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <div class='form-img'>
+                            <div class='form-img display1'>
                                 <h4 style="color:black; font-weight:bold; padding-top:20px"> Blue Spa
                                 </h4>
-                                <p>Bạn có muốn được trải nghiệm tại spa của chúng tôi? Vui lòng <a
-                                        href="{{route('user.apointment')}}">Click <i class="bi bi-chat-left-heart"></i>
+                                <p>Bạn có muốn được trải nghiệm tại spa của chúng tôi? Vui lòng <a href="{{route('user.apointment')}}">Click <i class="bi bi-chat-left-heart"></i>
                                     </a>
                                     để có thể đặt lịch đến trải nghiệm.
                                 </p>
@@ -108,17 +104,39 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+        </div>
+    </div>
+    <div class="screen-small display2">
+        <div class='form-img' style="border: none">
+            <h4 style="color:black; font-weight:bold; padding-top:20px; text-align:center">About us - Blue Spa</h4>
+            <p>
+                <hr> Là một spa chuyên nghiệp với các dịch vụ cao cấp như chăm sóc da, điều
+                trị, thẩm mỹ, và phun xăm. Với đội ngũ chuyên viên giàu kinh nghiệm và tay nghề cao,
+                Blue spa cam kết mang đến cho khách hàng những trải nghiệm chăm sóc da và thư giãn
+                tuyệt vời nhất.
+            </p>
+            <p> Tất cả các dịch vụ của Blue spa được cung cấp trong một không gian sang trọng, đẳng
+                cấp và thoải mái, giúp khách hàng tận hưởng những trải nghiệm chăm sóc da và thư
+                giãn tuyệt vời.</p>
+            <p>Bạn có muốn được trải nghiệm tại spa của chúng tôi? Vui lòng <a href="{{route('user.apointment')}}">Click
+                    <i class="bi bi-chat-left-heart"></i>
+                </a>
+                để có thể đặt lịch đến trải nghiệm.
+            </p>
+            <p>
+                Nếu có gì thắc mắc vui lòng liên hệ với chúng tôi. <i class="bi bi-house-heart"></i>
+            </p>
+            <p>Rất mong được phục vụ quý khách ! <i class="bi bi-heart"></i>
+            </p>
         </div>
     </div>
 </main>

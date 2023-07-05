@@ -36,74 +36,78 @@
         <p>(gồm có {{$count}} packages)</p>
         <div class="content-options-static ">
             @forelse($packages as $key=>$packages)
-            <div class="content-options-static-content">
+            <div class="content-options-static-content flex-column1">
                 @foreach($packages as $key=>$package)
-                <div class="content-options-static-content-item">
+                <div class="content-options-static-content-item mg-bottom">
                     <img src="{{asset('img/item1-4.jpeg')}}" alt="">
                     <div class="description-package">
                         <div class='description-package-form'>
                             <h4 style="color:black; font-weight:bold;">{{$package['name']}}</h4>
-                            <a type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#disablebackdrop{{ $package['id'] }}">
+                            <a type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                data-bs-target="#disablebackdrop{{ $package['id'] }}">
                                 <i class="ri-eye-line"></i>
                             </a>
                             <p> {{$package['description']}}</p>
                         </div>
                     </div>
-                    <div class="modal fade" id="disablebackdrop{{ $package['id'] }}" tabindex="-1" data-bs-backdrop="false">
+                    <div class="modal fade" id="disablebackdrop{{ $package['id'] }}" tabindex="-1"
+                        data-bs-backdrop="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Detail Package</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="card-body">
                                         <div class="tab-content">
-                                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                            <div class="tab-pane fade show active profile-overview"
+                                                id="profile-overview">
                                                 <div class="row">
-                                                    <div class="col-lg-4" style='font-weight: bold;'>
+                                                    <div class="col-4" style='font-weight: bold;'>
                                                         Name
                                                     </div>
-                                                    <div class="col-lg-8  text_justify">
+                                                    <div class="col-8  text_justify">
                                                         {{$package['name']}}
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 " style='font-weight: bold;'>
+                                                    <div class="col-4 " style='font-weight: bold;'>
                                                         Code
                                                     </div>
-                                                    <div class="col-lg-8  text_justify">
+                                                    <div class="col-8  text_justify">
                                                         {{$package['code']}}
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 " style='font-weight: bold;'>
+                                                    <div class="col-4 " style='font-weight: bold;'>
                                                         Price
                                                     </div>
-                                                    <div class="col-lg-8  text_justify">
+                                                    <div class="col-8  text_justify">
                                                         {{($package['price'])}} đồng
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 " style='font-weight: bold;'>
+                                                    <div class="col-4 " style='font-weight: bold;'>
                                                         Type
                                                     </div>
-                                                    <div class="col-lg-8  text_justify">
+                                                    <div class="col-8  text_justify">
                                                         {{$package['types']}}
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 " style='font-weight: bold;'>
+                                                    <div class="col-4 " style='font-weight: bold;'>
                                                         Status
                                                     </div>
-                                                    <div class="col-lg-8  text_justify">
+                                                    <div class="col-8  text_justify">
                                                         {{$package['status']}}
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-4 " style='font-weight: bold;'>
+                                                    <div class="col-4 " style='font-weight: bold;'>
                                                         Description</div>
-                                                    <div class="col-lg-8  text_justify">
+                                                    <div class="col-8  text_justify">
                                                         {{$package['description']}}
                                                     </div>
                                                 </div>
@@ -112,7 +116,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>

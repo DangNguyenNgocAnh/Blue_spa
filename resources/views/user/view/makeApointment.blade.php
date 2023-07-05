@@ -30,10 +30,10 @@
     <div class="card-dashboard">
         <div class="card-body">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+                <div class="carousel-inner noHidden">
                     <div class="carousel-item active">
                         <img src="{{asset('img/spa.jpeg')}}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="carousel-caption d-md-block widthF1">
                             <div class='form-img'>
                                 <h4 style="color:black; font-weight:bold; padding-top:20px">Đặt lịch hẹn với Blue Spa
                                 </h4>
@@ -48,8 +48,7 @@
                                                         <select class="form-select" name="employee_id">
                                                             <option value="" selected>Ngẫu nhiên</option>
                                                             @foreach($staffs as $staff)
-                                                            <option value="{{$staff->id}}"
-                                                                @if(old('employee_id')==$staff->id)
+                                                            <option value="{{$staff->id}}" @if(old('employee_id')==$staff->id)
                                                                 selected @endif >
                                                                 {{$staff->fullname}}
                                                             </option>
@@ -64,9 +63,7 @@
                                                     <label for="inputDate" class="col-sm-2 col-form-label">Time</label>
                                                     <div class="col-sm-10 row">
                                                         <div class="col-sm-6">
-                                                            <input type="date" class="form-control" name="date"
-                                                                value="{{ old('date')?old('date'):$minDay}}"
-                                                                min="{{$minDay}}" max={{$maxDay}}>
+                                                            <input type="date" class="form-control" name="date" value="{{ old('date')?old('date'):$minDay}}" min="{{$minDay}}" max={{$maxDay}}>
                                                             @error('date')
                                                             <div class=" invalidate">{{ $message }}
                                                             </div>
@@ -75,8 +72,7 @@
                                                         <div class="col-sm-3">
                                                             <select class="form-select" name="hour">
                                                                 <option value="" selected>Hour</option>
-                                                                @for($i=9; $i<=20 ; $i++) <option value="{{$i}}"
-                                                                    @if(old('hour')==$i) selected @endif>
+                                                                @for($i=9; $i<=20 ; $i++) <option value="{{$i}}" @if(old('hour')==$i) selected @endif>
                                                                     {{$i}} h
                                                                     </option>
                                                                     @endfor
@@ -86,18 +82,14 @@
                                                             </div>
                                                             @enderror
                                                         </div>
-                                                        <input type="hidden" name="customer_id"
-                                                            value="{{auth()->id()}}">
+                                                        <input type="hidden" name="customer_id" value="{{auth()->id()}}">
                                                         <div class="col-sm-3">
                                                             <select class="form-select" name="minute">
                                                                 <option value="" selected>Minute</option>
                                                                 <option value="0"> 00 m</option>
-                                                                <option value="15" @if(old('minute')==15) selected
-                                                                    @endif>15 m</option>
-                                                                <option value="30" @if(old('minute')==30) selected
-                                                                    @endif>30 m</option>
-                                                                <option value="45" @if(old('minute')==45) selected
-                                                                    @endif>45 m</option>
+                                                                <option value="15" @if(old('minute')==15) selected @endif>15 m</option>
+                                                                <option value="30" @if(old('minute')==30) selected @endif>30 m</option>
+                                                                <option value="45" @if(old('minute')==45) selected @endif>45 m</option>
                                                             </select>
                                                             @error('minute')
                                                             <div class=" invalidate">{{ $message }}
@@ -107,11 +99,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="inputPassword"
-                                                        class="col-sm-2 col-form-label">Message</label>
+                                                    <label for="inputPassword" class="col-sm-2 col-form-label">Message</label>
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control h-100px"
-                                                            name="description">{{ old('message') }}</textarea>
+                                                        <textarea class="form-control h-100px" name="description">{{ old('message') }}</textarea>
                                                         @error('message')
                                                         <div class="invalidate">{{ $message }}</div>
                                                         @enderror
@@ -120,8 +110,7 @@
                                                 <div class="row mb-3">
                                                     <div class="d-flex justify-content-end">
                                                         <div class="d-flex justify-content-end me-3">
-                                                            <button type="submit"
-                                                                class="btn btn-primary user_form-btn">Create</button>
+                                                            <button type="submit" class="btn btn-primary user_form-btn">Create</button>
                                                         </div>
                                                     </div>
                                                 </div>

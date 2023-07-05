@@ -1,6 +1,6 @@
 <div class="footer-user">
-    <div class="footer-content">
-        <div class="footer-left">
+    <div class="footer-content flex-clo1">
+        <div class="footer-left footer-customs">
             <ul>
                 <span>
                     Liên hệ
@@ -10,12 +10,12 @@
                     42 Nguyễn Lương Bằng, Hòa Khánh Bắc, TP Đà Nẵng</li>
                 <li><i class="bi bi-envelope-heart-fill"></i> bluespa.admin@gmail.com</li>
                 <li>
-                    @for($i=0;$i<10;$i++)<i class="bi bi-heart-fill"></i><i class="bi bi-heart"></i>
+                    @for($i=0;$i<7;$i++)<i class="bi bi-heart-fill"></i><i class="bi bi-heart"></i>
                         @endfor
                 </li>
             </ul>
         </div>
-        <div class="footer-right">
+        <div class="footer-right footer-customs">
             <ul>
                 <span>
                     Rất mong được phục vụ quý khách <i class="bi bi-heart-fill"></i>

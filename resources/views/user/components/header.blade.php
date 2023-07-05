@@ -1,4 +1,4 @@
-<header id="header" class="header fixed-top d-flex align-items-center justify-content-between">
+<header id="header" class="header fixed-top  align-items-center justify-content-between header-big">
     <div class="d-flex align-items-center justify-content-between">
         <div class="logo d-flex align-items-center">
             <a href="{{route('user.dashboard')}}">
@@ -25,7 +25,6 @@
                 <a class="dropdown-item" href="{{route('category.listItem',2)}}"> Điều trị</a>
                 <a class="dropdown-item" href="{{route('category.listItem',3)}}"> Thẩm mỹ</a>
                 <a class="dropdown-item" href="{{route('category.listItem',4)}}">Phun xăm</a>
-
             </div>
         </div>
         <li class="dropdown-item" style="text-align: center;"><a class="header-item-a"
@@ -77,7 +76,7 @@
                         </li>
                         <li>
                             <button id="show-setting" class="dropdown-item d-flex align-items-center"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                data-bs-toggle="modal" data-bs-target="#changePassword">
                                 <i class="bi bi-gear"></i>
                                 <span>Change password</span>
                             </button>
@@ -108,8 +107,101 @@
         </div>
     </nav>
 </header>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed header-small"
+    style="z-index: 999; background: #fff; width: 100%">
+    <div class="container-fluid">
+        <div class="logo d-flex align-items-center">
+            <a href="{{route('user.dashboard')}}">
+                <img src="{{ Vite::asset('resources/assets/img/logo.png') }}" alt="">
+            </a>
+            <div style="padding-top: 13px;">
+                <span class="d-lg-block">Blue Spa</span>
+                <p style="font-weight: lighter;">Beauty Center</p>
+            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('dashboard.about')}}">Giới
+                        thiệu</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Gói dịch vụ
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{route('category.listItem',1)}}"> Chăm sóc</a></li>
+                        <li><a class="dropdown-item" href="{{route('category.listItem',2)}}"> Điều trị</a></li>
+                        <li><a class="dropdown-item" href="{{route('category.listItem',3)}}"> Thẩm mỹ</a></li>
+                        <li><a class="dropdown-item" href="{{route('category.listItem',2)}}"> Điều trị</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('dashboard.coupon')}}">Mã giảm giá</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('user.apointment')}}">Đặt lịch hẹn</a>
+                </li>
+                <li class="nav-item">
+                    @if(!Auth::check())
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{route('login')}}">
+                        Login <i class=" ri-login-box-fill" style="font-size: 30px;"></i>
+                    </a>
+                    @else
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                        <span style="color: #012970">Hello, {{Auth::user()->fullname}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        @if(Auth::user()->department->name != 'Customer')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('admin.dashboard')}}">
+                                <i class="bi bi-house"></i>
+                                <span>Admin homepage</span>
+                            </a>
+                        </li>
+                        @endif
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('user.show')}}">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <button id="show-setting" class="dropdown-item d-flex align-items-center"
+                                data-bs-toggle="modal" data-bs-target="#changePassword">
+                                <i class="bi bi-gear"></i>
+                                <span>Change password</span>
+                            </button>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('user.showAllPackage')}}">
+                                <i class="bi bi-house"></i>
+                                <span>My packages</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Modalchangepass -->
+<div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content form-setting">
             <div class="modal-header form-setting_header">

@@ -46,7 +46,8 @@
                     <div class="col-xl-8">
                         <div class="card">
                             <div class="detail_update-btn">
-                                <a id="show-edit" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalUpdateInformation">
+                                <a id="show-edit" type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                    data-bs-target="#modalUpdateInformation">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <a type="button" href="{{route('user.dashboard')}}" class="btn btn-secondary">Back</a>
@@ -56,41 +57,43 @@
                                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                         <h5 class="user_detail-tittle">My Information</h5>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Code</div>
-                                            <div class="col-lg-9 col-md-8">{{ $user->code }}</div>
+                                            <div class="col-4 col-md-4 label">Code</div>
+                                            <div class="col-8 col-md-8">{{ $user->code }}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label ">Fullname</div>
-                                            <div class="col-lg-9 col-md-8">{{ $user->fullname }}</div>
+                                            <div class="col-4 col-md-4 label ">Fullname</div>
+                                            <div class="col-8 col-md-8">{{ $user->fullname }}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Email</div>
-                                            <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
+                                            <div class="col-4 col-md-4 label">Email</div>
+                                            <div class="col-8 col-md-8">{{ $user->email }}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Department</div>
-                                            <div class="col-lg-9 col-md-8">
+                                            <div class="col-4 col-md-4 label">Department</div>
+                                            <div class="col-8 col-md-8">
                                                 {{ empty($user->department_id)? 'NULL': $user->department->name }}
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Birthday</div>
-                                            <div class="col-lg-9 col-md-8">
+                                            <div class="col-4 col-md-4 label">Birthday</div>
+                                            <div class="col-8 col-md-8">
                                                 {{ date_format(date_create($user->day_of_birth), 'd-m-Y') }}
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Phone number</div>
-                                            <div class="col-lg-9 col-md-8">{{ $user->phone_number }}
+                                            <div class="col-4 col-md-4 label">Phone number</div>
+                                            <div class="col-8 col-md-8">{{ $user->phone_number }}
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Address</div>
-                                            <div class="col-lg-9 col-md-8">{{ $user->address }}</div>
+                                            <div class="col-4 col-md-4 label">Address</div>
+                                            <div class="col-8 col-md-8">{{ $user->address }}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">My packages</div>
-                                            <div class="col-lg-9 col-md-8 text_justify"><a id="show-packages" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalListPackage">
+                                            <div class="col-4 col-md-4 label">My packages</div>
+                                            <div class="col-8 col-md-8 text_justify"><a id="show-packages" type="button"
+                                                    class="btn btn-outline-info" data-bs-toggle="modal"
+                                                    data-bs-target="#modalListPackage">
                                                     <i class=" ri-eye-line"></i>
                                                 </a></div>
                                         </div>
@@ -121,59 +124,71 @@
                                             <div class="card info-card">
                                                 <div class="card-body">
                                                     <div class="row mb-3">
-                                                        <label for="inputText" class="col-sm-4 col-form-label">Code</label>
+                                                        <label for="inputText"
+                                                            class="col-sm-4 col-form-label">Code</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="code" value="{{old('code')?old('code'):$user->code }}" readonly>
+                                                            <input type="text" class="form-control" name="code"
+                                                                value="{{old('code')?old('code'):$user->code }}"
+                                                                readonly>
                                                             @error('code')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
                                                         <input type="hidden" name="id" value="{{$user->id}}">
-                                                        <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
+                                                        <label for="inputEmail"
+                                                            class="col-sm-4 col-form-label">Email</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="email" placeholder="Ex: Example@gmail.com" value="{{old('email')?old('email'):$user->email }}">
+                                                            <input type="text" class="form-control" name="email"
+                                                                placeholder="Ex: Example@gmail.com"
+                                                                value="{{old('email')?old('email'):$user->email }}">
                                                             @error('email')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="row mb-3">
-                                                        <label for="inputText" class="col-sm-4 col-form-label">Fullname</label>
+                                                        <label for="inputText"
+                                                            class="col-sm-4 col-form-label">Fullname</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="fullname" placeholder="Ex: Nguyễn Văn A" value="{{old('fullname')?old('fullname'):$user->fullname }}">
+                                                            <input type="text" class="form-control" name="fullname"
+                                                                placeholder="Ex: Nguyễn Văn A"
+                                                                value="{{old('fullname')?old('fullname'):$user->fullname }}">
                                                             @error('fullname')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
-                                                        <label for="inputText" class="col-sm-4 col-form-label">Level</label>
+                                                        <label for="inputText"
+                                                            class="col-sm-4 col-form-label">Level</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="level" value="{{old('level')?old('level'):$user->level }}" readonly>
+                                                            <input type="text" class="form-control" name="level"
+                                                                value="{{old('level')?old('level'):$user->level }}"
+                                                                readonly>
                                                             @error('level')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>
@@ -182,27 +197,31 @@
                                                         <label for="inputText" class="col-sm-4 col-form-label">Phone
                                                             number</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="phone_number" placeholder="Ex: 123456789" value="{{old('phone_number')?old('phone_number'):$user->phone_number }}">
+                                                            <input type="text" class="form-control" name="phone_number"
+                                                                placeholder="Ex: 123456789"
+                                                                value="{{old('phone_number')?old('phone_number'):$user->phone_number }}">
                                                             @error('phone_number')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
-                                                        <label for="inputText" class="col-sm-4 col-form-label">Address</label>
+                                                        <label for="inputText"
+                                                            class="col-sm-4 col-form-label">Address</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="address" value="{{old('address')?old('address'):$user->address }}">
+                                                            <input type="text" class="form-control" name="address"
+                                                                value="{{old('address')?old('address'):$user->address }}">
                                                             @error('address')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>
@@ -212,28 +231,31 @@
                                                         <label for="inputText" class="col-sm-4 col-form-label">Day of
                                                             birth</label>
                                                         <div class="col-sm-8">
-                                                            <input type="date" class="form-control" name="day_of_birth" value="{{date('Y-m-d', strtotime(str_replace('/', '-', $user->day_of_birth)))}}">
+                                                            <input type="date" class="form-control" name="day_of_birth"
+                                                                value="{{date('Y-m-d', strtotime(str_replace('/', '-', $user->day_of_birth)))}}">
                                                             @error('day_of_birth')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="row mb-3">
-                                                        <label for="inputText" class="col-sm-4 col-form-label">Note</label>
+                                                        <label for="inputText"
+                                                            class="col-sm-4 col-form-label">Note</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="note" value="{{old('note')?old('note'):$user->note }}">
+                                                            <input type="text" class="form-control" name="note"
+                                                                value="{{old('note')?old('note'):$user->note }}">
                                                             @error('note')
                                                             <div class="invalidate">{{ $message }}</div>
                                                             <script>
-                                                                window.onload = function() {
-                                                                    document.getElementById('show-edit').click();
-                                                                }
+                                                            window.onload = function() {
+                                                                document.getElementById('show-edit').click();
+                                                            }
                                                             </script>
                                                             @enderror
                                                         </div>

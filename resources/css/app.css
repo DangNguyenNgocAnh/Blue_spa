@@ -109,11 +109,36 @@ h6 {
     font-size: 16px;
 }
 
-@media (max-width: 1199px) {
+
     #main {
         padding: 20px;
     }
-}
+    .toggle-sidebar .sidebar {
+        left: 0;
+    }
+    .header .search-bar {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
+        background: white;
+        z-index: 9999;
+        transition: 0.3s;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .header .search-bar-show {
+        top: 60px;
+        visibility: visible;
+        opacity: 1;
+    }
+    .sidebar {
+        left: -300px;
+    }
+
 
 /*--------------------------------------------------------------
   # Page Title
@@ -216,7 +241,7 @@ h6 {
     background-color: #ce1b21;
 }
 
-@media (min-width: 768px) {
+
     .dropdown-menu-arrow::before {
         content: "";
         width: 13px;
@@ -229,7 +254,7 @@ h6 {
         border-top: 1px solid #eaedf1;
         border-left: 1px solid #eaedf1;
     }
-}
+
 
 @-webkit-keyframes dropdown-animate {
     0% {
@@ -440,10 +465,25 @@ h6 {
     line-height: 1;
 }
 
-@media (min-width: 1200px) {
+
     .logo {
         width: 280px;
     }
+    #main,
+    #footer {
+        margin-left: 300px;
+    }
+    .toggle-sidebar #main,
+    .toggle-sidebar #footer {
+        margin-left: 0;
+    }
+
+    .toggle-sidebar .sidebar {
+        left: -300px;
+    }
+
+.error-404 img {
+    max-width: 50%;
 }
 
 .logo img {
@@ -479,27 +519,6 @@ h6 {
     padding: 0 20px;
 }
 
-@media (max-width: 1199px) {
-    .header .search-bar {
-        position: fixed;
-        top: 50px;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
-        background: white;
-        z-index: 9999;
-        transition: 0.3s;
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    .header .search-bar-show {
-        top: 60px;
-        visibility: visible;
-        opacity: 1;
-    }
-}
 
 .header .search-form {
     width: 100%;
@@ -691,11 +710,6 @@ h6 {
 
 }
 
-@media (max-width: 1199px) {
-    .sidebar {
-        left: -300px;
-    }
-}
 
 .sidebar::-webkit-scrollbar {
     width: 5px;
@@ -707,31 +721,6 @@ h6 {
     background-color: #aab7cf;
 }
 
-@media (min-width: 1200px) {
-
-    #main,
-    #footer {
-        margin-left: 300px;
-    }
-}
-
-@media (max-width: 1199px) {
-    .toggle-sidebar .sidebar {
-        left: 0;
-    }
-}
-
-@media (min-width: 1200px) {
-
-    .toggle-sidebar #main,
-    .toggle-sidebar #footer {
-        margin-left: 0;
-    }
-
-    .toggle-sidebar .sidebar {
-        left: -300px;
-    }
-}
 
 .sidebar-nav {
     padding: 0;
@@ -1293,11 +1282,6 @@ h6 {
     background: #3e4f6f;
 }
 
-@media (min-width: 992px) {
-    .error-404 img {
-        max-width: 50%;
-    }
-}
 
 /*--------------------------------------------------------------
   # Footer
@@ -1746,4 +1730,70 @@ a{
 }
 .col-12 p{
     color:#817c7c;
+}
+li{
+    word-wrap: break-word;
+}
+
+@media screen and (min-width: 1220px) {
+    .header-big{
+        display: flex;
+    }
+    .header-small{
+        display: none;
+    }
+    .img-width{
+        height:600px;
+    }
+    .display1{
+        display: inline-block;
+    }
+    .display2{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 501px) {
+    .header-big{
+        display: none !important;
+    }
+    .header-small{
+        display: flex !important;
+        box-shadow: 5px 3px 20px  rgba(0, 0, 0, 0.476);
+    }
+    .img-width{
+    }
+    .fix-title{
+        bottom: 15px !important;
+        right: 5px !important;
+    }
+    .flex-column1{
+        flex-direction: column;
+    }
+    .mg-bottom{
+        margin-bottom: 30px;
+    }
+    .noHidden{
+        overflow: inherit !important;
+    }
+    .widthF1{
+        width: 80%;
+        left: 10% !important;
+    }
+    option{
+        all: initial;
+    }
+    .footer-customs{
+        display: flex;
+        width: 100%;
+    }
+    .flex-clo1{
+        flex-direction: column;
+    }
+    .display1{
+        display: none;
+    }
+    .display2{
+        display: inline-block;
+    }
 }
