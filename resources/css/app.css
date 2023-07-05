@@ -1761,8 +1761,6 @@ li{
         display: flex !important;
         box-shadow: 5px 3px 20px  rgba(0, 0, 0, 0.476);
     }
-    .img-width{
-    }
     .fix-title{
         bottom: 15px !important;
         right: 5px !important;
