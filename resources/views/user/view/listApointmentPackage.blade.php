@@ -99,13 +99,13 @@
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                     <h5 class="user_detail-tittle">My Packages</h5>
                                     @forelse($packages as $key=>$package)
-                                    <div class="row">
-                                        <div class="col-lg-1 col-md-2 label ">{{++$key}}</div>
-                                        <div class="col-lg-9 col-md-8">
+                                    <div class="row row1">
+                                        <div class="col-lg-1 col-md-2 label col1">{{++$key}}</div>
+                                        <div class="col-lg-9 col-md-8 col2">
                                             <p style="font-weight: bold;">{{$package->name}}
                                             <p>
                                         </div>
-                                        <div class="col-lg-1 col-md-2"><a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable{{ $package->id }}">
+                                        <div class="col-lg-1 col-md-2 col3"><a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable{{ $package->id }}">
                                                 <i class="bi bi-person-vcard"></i>
                                             </a></div>
                                         <!-- Modal detail package -->
@@ -204,7 +204,6 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Code</th>
                                                     <th scope="col">Time</th>
                                                     <th scope="col">Status</th>
                                                 </tr>
@@ -213,7 +212,6 @@
                                                 @foreach ($apointments as $key => $apointment)
                                                 <tr>
                                                     <th scope="row">{{ ++$key }}</th>
-                                                    <td> {{$apointment->code}} </td>
                                                     <td> {{($apointment->time)}} </td>
                                                     <td> {{$apointment->status}} </td>
                                                     @if(date_create_from_format('H:i d/m/Y', $apointment->time) >

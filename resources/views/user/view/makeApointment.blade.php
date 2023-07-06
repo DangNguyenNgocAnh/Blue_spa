@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<main id="main" class="main" style="margin-left: 0px; background-image: none;">
+<main id="main" class="main backgound1" style="margin-left: 0px;">
     @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle me-1"></i>
@@ -32,9 +32,9 @@
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner noHidden">
                     <div class="carousel-item active">
-                        <img src="{{asset('img/spa.jpeg')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('img/spa.jpeg')}}" class=" w-100 dNone" alt="...">
                         <div class="carousel-caption d-md-block widthF1">
-                            <div class='form-img'>
+                            <div class='form-img' style="padding: 5px">
                                 <h4 style="color:black; font-weight:bold; padding-top:20px">Đặt lịch hẹn với Blue Spa
                                 </h4>
                                 <form method="post" action="{{route('user.createApointment')}}">
@@ -61,15 +61,15 @@
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="inputDate" class="col-sm-2 col-form-label">Time</label>
-                                                    <div class="col-sm-10 row">
-                                                        <div class="col-sm-6">
+                                                    <div class="col-sm-10 row row1">
+                                                        <div class="col-sm-6 col4">
                                                             <input type="date" class="form-control" name="date" value="{{ old('date')?old('date'):$minDay}}" min="{{$minDay}}" max={{$maxDay}}>
                                                             @error('date')
                                                             <div class=" invalidate">{{ $message }}
                                                             </div>
                                                             @enderror
                                                         </div>
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-3 col5">
                                                             <select class="form-select" name="hour">
                                                                 <option value="" selected>Hour</option>
                                                                 @for($i=9; $i<=20 ; $i++) <option value="{{$i}}" @if(old('hour')==$i) selected @endif>
@@ -83,7 +83,7 @@
                                                             @enderror
                                                         </div>
                                                         <input type="hidden" name="customer_id" value="{{auth()->id()}}">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-3 col6">
                                                             <select class="form-select" name="minute">
                                                                 <option value="" selected>Minute</option>
                                                                 <option value="0"> 00 m</option>

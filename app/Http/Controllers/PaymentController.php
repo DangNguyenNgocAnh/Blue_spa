@@ -82,13 +82,13 @@ class PaymentController extends Controller
                 'status' => ($request->vnp_TransactionStatus == '00') ? 'Success' : 'Failed',
                 'user_id' => Auth::id(),
             ]);
-            UserCoupon::create([
-                'user_id' => Auth::id(),
-                'coupon_id' => Coupon::where('name', $request->vnp_OrderInfo)->value('id'),
-                'timeExpiredAt' => now()->addYears(1),
-                'status' => true
-            ]);
             if ($request->vnp_TransactionStatus == '00') {
+                UserCoupon::create([
+                    'user_id' => Auth::id(),
+                    'coupon_id' => Coupon::where('name', $request->vnp_OrderInfo)->value('id'),
+                    'timeExpiredAt' => now()->addYears(1),
+                    'status' => true
+                ]);
                 return redirect()->route('user.showAllPackage')->with('success', "Bạn đã đặt thành công mã giảm giá $request->vnp_OrderInfo ! ");
             }
             return redirect()->route('user.showAllPackage')->with('warning', 'Đơn hàng bị lỗi, vui lòng thử lại.');

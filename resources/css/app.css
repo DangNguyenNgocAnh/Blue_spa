@@ -1751,6 +1751,9 @@ li{
     .display2{
         display: none;
     }
+    .backgound1{
+        background-image: none !important;
+    }
 }
 
 @media screen and (max-width: 501px) {
@@ -1775,8 +1778,8 @@ li{
         overflow: inherit !important;
     }
     .widthF1{
-        width: 80%;
-        left: 10% !important;
+        width: 105%;
+        left: -1% !important;
     }
     option{
         all: initial;
@@ -1793,5 +1796,35 @@ li{
     }
     .display2{
         display: inline-block;
+    }
+    .row1{
+        flex-direction: row;
+    flex-wrap: nowrap !important;
+    width: 100%;
+    justify-content: space-between;
+    }
+    .col1{
+        width: 10% !important;
+    }
+    .col2{
+        width: 70% !important;
+    }
+    .col3{
+        width: 20% !important;
+    }
+    .col4{
+        width: 45% !important;
+    }
+    .col5{
+        width: 30% !important;
+    }
+    .col6{
+        width: 30% !important;
+    }
+    .dNone{
+        display: none !important;
+    }
+    .form-img{
+        opacity: 1;
     }
 }
