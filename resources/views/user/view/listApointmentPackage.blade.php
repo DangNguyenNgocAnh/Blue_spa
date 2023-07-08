@@ -33,8 +33,10 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                             <h2>Hello, {{ $user->fullname }} </h2>
-                            <button type="button" class="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#modalListCoupon">
-                                My coupons <span class="badge bg-secondary text-light">{{$user->coupons->count()}}</span>
+                            <button type="button" class="btn btn-light mb-2" data-bs-toggle="modal"
+                                data-bs-target="#modalListCoupon">
+                                My coupons <span
+                                    class="badge bg-secondary text-light">{{$user->coupons->count()}}</span>
                             </button>
                             <!-- Modal list coupons -->
                             <div class="modal fade" id="modalListCoupon">
@@ -42,7 +44,8 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" style='font-weight: bold;'>My coupons </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="card-body" style="max-height: 90vh;overflow: auto;">
@@ -86,7 +89,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +109,9 @@
                                             <p style="font-weight: bold;">{{$package->name}}
                                             <p>
                                         </div>
-                                        <div class="col-lg-1 col-md-2 col3"><a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable{{ $package->id }}">
+                                        <div class="col-lg-1 col-md-2 col3"><a type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalDialogScrollable{{ $package->id }}">
                                                 <i class="bi bi-person-vcard"></i>
                                             </a></div>
                                         <!-- Modal detail package -->
@@ -115,21 +121,25 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" style='font-weight: bold;'>Detail
                                                             Package</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="card-body" style="max-height: 90vh;overflow: auto;">
                                                             <div class="tab-content">
-                                                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                                                <div class="tab-pane fade show active profile-overview"
+                                                                    id="profile-overview">
                                                                     <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 label " style='font-weight: bold;'>Name
+                                                                        <div class="col-lg-4 col-md-4 label "
+                                                                            style='font-weight: bold;'>Name
                                                                         </div>
                                                                         <div class="col-lg-8 col-md-8 text_justify">
                                                                             {{$package['name']}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
+                                                                        <div class="col-lg-4 col-md-4 label"
+                                                                            style='font-weight: bold;'>
                                                                             Code
                                                                         </div>
                                                                         <div class="col-lg-8 col-md-8 text_justify">
@@ -137,7 +147,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
+                                                                        <div class="col-lg-4 col-md-4 label"
+                                                                            style='font-weight: bold;'>
                                                                             Price
                                                                         </div>
                                                                         <div class="col-lg-8 col-md-8 text_justify">
@@ -145,7 +156,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
+                                                                        <div class="col-lg-4 col-md-4 label"
+                                                                            style='font-weight: bold;'>
                                                                             Type
                                                                         </div>
                                                                         <div class="col-lg-8 col-md-8 text_justify">
@@ -153,7 +165,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
+                                                                        <div class="col-lg-4 col-md-4 label"
+                                                                            style='font-weight: bold;'>
                                                                             Status
                                                                         </div>
                                                                         <div class="col-lg-8 col-md-8 text_justify">
@@ -161,7 +174,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 label" style='font-weight: bold;'>
+                                                                        <div class="col-lg-4 col-md-4 label"
+                                                                            style='font-weight: bold;'>
                                                                             Description</div>
                                                                         <div class="col-lg-8 col-md-8 text_justify">
                                                                             {{$package['description']}}
@@ -172,7 +186,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,113 +230,141 @@
                                                     <td> {{($apointment->time)}} </td>
                                                     <td> {{$apointment->status}} </td>
                                                     @if(date_create_from_format('H:i d/m/Y', $apointment->time) >
-                                                    now()) <td> <a id="update-status" href="" data-bs-toggle="modal" data-bs-target="#modalUpdateApointment{{ $apointment->id }}" style="color:#0d6efd"><i class="ri-mark-pen-line"></i></a>
+                                                    now()) <td> <a id="update-status" href="" data-bs-toggle="modal"
+                                                            data-bs-target="#modalUpdateApointment{{ $apointment->id }}"
+                                                            style="color:#0d6efd"><i class="ri-mark-pen-line"></i></a>
                                                     </td>
                                                     @else
                                                     <td></td>
                                                     @endif
 
                                                     <!-- Modal update apointment -->
-                                                    <div class="modal fade" id="modalUpdateApointment{{ $apointment->id }}">
+                                                    <div class="modal fade"
+                                                        id="modalUpdateApointment{{ $apointment->id }}">
                                                         <div class="modal-dialog modal-dialog-scrollable">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" style='font-weight: bold;'>
                                                                         Change status apointment</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
                                                                         <div class="tab-content">
-                                                                            <form method="POST" action="{{route('user.setValueStatus')}}">
+                                                                            <form method="POST"
+                                                                                action="{{route('user.setValueStatus')}}">
                                                                                 @csrf
                                                                                 @METHOD('PATCH')
                                                                                 <section class="section dashboard">
                                                                                     <div class="col-xxl-4 col-md-12">
                                                                                         <div class="card info-card">
                                                                                             <div class="card-body">
-                                                                                                <input type="hidden" name="id" value="{{$apointment->id}}">
+                                                                                                <input type="hidden"
+                                                                                                    name="id"
+                                                                                                    value="{{$apointment->id}}">
                                                                                                 <div class="row mb-3">
-                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Code</label>
-                                                                                                    <div class="col-sm-8">
-                                                                                                        <input type="text" class="form-control" name="code" value="{{old('code')?old('code'):$apointment->code }}" readonly>
+                                                                                                    <label
+                                                                                                        for="inputText"
+                                                                                                        class="col-sm-4 col-form-label">Code</label>
+                                                                                                    <div
+                                                                                                        class="col-sm-8">
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            class="form-control"
+                                                                                                            name="code"
+                                                                                                            value="{{old('code')?old('code'):$apointment->code }}"
+                                                                                                            readonly>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row mb-3">
-                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Time</label>
-                                                                                                    <div class="col-sm-8">
-                                                                                                        <input type="text" readonly class="form-control" name="time" value="{{date('d-m-Y', strtotime(str_replace('/', '-', $apointment->time)))}}">
+                                                                                                    <label
+                                                                                                        for="inputText"
+                                                                                                        class="col-sm-4 col-form-label">Time</label>
+                                                                                                    <div
+                                                                                                        class="col-sm-8">
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            readonly
+                                                                                                            class="form-control"
+                                                                                                            name="time"
+                                                                                                            value="{{date('d-m-Y', strtotime(str_replace('/', '-', $apointment->time)))}}">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row mb-3">
-                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Status</label>
-                                                                                                    <div class="col-sm-8">
-                                                                                                        <select class="form-select" name="status">
-                                                                                                            <option value="Completed" @if($apointment->
-                                                                                                                status
-                                                                                                                ==
-                                                                                                                'Completed')
-                                                                                                                selected
-                                                                                                                @endif>Completed
-                                                                                                            </option>
-                                                                                                            <option value="Confirmed" @if($apointment->
+                                                                                                    <label
+                                                                                                        for="inputText"
+                                                                                                        class="col-sm-4 col-form-label">Status</label>
+                                                                                                    <div
+                                                                                                        class="col-sm-8">
+                                                                                                        <select
+                                                                                                            class="form-select"
+                                                                                                            name="status">
+                                                                                                            <option
+                                                                                                                value="Confirmed"
+                                                                                                                @if($apointment->
                                                                                                                 status
                                                                                                                 ==
                                                                                                                 'Confirmed')
                                                                                                                 selected
                                                                                                                 @endif>Confirmed
                                                                                                             </option>
-                                                                                                            <option value="Cancelled" @if($apointment->
+                                                                                                            <option
+                                                                                                                value="Cancelled"
+                                                                                                                @if($apointment->
                                                                                                                 status
                                                                                                                 ==
                                                                                                                 'Cancelled')
                                                                                                                 selected
                                                                                                                 @endif>Cancelled
                                                                                                             </option>
-                                                                                                            <option value="Missed" @if($apointment->
-                                                                                                                status
-                                                                                                                ==
-                                                                                                                'Missed')
-                                                                                                                selected
-                                                                                                                @endif>Missed
-                                                                                                            </option>
                                                                                                         </select>
                                                                                                         @error('status')
-                                                                                                        <div class="invalidate">
+                                                                                                        <div
+                                                                                                            class="invalidate">
                                                                                                             {{ $message }}
                                                                                                         </div>
                                                                                                         <script>
-                                                                                                            window
-                                                                                                                .onload =
-                                                                                                                function() {
-                                                                                                                    document
-                                                                                                                        .getElementById(
-                                                                                                                            'update-status'
-                                                                                                                        )
-                                                                                                                        .click();
-                                                                                                                }
+                                                                                                        window
+                                                                                                            .onload =
+                                                                                                            function() {
+                                                                                                                document
+                                                                                                                    .getElementById(
+                                                                                                                        'update-status'
+                                                                                                                    )
+                                                                                                                    .click();
+                                                                                                            }
                                                                                                         </script>
                                                                                                         @enderror
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row mb-3">
-                                                                                                    <label for="inputText" class="col-sm-4 col-form-label">Message</label>
-                                                                                                    <div class="col-sm-8">
-                                                                                                        <input type="text" class="form-control" name="message" value="{{old('message')?old('message'):$apointment->message }}">
+                                                                                                    <label
+                                                                                                        for="inputText"
+                                                                                                        class="col-sm-4 col-form-label">Message</label>
+                                                                                                    <div
+                                                                                                        class="col-sm-8">
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            class="form-control"
+                                                                                                            name="message"
+                                                                                                            value="{{old('message')?old('message'):$apointment->message }}">
                                                                                                         @error('message')
-                                                                                                        <div class="invalidate">
+                                                                                                        <div
+                                                                                                            class="invalidate">
                                                                                                             {{ $message }}
                                                                                                         </div>
                                                                                                         <script>
-                                                                                                            window
-                                                                                                                .onload =
-                                                                                                                function() {
-                                                                                                                    document
-                                                                                                                        .getElementById(
-                                                                                                                            'update-status'
-                                                                                                                        )
-                                                                                                                        .click();
-                                                                                                                }
+                                                                                                        window
+                                                                                                            .onload =
+                                                                                                            function() {
+                                                                                                                document
+                                                                                                                    .getElementById(
+                                                                                                                        'update-status'
+                                                                                                                    )
+                                                                                                                    .click();
+                                                                                                            }
                                                                                                         </script>
                                                                                                         @enderror
                                                                                                     </div>
@@ -334,7 +377,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
                                                                     <button type="submit" class="btn btn-primary">Save
                                                                         changes</button>
                                                                 </div>

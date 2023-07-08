@@ -86,7 +86,7 @@ class PaymentController extends Controller
                 UserCoupon::create([
                     'user_id' => Auth::id(),
                     'coupon_id' => Coupon::where('name', $request->vnp_OrderInfo)->value('id'),
-                    'timeExpiredAt' => now()->addYears(1),
+                    'timeExpiredAt' => now()->addMonths(3),
                     'status' => true
                 ]);
                 return redirect()->route('user.showAllPackage')->with('success', "Bạn đã đặt thành công mã giảm giá $request->vnp_OrderInfo ! ");

@@ -15,11 +15,11 @@ class HaveApointmentRule implements Rule
 
     public function passes($attribute, $value)
     {
-        return $this->limit <= 1;
+        return $this->limit <= 3;
     }
 
     public function message()
     {
-        return 'Customer has an appointment scheduled for this date.';
+        return 'You have scheduled the maximum number of appointments for today.';
     }
 }
